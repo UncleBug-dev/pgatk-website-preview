@@ -40,10 +40,12 @@ const NewsList: React.FC = () => {
 
   const displayNews = newsList.length > 0 ? newsList : MOCK_NEWS.map(n => ({ ...n, link: `/news/${n.id}` }));
   
-  const filteredNews = displayNews.filter(news => 
-    selectedCategory === 'Все' || 
-    (news.category && news.category.toLowerCase() === selectedCategory.toLowerCase())
-  );
+  const filteredNews = displayNews.filter(news => {
+    if (selectedCategory === 'Все') return true;
+    if (!news.category) return false;
+    const cats = Array.isArray(news.category) ? news.category : [news.category];
+    return cats.some(c => c.toLowerCase() === selectedCategory.toLowerCase());
+  });
 
   const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
 
@@ -115,10 +117,12 @@ const NewsList: React.FC = () => {
                       alt={news.title} 
                       className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${!news.imageUrl ? 'p-8 object-contain opacity-60' : 'object-cover'}`}
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm">
-                        {news.category}
-                      </span>
+                    <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 max-w-[90%]">
+                      {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat, idx) => (
+                        <span key={idx} className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm">
+                          {cat}
+                        </span>
+                      ))}
                     </div>
                   </div>
                   

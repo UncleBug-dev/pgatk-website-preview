@@ -20,15 +20,15 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r scripts/requirements.txt
+          pip install -r requirements.txt
 
       - name: Run Telegram Parser
-        run: python scripts/telegram_parser.py
+        run: python telegram_parser.py
 
       - name: Commit and Push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add public/data/telegram_news.json
-          git commit -m "Auto-update Telegram news [skip ci]" || echo "No changes to commit"
+          git add telegram_news.json
+          git commit -m "Auto-update Telegram news" || echo "No changes to commit"
           git push

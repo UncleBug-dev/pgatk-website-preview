@@ -172,9 +172,13 @@ const MainNewsCard = ({ news, getImageUrl }: { news: any, getImageUrl: (url?: st
     />
     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/10"></div>
     <div className="absolute bottom-0 left-0 p-8 text-white w-full">
-      <span className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded mb-3 inline-block">
-        {news.category}
-      </span>
+      <div className="flex flex-wrap gap-2 mb-3">
+        {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
+          <span key={idx} className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded inline-block">
+            {cat}
+          </span>
+        ))}
+      </div>
       <h3 className="text-2xl md:text-3xl font-bold font-display mb-3 leading-tight group-hover:text-accent-400 transition-colors line-clamp-2">
         {news.title}
       </h3>
@@ -204,7 +208,9 @@ const SideNewsCard = ({ news, getImageUrl }: { news: any, getImageUrl: (url?: st
     <div className="flex flex-col justify-center flex-grow pr-2">
       <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
         <div className="flex items-center">
-          <span className="text-accent-600 font-semibold mr-2">{news.category}</span>
+          {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
+            <span key={idx} className="text-accent-600 font-semibold mr-2">{cat}</span>
+          ))}
           <span>{news.date}</span>
         </div>
         {news.link.startsWith('http') && <ExternalLink className="w-3 h-3 text-slate-300" />}

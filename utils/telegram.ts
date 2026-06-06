@@ -4,7 +4,7 @@ export interface TelegramPost {
   summary: string;
   imageUrl?: string;
   date: string;
-  category: string;
+  category: string[];
   link: string;
 }
 

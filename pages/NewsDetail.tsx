@@ -138,7 +138,11 @@ const NewsDetail: React.FC = () => {
                <Link key={news.id} to={`/news/${news.id}`} className="flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all group">
                   <img src={news.imageUrl} alt="" className="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
                   <div>
-                     <div className="text-xs text-accent-600 font-bold mb-1">{news.category}</div>
+                    <div className="flex flex-wrap gap-2 mb-1">
+                      {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
+                        <div key={idx} className="text-xs text-accent-600 font-bold">{cat}</div>
+                      ))}
+                    </div>
                      <h4 className="font-bold text-slate-800 leading-tight group-hover:text-primary-900 transition-colors line-clamp-2">{news.title}</h4>
                      <div className="text-xs text-slate-400 mt-2">{news.date}</div>
                   </div>

@@ -15,7 +15,7 @@ export interface NewsItem {
   id: string;
   title: string;
   date: string;
-  category: string;
+  category: string | string[];
   imageUrl: string;
   summary: string;
   content?: string; 

@@ -121,10 +121,8 @@ if __name__ == '__main__':
     print(f"Fetching posts from {channel_url}...")
     posts = parse_telegram_channel(channel_url, pages_to_fetch=3)
     
-    # Ensure public/data directory exists
-    os.makedirs('public/data', exist_ok=True)
-    
-    output_file = 'public/data/telegram_news.json'
+    # Ensure directory exists if needed, but we output to root
+    output_file = 'telegram_news.json'
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(posts, f, ensure_ascii=False, indent=2)
     
