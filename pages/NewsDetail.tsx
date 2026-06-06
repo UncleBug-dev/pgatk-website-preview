@@ -7,7 +7,8 @@ import {
   ArrowLeft, 
   Share2, 
   Printer,
-  Clock 
+  Clock,
+  ExternalLink
 } from 'lucide-react';
 import { MOCK_NEWS } from '../constants';
 
@@ -17,6 +18,12 @@ const NewsDetail: React.FC = () => {
 
   const [newsItem, setNewsItem] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(true);
+
+  const getImageUrl = (url?: string) => {
+    if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+    if (url.startsWith('http')) return url;
+    return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
+  };
 
   // Скролл наверх при открытии
   useEffect(() => {
@@ -102,9 +109,9 @@ const NewsDetail: React.FC = () => {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
           
           {/* Hero Image */}
-          <div className="relative h-64 md:h-96 w-full">
+          <div className="relative h-64 md:h-96 w-full bg-slate-200">
             <img 
-              src={newsItem.imageUrl} 
+              src={getImageUrl(newsItem.imageUrl)} 
               alt={newsItem.title} 
               className="w-full h-full object-cover"
             />
@@ -178,6 +185,7 @@ const NewsDetail: React.FC = () => {
                 className="flex items-center gap-2 px-6 py-3 bg-[#0088cc] text-white rounded-xl font-bold shadow-md shadow-[#0088cc]/20 hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm text-center md:text-left"
               >
                 Больше вы сможете узнать в нашем ТГ канале!
+                <ExternalLink className="w-5 h-5 flex-shrink-0" />
               </a>
             )}
           </div>
@@ -191,7 +199,7 @@ const NewsDetail: React.FC = () => {
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {MOCK_NEWS.filter(n => n.id !== id).slice(0, 2).map(news => (
                <Link key={news.id} to={`/news/${news.id}`} className="flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all group">
-                  <img src={news.imageUrl} alt="" className="w-24 h-24 object-cover rounded-lg flex-shrink-0" />
+                  <img src={getImageUrl(news.imageUrl)} alt="" className="w-24 h-24 object-cover rounded-lg flex-shrink-0 bg-slate-100" />
                   <div>
                     <div className="flex flex-wrap gap-2 mb-1">
                       {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
