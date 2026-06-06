@@ -19,6 +19,8 @@ export interface NewsItem {
   imageUrl: string;
   summary: string;
   content?: string; 
+  link: string;
+  hasVideo?: boolean;
   isMain?: boolean;
 }
 

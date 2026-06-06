@@ -6,6 +6,7 @@ export interface TelegramPost {
   date: string;
   category: string[];
   link: string;
+  hasVideo?: boolean;
 }
 
 export const fetchTelegramPosts = async (): Promise<TelegramPost[]> => {

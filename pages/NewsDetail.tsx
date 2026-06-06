@@ -18,6 +18,26 @@ const NewsDetail: React.FC = () => {
 
   const [newsItem, setNewsItem] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(true);
+  const [showVideo, setShowVideo] = React.useState(false);
+
+  const TelegramEmbed = ({ url }: { url: string }) => {
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    React.useEffect(() => {
+      if (!containerRef.current) return;
+      containerRef.current.innerHTML = '';
+      const script = document.createElement('script');
+      script.src = 'https://telegram.org/js/telegram-widget.js?22';
+      script.async = true;
+      const match = url.match(/t\.me\/([^/]+\/\d+)/);
+      if (match) {
+        script.setAttribute('data-telegram-post', match[1]);
+        script.setAttribute('data-width', '100%');
+        script.setAttribute('data-color', '0088cc');
+        containerRef.current.appendChild(script);
+      }
+    }, [url]);
+    return <div ref={containerRef} className="w-full mx-auto flex justify-center bg-white rounded-xl"></div>;
+  };
 
   const getImageUrl = (url?: string) => {
     if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
@@ -74,7 +94,8 @@ const NewsDetail: React.FC = () => {
             imageUrl: found.imageUrl || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`,
             summary: found.summary,
             content: `<p>${found.summary.replace(/\n/g, '<br/>')}</p>`,
-            link: found.link
+            link: found.link,
+            hasVideo: found.hasVideo
           });
         }
         setLoading(false);
@@ -183,6 +204,30 @@ const NewsDetail: React.FC = () => {
               className="prose prose-slate prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-h2:text-primary-900 prose-a:text-accent-600 prose-img:rounded-xl"
               dangerouslySetInnerHTML={{ __html: newsItem.content || `<p>${newsItem.summary}</p>` }}
             />
+
+            {newsItem.hasVideo && (
+              <div className="mt-10 border-t border-slate-100 pt-8">
+                <h3 className="text-xl font-bold text-primary-900 mb-6 flex items-center gap-2">
+                  <span className="text-2xl">🎬</span> Прикрепленное видео
+                </h3>
+                {!showVideo ? (
+                  <button 
+                    onClick={() => setShowVideo(true)}
+                    className="w-full py-8 bg-slate-50 hover:bg-slate-100 text-primary-900 font-bold rounded-xl border-2 border-dashed border-slate-200 transition-colors flex flex-col items-center justify-center gap-4 group"
+                  >
+                    <span className="bg-[#0088cc] text-white p-4 rounded-full shadow-md group-hover:scale-110 transition-transform">
+                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    Загрузить видеоплеер Telegram
+                  </button>
+                ) : (
+                  <TelegramEmbed url={newsItem.link} />
+                )}
+              </div>
+            )}
           </div>
 
           {/* Footer Actions */}
