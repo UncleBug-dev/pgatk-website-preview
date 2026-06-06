@@ -106,12 +106,6 @@ const NewsDetail: React.FC = () => {
     return <div ref={containerRef} className="w-full mx-auto flex justify-center bg-white rounded-xl"></div>;
   };
 
-  const getImageUrl = (url?: string) => {
-    if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
-    if (url.startsWith('http')) return url;
-    return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
-  };
-
   const handleShare = async () => {
     try {
       if (navigator.share) {
