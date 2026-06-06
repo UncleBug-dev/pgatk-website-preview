@@ -49,7 +49,9 @@ const NewsDetail: React.FC = () => {
             }`}
           >
             <div 
-              className="absolute inset-0 bg-cover bg-center"
+              className={`absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear ${
+                idx === currentSlide ? 'scale-110' : 'scale-100'
+              }`}
               style={{ backgroundImage: `url(${getImageUrl(img)})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
