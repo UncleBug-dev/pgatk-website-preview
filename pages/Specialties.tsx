@@ -14,7 +14,8 @@ import {
   Zap,
   HardHat,
   ArrowRight,
-  FileText
+  FileText,
+  Droplet
 } from 'lucide-react';
 
 interface Specialty {
@@ -23,7 +24,7 @@ interface Specialty {
   code: string;
   qualification: string;
   duration: string;
-  budget: number;
+  budget: number | string;
   paid: number;
   image: string;
   icon: React.ElementType;
@@ -33,16 +34,16 @@ interface Specialty {
 // Данные на основе реальных специальностей ПГАТК
 const SPECIALTIES: Specialty[] = [
   {
-    id: 'mech',
-    title: 'Техническое обеспечение процессов с/х производства',
-    code: '5-04-0810-01',
-    qualification: 'Техник-механик',
+    id: 'build',
+    title: 'Строительство зданий и сооружений',
+    code: '5-04-0732-02',
+    qualification: 'Техник-строитель',
     duration: '3 года 6 месяцев',
-    budget: 50,
-    paid: 5,
-    image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1000&auto=format&fit=crop',
-    icon: Tractor,
-    description: 'Организация эксплуатации, техобслуживания и ремонта машин и оборудования в агропромышленном комплексе.'
+    budget: '25-30',
+    paid: 0,
+    image: 'images/specialties/build_spec.png',
+    icon: HardHat,
+    description: 'Возведение зданий и сооружений, контроль качества строительно-монтажных работ.'
   },
   {
     id: 'road',
@@ -50,59 +51,47 @@ const SPECIALTIES: Specialty[] = [
     code: '5-04-0732-01',
     qualification: 'Техник-строитель',
     duration: '3 года 7 месяцев',
-    budget: 25,
+    budget: '25-30',
     paid: 0,
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1000&auto=format&fit=crop',
-    icon: HardHat,
+    image: 'images/specialties/road_spec.png',
+    icon: Hammer,
     description: 'Проектирование, строительство, реконструкция и ремонт автомобильных дорог и транспортных объектов.'
   },
   {
-    id: 'civil',
-    title: 'Промышленное и гражданское строительство',
-    code: '5-04-0732-02',
-    qualification: 'Техник-строитель',
-    duration: '3 года 6 месяцев',
-    budget: 25,
-    paid: 5,
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1000&auto=format&fit=crop',
-    icon: Hammer,
-    description: 'Возведение зданий и сооружений, контроль качества строительно-монтажных работ.'
-  },
-  {
-    id: 'repair',
-    title: 'Ремонтно-обслуживающее производство в сельском хозяйстве',
-    code: '5-04-0810-06',
+    id: 'mech1',
+    title: 'Техническое обслуживание и ремонт сельскохозяйственной техники',
+    code: '5-04-0810-01',
     qualification: 'Техник-механик',
     duration: '3 года 6 месяцев',
-    budget: 25,
+    budget: '25-30',
     paid: 0,
-    image: 'https://images.unsplash.com/photo-1581092921461-eab62496096b?q=80&w=1000&auto=format&fit=crop',
+    image: 'images/specialties/agri_repair.png',
+    icon: Tractor,
+    description: 'Организация эксплуатации, техобслуживания и ремонта сельскохозяйственных машин и оборудования.'
+  },
+  {
+    id: 'mech2',
+    title: 'Техническая эксплуатация подъемно-транспортных, дорожно-строительных машин и оборудования',
+    code: '5-04-0715-01',
+    qualification: 'Техник-механик',
+    duration: '3 года 6 месяцев',
+    budget: '25-30',
+    paid: 0,
+    image: 'images/specialties/heavy_machine.png',
     icon: Wrench,
-    description: 'Технический сервис, диагностика и восстановление работоспособности сельскохозяйственной техники.'
+    description: 'Технический сервис, диагностика и обслуживание тяжелой и дорожно-строительной техники.'
   },
   {
-    id: 'cook',
-    title: 'Общественное питание',
-    code: '3-02-0911-01',
-    qualification: 'Повар 4 разряда',
-    duration: '1 год 6 месяцев',
+    id: 'hydro',
+    title: 'Мелиорация земель',
+    code: '5-04-0812-01',
+    qualification: 'Гидротехник',
+    duration: '3 года 6 месяцев',
     budget: 25,
     paid: 0,
-    image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1000&auto=format&fit=crop',
-    icon: Utensils,
-    description: 'Приготовление блюд и кулинарных изделий, оформление и отпуск порций, обслуживание посетителей.'
-  },
-  {
-    id: 'weld',
-    title: 'Технология сварочных работ',
-    code: '3-02-0715-01',
-    qualification: 'Электрогазосварщик',
-    duration: '1 год 6 месяцев',
-    budget: 25,
-    paid: 0,
-    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=1000&auto=format&fit=crop',
-    icon: Zap,
-    description: 'Выполнение сварочных работ ручной дуговой и газовой сваркой, резка металлов.'
+    image: 'images/specialties/hydro_spec.png',
+    icon: Droplet,
+    description: 'Организация и проведение мелиоративных работ, эксплуатация мелиоративных систем.'
   }
 ];
 
@@ -133,7 +122,7 @@ const Specialties: React.FC = () => {
               Выбери профессию будущего
             </h1>
             <p className="text-lg md:text-xl text-slate-200 leading-relaxed">
-              ПГАТК предлагает востребованные специальности в сфере агропромышленного комплекса, строительства и обслуживания. 
+              #ПГАТККЛЕЩЕВА предлагает востребованные специальности в сфере агропромышленного комплекса, строительства и обслуживания. 
               Получи качественное образование и гарантированное трудоустройство.
             </p>
           </div>
@@ -150,7 +139,7 @@ const Specialties: React.FC = () => {
               <GraduationCap className="w-8 h-8" />
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary-900">75+</div>
+              <div className="text-3xl font-bold text-primary-900">80</div>
               <div className="text-sm text-slate-500 font-medium">Лет успешной работы</div>
             </div>
           </div>
@@ -159,7 +148,7 @@ const Specialties: React.FC = () => {
               <Users className="w-8 h-8" />
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary-900">20 000+</div>
+              <div className="text-3xl font-bold text-primary-900">25 000+</div>
               <div className="text-sm text-slate-500 font-medium">Выпускников</div>
             </div>
           </div>
@@ -174,10 +163,31 @@ const Specialties: React.FC = () => {
           </div>
         </div>
 
+        {/* Info Boxes */}
+        <div className="bg-white p-8 rounded-2xl shadow-md border-l-4 border-accent-500 mb-12 flex flex-col md:flex-row gap-8 mt-12">
+          <div className="flex-1">
+            <h3 className="text-xl font-bold text-primary-900 mb-3 flex items-center gap-2">
+              <GraduationCap className="w-6 h-6 text-accent-600" /> База для поступления
+            </h3>
+            <p className="text-slate-600 leading-relaxed">
+              Прием ведется преимущественно на дневную форму обучения на основе общего базового образования (после 9 классов). На отдельные направления доступно поступление после 11 классов или на заочную форму.
+            </p>
+          </div>
+          <div className="hidden md:block w-px bg-slate-200"></div>
+          <div className="flex-1">
+            <h3 className="text-xl font-bold text-primary-900 mb-3 flex items-center gap-2">
+              <Hammer className="w-6 h-6 text-accent-600" /> Смежные рабочие профессии
+            </h3>
+            <p className="text-slate-600 leading-relaxed">
+              Во время учебы студенты строительных отделений могут дополнительно получить разряды по рабочим профессиям (штукатур, маляр, каменщик, плотник-бетонщик, столяр или облицовщик).
+            </p>
+          </div>
+        </div>
+
         {/* Specialties Grid */}
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-primary-900 mb-8 font-display border-l-8 border-accent-500 pl-6">
-            Специальности 2025
+            Специальности 2026
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -188,7 +198,7 @@ const Specialties: React.FC = () => {
                 <div className="relative h-56 overflow-hidden">
                   <div className="absolute inset-0 bg-primary-900/20 group-hover:bg-primary-900/0 transition-colors z-10"></div>
                   <img 
-                    src={spec.image} 
+                    src={`${import.meta.env.BASE_URL}${spec.image}`}
                     alt={spec.title} 
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
@@ -273,7 +283,7 @@ const Specialties: React.FC = () => {
             <div className="hidden md:block relative">
               <div className="w-64 h-64 bg-gradient-to-br from-accent-500 to-accent-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse-slow">
                 <div className="text-center">
-                  <div className="text-primary-900 font-bold text-6xl font-display mb-1">2025</div>
+                  <div className="text-primary-900 font-bold text-6xl font-display mb-1">2026</div>
                   <div className="text-primary-900 font-bold uppercase tracking-widest text-sm">Приемная<br/>кампания</div>
                 </div>
               </div>

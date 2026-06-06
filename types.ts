@@ -25,6 +25,7 @@ export interface NewsItem {
 export interface QuickLinkItem {
   label: string;
   icon: LucideIcon;
-  description: string;
+  description?: string;
   color: string;
+  href?: string;
 }

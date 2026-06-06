@@ -6,6 +6,7 @@ import { AlertCircle } from 'lucide-react';
 const ImportantSection: React.FC = () => {
   // Хелпер для путей к картинкам
   const resolvePath = (path: string) => {
+    if (path.startsWith('http')) return path;
     return `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
   };
 
@@ -19,16 +20,15 @@ const ImportantSection: React.FC = () => {
             Это важно
             <AlertCircle className="w-6 h-6 text-accent-500" />
           </h2>
-          <p className="text-sm text-slate-500">Актуальная информация и профилактика</p>
         </div>
       </div>
 
       {/* Сетка карточек */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
         {IMPORTANT_NEWS.map((item) => (
           <Link 
             key={item.id} 
-            to={item.href}
+            to={`/important/${item.id}`}
             className="group flex flex-col bg-white rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-slate-100 overflow-hidden h-full"
           >
             {/* Контейнер картинки */}
@@ -39,7 +39,7 @@ const ImportantSection: React.FC = () => {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 onError={(e) => {
                   // Фоллбэк, если картинки нет
-                  e.currentTarget.src = 'https://via.placeholder.com/400x300?text=ПГАТК';
+                  e.currentTarget.src = 'https://via.placeholder.com/400x300?text=#ПГАТККЛЕЩЕВА';
                 }}
               />
               
@@ -53,8 +53,8 @@ const ImportantSection: React.FC = () => {
             </div>
 
             {/* Контент */}
-            <div className="p-5 flex-grow flex flex-col justify-center">
-              <h3 className="font-bold text-slate-800 leading-snug group-hover:text-accent-600 transition-colors line-clamp-3">
+            <div className="p-3 flex-grow flex flex-col justify-center">
+              <h3 className="font-bold text-slate-800 text-xs md:text-sm leading-snug group-hover:text-accent-600 transition-colors line-clamp-3">
                 {item.title}
               </h3>
             </div>

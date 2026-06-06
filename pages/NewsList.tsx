@@ -1,23 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, ChevronRight, Home as HomeIcon, ChevronLeft } from 'lucide-react';
+import { Calendar, ChevronRight, Home as HomeIcon, ChevronLeft, Loader2, ExternalLink } from 'lucide-react';
 import { MOCK_NEWS } from '../constants';
+import { fetchTelegramPosts, TelegramPost } from '../utils/telegram';
 
 const ITEMS_PER_PAGE = 6;
 
+const NEWS_CATEGORIES = [
+  'Все',
+  'Профориентация',
+  'Профилактика',
+  'Достижения',
+  'Год белорусской женщины',
+  'Жизнь колледжа',
+  'Общежитие',
+  'БРСМ'
+];
+
 const NewsList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState('Все');
+
+  const [newsList, setNewsList] = useState<TelegramPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // Скролл наверх при смене страницы пагинации
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage]);
 
+  useEffect(() => {
+    fetchTelegramPosts().then(posts => {
+      if (posts && posts.length > 0) {
+        setNewsList(posts);
+      }
+      setLoading(false);
+    });
+  }, []);
+
+  const displayNews = newsList.length > 0 ? newsList : MOCK_NEWS.map(n => ({ ...n, link: `/news/${n.id}` }));
+  
+  const filteredNews = displayNews.filter(news => 
+    selectedCategory === 'Все' || 
+    (news.category && news.category.toLowerCase() === selectedCategory.toLowerCase())
+  );
+
+  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+
   // Логика пагинации
-  const totalPages = Math.ceil(MOCK_NEWS.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
   const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
-  const currentItems = MOCK_NEWS.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20 font-sans">
@@ -44,49 +78,98 @@ const NewsList: React.FC = () => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 -mt-8 md:-mt-16 relative z-20">
         
-        {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {currentItems.map((news) => (
-            <Link 
-              key={news.id} 
-              to={`/news/${news.id}`}
-              className="group flex flex-col bg-white rounded-xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full"
+        {/* Category Tabs */}
+        <div className="flex overflow-x-auto pb-4 mb-6 md:mb-10 -mx-4 px-4 md:mx-0 md:px-0 gap-3 scrollbar-hide snap-x">
+          {NEWS_CATEGORIES.map(category => (
+            <button
+              key={category}
+              onClick={() => {
+                setSelectedCategory(category);
+                setCurrentPage(1);
+              }}
+              className={`whitespace-nowrap px-5 py-2.5 rounded-full font-bold text-sm transition-all border shadow-sm snap-start ${
+                selectedCategory === category
+                  ? 'bg-accent-500 text-primary-900 border-accent-500 shadow-accent-500/30'
+                  : 'bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-600'
+              }`}
             >
-              <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={news.imageUrl} 
-                  alt={news.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm">
-                    {news.category}
-                  </span>
-                </div>
-              </div>
-              
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center text-xs text-slate-400 mb-3">
-                  <Calendar className="w-3 h-3 mr-1.5" />
-                  {news.date}
-                </div>
-                
-                <h3 className="text-lg font-bold font-display text-primary-900 mb-3 leading-snug group-hover:text-accent-600 transition-colors line-clamp-2">
-                  {news.title}
-                </h3>
-                
-                <p className="text-sm text-slate-600 mb-4 line-clamp-3 flex-grow">
-                  {news.summary}
-                </p>
-                
-                <div className="pt-4 border-t border-slate-100 flex items-center text-accent-600 font-bold text-sm">
-                  Читать подробнее
-                  <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            </Link>
+              {category}
+            </button>
           ))}
         </div>
+
+        {/* News Grid */}
+        {loading ? (
+          <div className="flex justify-center items-center h-64 mb-12">
+            <Loader2 className="w-12 h-12 text-accent-500 animate-spin" />
+            <span className="ml-4 text-slate-500 font-semibold">Загрузка новостей...</span>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {currentItems.map((news) => {
+              const CardContent = (
+                <>
+                  <div className="relative aspect-video overflow-hidden bg-slate-50 border-b border-slate-100">
+                    <img 
+                      src={getImageUrl(news.imageUrl)} 
+                      alt={news.title} 
+                      className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${!news.imageUrl ? 'p-8 object-contain opacity-60' : 'object-cover'}`}
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm">
+                        {news.category}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
+                      <div className="flex items-center">
+                        <Calendar className="w-3 h-3 mr-1.5" />
+                        {news.date}
+                      </div>
+                      {news.link.startsWith('http') && <ExternalLink className="w-3 h-3 text-slate-300" />}
+                    </div>
+                    
+                    <h3 className="text-lg font-bold font-display text-primary-900 mb-3 leading-snug group-hover:text-accent-600 transition-colors line-clamp-2">
+                      {news.title}
+                    </h3>
+                    
+                    <p className="text-sm text-slate-600 mb-4 line-clamp-3 flex-grow">
+                      {news.summary}
+                    </p>
+                    
+                    <div className="pt-4 border-t border-slate-100 flex items-center text-accent-600 font-bold text-sm">
+                      Читать подробнее
+                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </>
+              );
+
+              const cardClasses = "group flex flex-col bg-white rounded-xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full";
+
+              return news.link.startsWith('http') ? (
+                <a 
+                  key={news.id} 
+                  href={news.link}
+                  target="_blank" rel="noopener noreferrer"
+                  className={cardClasses}
+                >
+                  {CardContent}
+                </a>
+              ) : (
+                <Link 
+                  key={news.id} 
+                  to={news.link}
+                  className={cardClasses}
+                >
+                  {CardContent}
+                </Link>
+              );
+            })}
+          </div>
+        )}
 
         {/* Pagination */}
         {totalPages > 1 && (

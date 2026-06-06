@@ -7,6 +7,25 @@ import { MAIN_MENU } from '../constants';
 import { useAccessibility } from '../context/AccessibilityContext';
 import SearchModal from './SearchModal';
 
+const VKIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="-48 -48 672 608" fill="currentColor">
+    <path d="M545 117.7c3.7-12.5 0-21.7-17.8-21.7h-58.9c-15 0-21.9 7.9-25.6 16.7 0 0-30 73.1-72.4 120.5-13.7 13.7-20 18.1-27.5 18.1-3.7 0-9.4-4.4-9.4-16.9V117.7c0-15-4.2-21.7-16.6-21.7h-92.6c-9.4 0-15 7-15 13.5 0 14.2 21.2 17.5 23.4 57.5v86.8c0 19-3.4 22.5-10.9 22.5-20 0-68.6-73.4-97.4-157.4-5.8-16.3-11.5-22.9-26.6-22.9H38.8c-16.8 0-20.2 7.9-20.2 16.7 0 15.6 20 93.1 93.1 195.5C160.4 378.1 229 416 291.4 416c37.5 0 42.1-8.4 42.1-22.9 0-66.8-3.4-73.1 15.4-73.1 8.7 0 23.7 4.4 58.7 38.1 40 40 46.6 57.9 69 57.9h58.9c16.8 0 25.3-8.4 20.4-25-11.2-34.9-86.9-106.7-90.3-111.5-8.7-11.2-6.2-16.2 0-26.2.1-.1 72-101.3 79.4-135.6z"/>
+  </svg>
+);
+
+const TikTokIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="-32 -48 512 608" fill="currentColor">
+    <path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"/>
+  </svg>
+);
+
+const TelegramIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="22" y1="2" x2="11" y2="13"></line>
+    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+  </svg>
+);
+
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
@@ -72,10 +91,22 @@ const Header: React.FC = () => {
             )}
 
             <div className="h-4 w-px bg-primary-800 hidden sm:block"></div>
+            
+            {/* Языки */}
+            <div className="flex items-center space-x-2 font-bold text-[10px] sm:text-xs tracking-wider">
+              <button className="text-accent-500">RU</button>
+              <span className="text-primary-800 font-normal">|</span>
+              <button className="hover:text-accent-500 transition-colors">BY</button>
+              <span className="text-primary-800 font-normal">|</span>
+              <button className="hover:text-accent-500 transition-colors">EN</button>
+            </div>
+
             <div className="flex items-center space-x-3">
-              <a href="https://instagram.com" className="hover:text-accent-500 transition-colors p-1"><Instagram className="w-4 h-4" /></a>
-              <a href="https://youtube.com" className="hover:text-accent-500 transition-colors p-1"><Youtube className="w-4 h-4" /></a>
-              <a href="https://vk.com" className="hover:text-accent-500 transition-colors p-1 font-bold text-[10px] border border-slate-400 rounded w-5 h-5 flex items-center justify-center">VK</a>
+              <a href="https://www.instagram.com/pgatkk" target="_blank" rel="noopener noreferrer" className="hover:text-accent-500 transition-colors p-1"><Instagram className="w-4 h-4" /></a>
+              <a href="https://youtube.com/channel/UCx3boiuvaRX1PA-yEXi5hZw" target="_blank" rel="noopener noreferrer" className="hover:text-accent-500 transition-colors p-1"><Youtube className="w-4 h-4" /></a>
+              <a href="https://vk.com/pgatkk" target="_blank" rel="noopener noreferrer" className="hover:text-accent-500 transition-colors p-1"><VKIcon className="w-4 h-4" /></a>
+              <a href="https://t.me/pgatkk" target="_blank" rel="noopener noreferrer" className="hover:text-accent-500 transition-colors p-1"><TelegramIcon className="w-4 h-4" /></a>
+              <a href="https://www.tiktok.com/@_pgatkk" target="_blank" rel="noopener noreferrer" className="hover:text-accent-500 transition-colors p-1"><TikTokIcon className="w-4 h-4" /></a>
             </div>
           </div>
         </div>
@@ -84,7 +115,7 @@ const Header: React.FC = () => {
       {/* Main Bar */}
       <div className="bg-white border-b border-slate-100 relative z-50">
         <div className="w-full max-w-[1600px] mx-auto px-4 md:px-6">
-          <div className={`flex justify-between items-center py-2 lg:py-0 min-h-[90px] lg:h-28 ${isLargeFont ? 'flex-wrap gap-y-4' : 'flex-nowrap'}`}>
+          <div className={`flex justify-between items-center py-2 lg:py-2 min-h-[90px] ${isLargeFont ? 'flex-wrap gap-y-4' : 'flex-nowrap'}`}>
             
             <div className="flex items-center flex-shrink-0 mr-4">
               <Link to="/" className="flex items-center gap-4 group">
@@ -95,32 +126,30 @@ const Header: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <img src={resolvePath('images/Gerb.gif')} alt="Герб РБ" className="h-10 lg:h-12 w-auto object-contain" />
                     <div className="h-8 w-px bg-slate-200"></div>
-                    <img src={resolvePath('images/logo/logo_pgatkk.png')} alt="Логотип ПГАТК" className="h-12 lg:h-14 w-auto object-contain drop-shadow-sm" />
+                    <img src={resolvePath('images/logo/logo_pgatkk.png')} alt="Логотип #ПГАТККЛЕЩЕВА" className="h-12 lg:h-14 w-auto object-contain drop-shadow-sm" />
                   </div>
                   
-                  {/* Нижний ряд: Символика (80 лет + Год 2026) */}
-                  <div className="flex items-center gap-3">
-                    {/* УВЕЛИЧЕН РАЗМЕР: h-10 lg:h-12 (было h-7 lg:h-8) */}
-                    <img src={resolvePath('images/symbols/80let.png')} className="h-10 lg:h-12 w-auto object-contain hover:scale-110 transition-transform duration-300" alt="80 лет Победы" title="80 лет освобождения Беларуси" />
-                    <img src={resolvePath('images/symbols/year2026.png')} className="h-10 lg:h-12 w-auto object-contain hover:scale-110 transition-transform duration-300" alt="Год 2026" title="2026 — Год женщины" />
+                  {/* Нижний ряд: Символика (Год белорусской женщины) */}
+                  <div className="flex items-center gap-3 justify-center w-full">
+                    <img src={resolvePath('images/symbols/God2026.png')} className="h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300 -mt-1" alt="Год белорусской женщины" title="2026 — Год белорусской женщины" />
                   </div>
                 </div>
 
                 {/* ТЕКСТОВОЕ НАЗВАНИЕ */}
-                <div className="hidden xl:block 2xl:hidden ml-2 border-l border-slate-100 pl-4">
-                  <h1 className="text-primary-900 font-bold text-base lg:text-lg leading-tight uppercase">Пинский государственный<br/>аграрно-технический колледж</h1>
-                  <p className="text-[10px] lg:text-xs text-slate-500 font-bold tracking-widest mt-0.5">ИМЕНИ А.Е. КЛЕЩЕВА</p>
+                <div className="hidden xl:block ml-2 lg:ml-4 border-l border-slate-100 pl-3">
+                  <p className="text-[9px] lg:text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-0.5">Учреждение образования</p>
+                  <h1 className="text-primary-900 font-bold text-xs lg:text-[12px] 2xl:text-[13px] leading-[1.1] uppercase max-w-[250px] 2xl:max-w-[280px]">«Пинский государственный аграрно-технический колледж имени А.Е.Клещева»</h1>
                 </div>
               </Link>
             </div>
 
             {!isLargeFont && (
-              <nav className="hidden 2xl:flex items-center gap-0.5 mx-auto">
+              <nav className="hidden 2xl:flex items-center gap-0 ml-auto mr-2">
                 {MAIN_MENU.map((item) => (
                   <div key={item.label} className="relative group">
                     {item.submenu ? (
                       <>
-                        <Link to={item.href || '#'} className="px-1.5 py-2 text-[13px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tight">
+                        <Link to={item.href || '#'} className="px-1 py-2 text-[12px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tighter">
                           {item.label} <ChevronDown className="w-3 h-3 ml-0.5 opacity-50" />
                         </Link>
                         <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-500 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
@@ -134,7 +163,7 @@ const Header: React.FC = () => {
                         </div>
                       </>
                     ) : (
-                      <Link to={item.href || '#'} className="px-1.5 py-2 text-[13px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tight">
+                      <Link to={item.href || '#'} className="px-1 py-2 text-[12px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tighter">
                         {item.label}
                       </Link>
                     )}
@@ -145,10 +174,10 @@ const Header: React.FC = () => {
 
             <div className="flex items-center space-x-3 lg:space-x-4 flex-shrink-0 ml-auto 2xl:ml-4">
               <div className="hidden lg:flex flex-col items-end text-right">
-                <a href="tel:80165300688" className="flex items-center text-primary-900 font-bold text-sm hover:text-accent-600 transition-colors">
-                  <Phone className="w-4 h-4 mr-2 fill-current" /> 8 (0165) 30-06-88
+                <a href="tel:80165639293" className="flex items-center text-primary-900 font-bold text-sm hover:text-accent-600 transition-colors">
+                  <Phone className="w-4 h-4 mr-2 fill-current" /> 8 (0165) 63-92-93
                 </a>
-                <span className="text-[10px] text-accent-600 font-semibold uppercase tracking-wide block">Приемная комиссия</span>
+                <span className="text-[10px] text-accent-600 font-semibold uppercase tracking-wide block">Приемная директора</span>
               </div>
               <div className="h-8 w-px bg-slate-200 hidden lg:block"></div>
               <button onClick={() => setIsSearchOpen(true)} className="p-2 text-slate-500 hover:text-accent-600 transition-colors hover:bg-slate-50 rounded-full">
@@ -169,7 +198,14 @@ const Header: React.FC = () => {
               <span className="font-bold text-lg text-primary-900">Меню</span>
               <button onClick={toggleMobileMenu} className="p-2 bg-slate-100 rounded-full hover:bg-accent-100 hover:text-accent-600 transition-colors"><X className="w-6 h-6" /></button>
             </div>
-            <div className="bg-slate-50 p-4 border-b border-slate-100">
+            
+            {/* Полное название (Mobile) */}
+            <div className="p-4 border-b border-slate-100 bg-slate-50 text-center">
+              <p className="text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-1">Учреждение образования</p>
+              <h1 className="text-primary-900 font-bold text-xs leading-tight uppercase">«Пинский государственный аграрно-технический колледж имени А.Е.Клещева»</h1>
+            </div>
+
+            <div className="bg-white p-4 border-b border-slate-100">
               <div className="flex items-start space-x-3 text-sm font-medium text-slate-700">
                 <Phone className="w-5 h-5 text-accent-500 mt-0.5 flex-shrink-0" />
                 <div className="flex flex-col gap-1">
@@ -212,8 +248,7 @@ const Header: React.FC = () => {
               <p className="text-xs text-center text-slate-400 font-bold uppercase mb-4 tracking-widest">Символика</p>
               <div className="flex justify-center items-center gap-6 flex-wrap">
                 <img src={resolvePath('images/symbols/gerb.png')} className="h-12 w-auto object-contain" alt="Герб РБ" />
-                <img src={resolvePath('images/symbols/80let.png')} className="h-12 w-auto object-contain" alt="80 лет Победы" />
-                <img src={resolvePath('images/symbols/year2026.png')} className="h-12 w-auto object-contain" alt="Год 2026" />
+                <img src={resolvePath('images/symbols/God2026.png')} className="h-16 w-auto object-contain" alt="Год белорусской женщины" />
               </div>
             </div>
 

@@ -18,26 +18,14 @@ interface SlideData {
 const SLIDES: SlideData[] = [
   {
     id: 1,
-    title: "Год женщины",
+    title: "Год белорусской женщины",
     subtitle: "Тематика 2026 года",
     description: "2026 год в Республике Беларусь объявлен Годом женщины. Признание особой роли женщины в обществе, хранении традиций и укреплении единства.",
     image: "images/slide/SlideYear2026.jpg",
     primaryAction: {
       label: "Подробнее",
-      href: "#",
-      icon: ArrowRight
-    }
-  },
-  {
-    id: 2,
-    title: "80 лет Победы",
-    subtitle: "Великая дата",
-    description: "Знаковой датой отмечен 2025 год – 80-й годовщиной Победы советского народа в Великой Отечественной войне. Никто не забыт, ничто не забыто.",
-    image: "images/slide/80let.png",
-    primaryAction: {
-      label: "Мероприятия",
-      href: "https://edu.gov.by/80-letie-osvobozhdeniya/",
-      icon: Star,
+      href: "https://president.gov.by/ru/documents/ukaz-no-1-ot-1-anvara-2026-g",
+      icon: ArrowRight,
       external: true
     }
   },
@@ -48,21 +36,21 @@ const SLIDES: SlideData[] = [
     description: "Объявлен сбор средств на реконструкцию Республиканского центра патриотического воспитания молодежи в Брестской крепости.",
     image: "images/slide/CentrPV.jpg",
     primaryAction: {
-      label: "Как помочь",
-      href: "#",
-      icon: Heart
+      label: "Подробнее",
+      href: "/news/patriot-center",
+      icon: ArrowRight
     }
   },
   {
     id: 4,
     title: "Абитуриенту 2026",
     subtitle: "Приемная кампания",
-    description: "Выбери свое будущее в ПГАТК. Современные специальности, бюджетные места и гарантированное трудоустройство.",
+    description: "Выбери свое будущее в #ПГАТККЛЕЩЕВА. Современные специальности, бюджетные места и гарантированное трудоустройство.",
     image: "images/slide/banner2022postupay.jpg",
     primaryAction: {
-      label: "Подать документы",
+      label: "Подробнее",
       href: "/abiturientam",
-      icon: GraduationCap
+      icon: ArrowRight
     }
   },
   {
@@ -119,7 +107,7 @@ const Hero: React.FC = () => {
         >
           {/* Background Image */}
           <div 
-            className="absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-linear scale-100 group-hover:scale-105"
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url("${resolvePath(slide.image)}")` }}
           >
             {/* Gradient Overlay для читаемости текста на любых картинках */}
@@ -127,7 +115,7 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Content */}
-          <div className="relative z-20 w-full max-w-[1600px] mx-auto px-4 md:px-8 h-full flex flex-col justify-center">
+          <div className="relative z-20 w-full max-w-[1600px] mx-auto px-4 md:px-8 h-full flex flex-col justify-center pb-24 md:pb-32">
             <div className={`max-w-2xl transition-all duration-1000 transform ${index === currentSlide ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
               
               {/* Badge/Subtitle */}
@@ -148,20 +136,25 @@ const Hero: React.FC = () => {
               {/* Buttons */}
               {slide.primaryAction && (
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
-                    href={slide.primaryAction.href}
-                    target={slide.primaryAction.external ? "_blank" : "_self"}
-                    rel={slide.primaryAction.external ? "noopener noreferrer" : ""}
-                    className="flex items-center justify-center space-x-2 bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg shadow-accent-500/20 transition-all hover:-translate-y-1"
-                  >
-                    {slide.primaryAction.icon && <slide.primaryAction.icon className="w-5 h-5" />}
-                    <span>{slide.primaryAction.label}</span>
-                  </a>
-                  
-                  {/* Secondary generic button */}
-                  <a href="/kolledg/istoriy-kolledga" className="flex items-center justify-center space-x-2 bg-transparent border-2 border-slate-300 text-white hover:bg-white hover:text-primary-900 font-bold py-4 px-8 rounded-lg transition-all hover:-translate-y-1">
-                    <span>Подробнее</span>
-                  </a>
+                  {slide.primaryAction.href.startsWith('http') ? (
+                    <a 
+                      href={slide.primaryAction.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center space-x-2 bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg shadow-accent-500/20 transition-all hover:-translate-y-1"
+                    >
+                      {slide.primaryAction.icon && <slide.primaryAction.icon className="w-5 h-5" />}
+                      <span>{slide.primaryAction.label}</span>
+                    </a>
+                  ) : (
+                    <a 
+                      href={slide.primaryAction.href}
+                      className="flex items-center justify-center space-x-2 bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg shadow-accent-500/20 transition-all hover:-translate-y-1"
+                    >
+                      {slide.primaryAction.icon && <slide.primaryAction.icon className="w-5 h-5" />}
+                      <span>{slide.primaryAction.label}</span>
+                    </a>
+                  )}
                 </div>
               )}
             </div>
@@ -187,7 +180,7 @@ const Hero: React.FC = () => {
       </button>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
+      <div className="absolute bottom-28 md:bottom-32 left-1/2 -translate-x-1/2 z-30 flex space-x-3">
         {SLIDES.map((_, idx) => (
           <button
             key={idx}

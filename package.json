@@ -24,5 +24,18 @@
     "gh-pages": "^6.3.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
-  }
+  },
+  "description": "Официальный предпоказательный веб-сайт колледжа.",
+  "main": "tailwind.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itservicepgatk/pgatk-website-preview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itservicepgatk/pgatk-website-preview/issues"
+  },
+  "homepage": "https://github.com/itservicepgatk/pgatk-website-preview#readme"
 }

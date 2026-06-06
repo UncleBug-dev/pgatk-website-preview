@@ -9,7 +9,12 @@ import OneWindow from './pages/OneWindow';
 import ServicesPage from './pages/ServicesPage';
 import Staff from './pages/Staff';
 import Specialties from './pages/Specialties';
-import AdministrativeProcedures from './pages/AdministrativeProcedures'; // <--- Импорт
+import AdministrativeProcedures from './pages/AdministrativeProcedures';
+import YearOfWoman from './pages/YearOfWoman';
+import Contests from './pages/Contests';
+import LawCorner from './pages/LawCorner';
+import CorruptionPrevention from './pages/CorruptionPrevention';
+import ImportantDetail from './pages/ImportantDetail';
 import { AccessibilityProvider } from './context/AccessibilityContext';
 
 const App: React.FC = () => {
@@ -22,6 +27,11 @@ const App: React.FC = () => {
             <Route path="news" element={<NewsList />} />
             <Route path="news/:id" element={<NewsDetail />} />
             
+            <Route path="year-of-woman" element={<YearOfWoman />} />
+            <Route path="contests" element={<Contests />} />
+            <Route path="law-corner" element={<LawCorner />} />
+            <Route path="corruption-prevention" element={<CorruptionPrevention />} />
+            <Route path="important/:id" element={<ImportantDetail />} />
             <Route path="odno-okno" element={<OneWindow />} />
             <Route path="odno-okno/uslugi" element={<ServicesPage />} />
             

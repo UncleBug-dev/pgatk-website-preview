@@ -1,0 +1,707 @@
+#accessibility-panel {
+	background: #1da6c3;
+	padding: 4px 0;
+	display: none;
+	font-family: 'Arial';
+	font-size: 16px!important;
+}
+
+#accessibility-block.container-flex {
+	padding: 0 15px;
+}
+
+#accessibility-block {
+	color: #fff;
+	font-size: 1.2em;
+
+}
+
+#setting-panel {
+	display: none;
+	color: #fff;
+	font-family: 'Arial';
+	font-size: 1.2em;
+	border: 1px solid;
+
+	margin-top: 10px;
+	position: absolute;
+	top: 15%;
+	width: 50%;
+	left: 25%;
+	z-index: 10
+}
+
+.setting-block {
+	margin-bottom: 20px
+}
+
+.setting-block span {
+	margin: 10px;
+	border: 1px solid;
+	padding: 4px 10px;
+	display: inline-block
+}
+
+.setting-block span:hover {
+	background: #fff;
+	color: #000;
+	cursor: pointer
+}
+
+#accessibility-btn,
+#accessibility-btnoff {
+	border: 2px solid #fff;
+	padding: 6px 10px;
+	color: #fff;
+	display: inline-block;
+	overflow: hidden;
+	margin-top: 4px;
+	cursor: pointer;
+}
+
+#accessibility-btn .fa,
+#accessibility-btnoff .fa {
+	margin-right: 6px;
+}
+
+#accessibility-btn:hover {
+	background: url(../images/fon2.png);
+}
+
+#accessibility-btnoff {
+	display: none;
+}
+
+#accessibility-off,
+#accessibility-volumeon {
+	display: none;
+}
+
+#accessibility-ion,
+#accessibility-grcolor {
+	display: none;
+}
+
+#accessibility-on,
+#accessibility-off,
+#accessibility-sf,
+#accessibility-mf,
+#accessibility-bf,
+#accessibility-ioff,
+#accessibility-ion,
+#accessibility-grs,
+#accessibility-grcolor,
+#accessibility-volumeoff,
+#accessibility-volumeon,
+#accessibility-setting {
+	width: 50px;
+	height: 50px;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 43px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#accessibility-sf span,
+#accessibility-mf span,
+#accessibility-bf span,
+#accessibility-wbg span,
+#accessibility-bbg span,
+#accessibility-blbg span,
+#accessibility-gс span,
+#accessibility-green span {
+	position: absolute;
+	display: block;
+}
+
+#accessibility-sf span {
+	right: 16px;
+}
+
+#accessibility-mf span {
+	right: 13px;
+}
+
+#accessibility-bf span {
+	right: 10px;
+}
+
+#accessibility-sf {
+	font-size: 1em;
+}
+
+#accessibility-mf {
+	font-size: 1.4em;
+}
+
+#accessibility-bf {
+	font-size: 1.9em;
+}
+
+#accessibility-wbg,
+#accessibility-bbg,
+#accessibility-blbg,
+#accessibility-green {
+	width: 50px;
+	height: 50px;
+	font-size: 1.8em;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#accessibility-wbg span,
+#accessibility-bbg span,
+#accessibility-blbg span,
+#accessibility-green span {
+	right: 10px;
+}
+
+#accessibility-wbg {
+	background: #fff;
+	color: #000;
+	border: 3px solid #fff;
+}
+
+#accessibility-blbg {
+	background: #9DD1FF;
+	color: #063462;
+	border: 3px solid #9DD1FF;
+}
+
+#accessibility-bbg {
+	background: #000;
+	color: #fff;
+	border: 3px solid #fff;
+}
+
+#accessibility-green {
+	background: #3B2716;
+	color: #A9E44D;
+	border: 3px solid #A9E44D;
+}
+
+.textpanel div {
+	display: inline-block;
+}
+
+.textpanel {
+	text-align: center;
+}
+
+.textbutton {
+	position: relative;
+	bottom: 18px;
+}
+
+#page.accessibility .item-tpl-title {
+	background: none!important;
+}
+
+#page.accessibility .item-tpl-title h3 {
+	padding: 10px;
+	border-bottom: none;
+}
+
+#page.accessibility .post_block_row {
+	min-height: 300px;
+}
+
+#page.accessibility .fullslider,
+#page.accessibility .newsflash.flexslider {
+	display: none;
+}
+
+#page.accessibility .headertitle,
+#page.accessibility .infoblock {
+	margin-top: auto!important;
+	margin-bottom: auto!important;
+}
+
+#page.accessibility .headertitle {
+	text-shadow: none
+}
+
+#page.accessibility .logo {
+	display: none
+}
+
+#page.accessibility .search-input-medium, .readmore-button, button.button.btn-red {
+	border: 1px solid
+}
+
+#page.accessibility li:after {
+	background: #eee!important;
+}
+
+#page.accessibility #accessibility-panel {
+	display: block;
+}
+
+#page.accessibility p.img_caption,
+#page.accessibility figcaption {
+	display: inline-block!important;
+	border: 1px solid;
+	padding: 10px
+}
+
+#page.accessibility .latest-img {
+	background: none!important;
+	height: 30px!important;
+	box-shadow: none;
+}
+
+#page.accessibility .st-nav-menu-module {
+	background: none!important;
+	border-bottom: 3px solid;
+	border-top: 3px solid
+}
+
+#page.accessibility .st-nav-menu-module * {
+	background: none!important;
+	color: #000
+}
+
+#page.accessibility .top-menu .parent ul {
+	border: 1px solid
+}
+
+/****   Белый   ***/
+
+#page.accessibility.default,
+#page.accessibility.default #header,
+#page.accessibility.default .top-menu {
+	background: #fff!important;
+}
+
+/*******************************/
+
+/*#page.accessibility.default #header *,*/
+
+#page.accessibility.default #topmenublock * {
+	color: #000!important
+}
+
+#page.accessibility .icon-menu img,
+#page.accessibility .icon-menu li::after,
+#page.accessibility .portfoly .item-title-tpl::after {
+	display: none
+}
+#page.accessibility .icon-menu li{
+	overflow: inherit
+}
+
+/****************************/
+
+#page.accessibility.default .top-menu {
+	border-top: 2px solid #000;
+	border-bottom: 2px solid #000;
+	border-radius: 0;
+}
+
+#page.accessibility.default .top-menu li {
+	background: #fff;
+
+}
+
+#page.accessibility.default .icon-menu li {
+	box-shadow: none;
+	border: 2px solid #000;
+	background: #fff!important;
+	transition: 0;
+}
+
+#page.accessibility.default .icon-menu li::after {
+	background: #000;
+	transition: 0;
+
+}
+
+#page.accessibility.default .icon-menu li a:before {
+	border-color: #000;
+}
+
+#page.accessibility.default #content * {
+	background: #fff;
+	color: #000;
+	border-color: #000;
+}
+
+#page.accessibility.default .top-menu a {
+	color: #000;
+}
+
+#page.accessibility.default .headertitle .edutitle,
+#page.accessibility.default .headertitle .edutitlep,
+#page.accessibility.default .adressblock,
+#page.accessibility.default .adressblock a {
+	color: #000!important;
+}
+
+#page.accessibility.default .searchblock .button.btn.btn-primary,
+#page.accessibility.default #accessibility-panel,
+#page.accessibility.default #toppanel,
+#page.accessibility.default #setting-panel {
+	background: #000;
+}
+
+#page.accessibility.default #accessibility-green {
+	border-color: #A9E44D;
+}
+
+#page.accessibility.default #accessibility-bс {
+	border-color: #fff;
+}
+
+/****   Черный   ***/
+
+#page.accessibility.blackcolor,
+#page.accessibility.blackcolor #header,
+#page.accessibility.blackcolor .top-menu,
+#page.accessibility.blackcolor #setting-panel {
+	background: #000!important;
+}
+
+#page.accessibility.blackcolor .top-menu {
+	border-top: 2px solid #fff;
+	border-bottom: 2px solid #fff;
+	border-radius: 0;
+}
+
+#page.accessibility.blackcolor .top-menu li {
+	background: #000;
+
+}
+
+#page.accessibility.blackcolor #content * {
+	background: #000;
+	color: #fff;
+	border-color: #fff;
+}
+
+#page.accessibility.blackcolor .icon-menu li::after {
+	background: #fff;
+	transition: 0;
+
+}
+
+#page.accessibility.blackcolor .icon-menu li {
+	box-shadow: none;
+	border: 2px solid #fff;
+
+}
+
+#page.accessibility.blackcolor .icon-menu li a:before {
+	border-color: #fff;
+}
+
+#page.accessibility.blackcolor .headertitle .edutitle,
+#page.accessibility.blackcolor .headertitle .edutitlep {
+	color: #fff!important;
+}
+
+#page.accessibility.blackcolor #accessibility-panel,
+#page.accessibility.blackcolor #toppanel {
+	background: #000;
+}
+
+#page.accessibility.blackcolor .searchblock .button.btn.btn-primary {
+	background: #fff;
+	color: #000;
+}
+
+#page.accessibility.blackcolor #accessibility-green {
+	border-color: #A9E44D;
+}
+
+#page.accessibility.blackcolor #accessibility-bс {
+	border-color: #fff;
+}
+#page.accessibility.blackcolor .adressblock * {
+	color: #fff!important;
+}
+
+/****   Голубой   ***/
+
+#page.accessibility.bluecolor,
+#page.accessibility.bluecolor #header,
+#page.accessibility.bluecolor .top-menu {
+	background: #9DD1FF!important;
+}
+
+#page.accessibility.bluecolor .top-menu {
+	border-top: 2px solid #063462;
+	border-bottom: 2px solid #063462;
+	border-radius: 0;
+}
+
+#page.accessibility.bluecolor .top-menu li {
+	background: #9DD1FF;
+
+}
+
+#page.accessibility.bluecolor .top-menu li a,
+#page.accessibility.bluecolor .top-menu li span.separator {
+	color: #063462;
+}
+
+#page.accessibility.bluecolor .top-menu .parent ul {
+	border: 2px solid #063462
+}
+
+#page.accessibility.bluecolor .icon-menu li {
+	box-shadow: none;
+	border: 2px solid #063462;
+}
+
+#page.accessibility.bluecolor .icon-menu li a::before {
+	border-color: #063462;
+}
+
+#page.accessibility.bluecolor .icon-menu li::after {
+	background-color: #063462!important;
+}
+
+#page.accessibility.bluecolor #content * {
+	background: #9DD1FF;
+	color: #063462;
+	border-color: #063462;
+}
+
+#page.accessibility.bluecolor .headertitle .edutitle,
+#page.accessibility.bluecolor .headertitle .edutitlep {
+	color: #063462!important;
+}
+
+#page.accessibility.bluecolor .adressblock * {
+	color: #063462!important;
+}
+
+#page.accessibility.bluecolor #accessibility-panel,
+#page.accessibility.bluecolor #toppanel,
+#page.accessibility.bluecolor #setting-panel {
+	background: #063462;
+}
+
+#page.accessibility.bluecolor .searchblock .button.btn.btn-primary {
+	background: #063462;
+	color: #fff;
+}
+
+#page.accessibility.bluecolor #accessibility-green {
+	border-color: #A9E44D;
+}
+
+#page.accessibility.bluecolor #accessibility-bс {
+	border-color: #fff;
+}
+
+/****   Зеленый   ***/
+
+#page.accessibility.greencolor #accessibility-panel,
+#page.accessibility.greencolor #toppanel,
+#page.accessibility.greencolor #setting-panel {
+	background: #24180E
+}
+
+#page.accessibility.greencolor,
+#page.accessibility.greencolor #header,
+#page.accessibility.greencolor .top-menu {
+	background: #3B2716!important;
+}
+
+#page.accessibility.greencolor .top-menu {
+	border-top: 2px solid #A9E44D;
+	border-bottom: 2px solid #A9E44D;
+	border-radius: 0;
+}
+
+#page.accessibility.greencolor .top-menu li a,
+#page.accessibility.greencolor .top-menu li span.separator {
+	color: #A9E44D
+}
+
+#page.accessibility.greencolor .top-menu li {
+	background: #3B2716
+}
+
+#page.accessibility.greencolor .top-menu .parent ul {
+	border: 2px solid #A9E44D
+}
+
+#page.accessibility.greencolor .icon-menu li {
+	box-shadow: none;
+	border: 2px solid #A9E44D
+}
+
+#page.accessibility.greencolor .icon-menu li::after {
+	background-color: #A9E44D !important;
+}
+
+#page.accessibility.greencolor .icon-menu li a::before {
+	border-color: #A9E44D;
+}
+
+#page.accessibility.greencolor .headertitle .edutitle,
+#page.accessibility.greencolor .headertitle .edutitlep {
+	color: #A9E44D!important;
+}
+
+#page.accessibility.greencolor .adressblock * {
+	color: #A9E44D!important;
+}
+
+#page.accessibility.greencolor #content * {
+	background: #3B2716;
+	color: #A9E44D;
+	border-color: #A9E44D;
+}
+
+#page.accessibility.greencolor .searchblock .button.btn.btn-primary {
+	background: none;
+	border: 2px solid #A9E44D;
+	color: #A9E44D
+}
+
+/****   Изображения   ***/
+
+img.imagesoff {
+	display: none!important;
+}
+
+
+/****   Шрифт   ***/
+
+#page.accessibility.smallfonts #content,
+#page.accessibility.smallfonts #topmenublock,
+#page.accessibility.smallfonts #header {
+	font-size: 1em!important;
+}
+
+#page.accessibility.mediumfonts #content,
+#page.accessibility.mediumfonts #topmenublock,
+#page.accessibility.mediumfonts #header {
+	font-size: 1.5em!important;
+}
+
+#page.accessibility.bigfonts #content,
+#page.accessibility.bigfonts #topmenublock,
+#page.accessibility.bigfonts #header {
+	font-size: 2em!important;
+
+}
+
+#page.accessibility.skerning #content p,
+#page.accessibility.skerning #content h2,
+#page.accessibility.skerning #content h3,
+#page.accessibility.skerning #content a,
+#page.accessibility.skerning #header p,
+#page.accessibility.skerning #header h2,
+#page.accessibility.skerning #header h3,
+#page.accessibility.skerning #header a,
+#page.accessibility.skerning #topmenublock p,
+#page.accessibility.skerning #topmenublock h2,
+#page.accessibility.skerning #topmenublock h3,
+#page.accessibility.skerning #topmenublock a {
+	letter-spacing: normal;
+
+}
+
+#page.accessibility.mkerning #content p,
+#page.accessibility.mkerning #content h2,
+#page.accessibility.mkerning #content h3,
+#page.accessibility.mkerning #content a,
+#page.accessibility.mkerning #header p,
+#page.accessibility.mkerning #header h2,
+#page.accessibility.mkerning #header h3,
+#page.accessibility.mkerning #header a,
+#page.accessibility.mkerning #topmenublock p,
+#page.accessibility.mkerning #topmenublock h2,
+#page.accessibility.mkerning #topmenublock h3,
+#page.accessibility.mkerning #topmenublock a {
+	letter-spacing: 0.2em;
+
+}
+
+#page.accessibility.bkerning #content p,
+#page.accessibility.bkerning #content h2,
+#page.accessibility.bkerning #content h3,
+#page.accessibility.bkerning #content a,
+#page.accessibility.bkerning #header p,
+#page.accessibility.bkerning #header h2,
+#page.accessibility.bkerning #header h3,
+#page.accessibility.bkerning #header a,
+#page.accessibility.bkerning #topmenublock p,
+#page.accessibility.bkerning #topmenublock h2,
+#page.accessibility.bkerning #topmenublock h3,
+#page.accessibility.bkerning #topmenublock a {
+	letter-spacing: 0.4em;
+
+}
+
+.sound-panel.textpanel {
+	text-align: left
+}
+
+.setting-block h3 {
+	margin: 0 0 20px 0;
+	text-align: center
+}
+
+#page.accessibility p,
+#page.accessibility a,
+#page.accessibility h1,
+#page.accessibility h2,
+#page.accessibility h3,
+#page.accessibility #content span {
+	line-height: 1.5
+}
+
+#page.accessibility.s-line #content p,
+#page.accessibility.s-line #content a,
+#page.accessibility.s-line #content h1,
+#page.accessibility.s-line #content h2,
+#page.accessibility.s-line #content h3,
+#page.accessibility.s-line #content span,
+#page.accessibility.s-line #header p,
+#page.accessibility.s-line #header a,
+#page.accessibility.s-line #header h1,
+#page.accessibility.s-line #header h2,
+#page.accessibility.s-line #header h3,
+#page.accessibility.s-line #header span {
+	line-height: 1.5
+}
+
+#page.accessibility.m-line #content p,
+#page.accessibility.m-line #content a,
+#page.accessibility.m-line #content h1,
+#page.accessibility.m-line #content h2,
+#page.accessibility.m-line #content h3,
+#page.accessibility.m-line #content span,
+#page.accessibility.m-line #header p,
+#page.accessibility.m-line #header a,
+#page.accessibility.m-line #header h1,
+#page.accessibility.m-line #header h2,
+#page.accessibility.m-line #header h3,
+#page.accessibility.m-line #header span {
+	line-height: 2
+}
+
+#page.accessibility.b-line #content p,
+#page.accessibility.b-line #content a,
+#page.accessibility.b-line #content h1,
+#page.accessibility.b-line #content h2,
+#page.accessibility.b-line #content h3,
+#page.accessibility.b-line #content span,
+#page.accessibility.b-line #header p,
+#page.accessibility.b-line #header a,
+#page.accessibility.b-line #header h1,
+#page.accessibility.b-line #header h2,
+#page.accessibility.b-line #header h3,
+#page.accessibility.b-line #header span {
+	line-height: 2.5
+}
