@@ -27,9 +27,7 @@ const Contests: React.FC = () => {
               <h3 className="text-lg font-bold text-slate-800 mb-2 leading-tight">
                 Положение о проведении областного этапа республиканского конкурса «Хозяева земли родной»
               </h3>
-              <p className="text-slate-500 text-sm mt-2">
-                Ознакомьтесь с правилами и условиями участия в конкурсе.
-              </p>
+
             </div>
             <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 mt-auto">
               <a href="#" className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors">
