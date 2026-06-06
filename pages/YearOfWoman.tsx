@@ -57,6 +57,29 @@ const YearOfWoman: React.FC = () => {
                 </p>
               </div>
 
+              <div className="mt-10 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                <a 
+                  href="https://belta.by/society/view/logotip-goda-belorusskoj-zhenschiny-opredelen-vybrali-edinoglasno-iz-bolee-chem-100-variantov-762819-2026/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <img 
+                    src="https://img.belta.by/images/storage/news/with_archive/2026/000022_1770271104_762819_big.png" 
+                    alt="Логотип Года белорусской женщины" 
+                    className="w-full h-auto object-contain bg-slate-100 max-h-[500px]"
+                  />
+                  <div className="p-6 bg-slate-50 border-t border-slate-100 flex items-start gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-slate-800 group-hover:text-rose-600 transition-colors">
+                        Логотип Года белорусской женщины определен! Выбрали единогласно из более чем 100 вариантов
+                      </h3>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-slate-400 group-hover:text-rose-600 transition-colors flex-shrink-0 mt-1" />
+                  </div>
+                </a>
+              </div>
+
               <div className="mt-10 pt-6 border-t border-slate-100">
                 <a 
                   href="https://president.gov.by/ru/documents/ukaz-no-1-ot-1-yanvarya-2026-g"
