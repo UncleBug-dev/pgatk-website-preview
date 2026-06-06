@@ -182,19 +182,37 @@ const NewsList: React.FC = () => {
               <ChevronLeft className="w-5 h-5" />
             </button>
             
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-              <button
-                key={page}
-                onClick={() => setCurrentPage(page)}
-                className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${
-                  currentPage === page
-                    ? 'bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 scale-110'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-accent-400 hover:text-accent-600'
-                }`}
-              >
-                {page}
-              </button>
-            ))}
+            {(() => {
+              const getVisiblePages = (current: number, total: number) => {
+                if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+                if (current <= 4) return [1, 2, 3, 4, 5, '...', total];
+                if (current >= total - 3) return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+                return [1, '...', current - 1, current, current + 1, '...', total];
+              };
+
+              return getVisiblePages(currentPage, totalPages).map((page, index) => {
+                if (page === '...') {
+                  return (
+                    <span key={`ellipsis-${index}`} className="px-2 text-slate-400">
+                      ...
+                    </span>
+                  );
+                }
+                return (
+                  <button
+                    key={`page-${page}`}
+                    onClick={() => setCurrentPage(page as number)}
+                    className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${
+                      currentPage === page
+                        ? 'bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 scale-110'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:border-accent-400 hover:text-accent-600'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                );
+              });
+            })()}
 
             <button
               onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
