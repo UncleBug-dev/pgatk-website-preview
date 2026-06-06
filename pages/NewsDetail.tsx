@@ -25,6 +25,26 @@ const NewsDetail: React.FC = () => {
     return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
   };
 
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: newsItem?.title || 'Новость',
+          url: window.location.href,
+        });
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        alert('Ссылка скопирована в буфер обмена!');
+      }
+    } catch (error) {
+      console.error('Ошибка при попытке поделиться:', error);
+    }
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
   // Скролл наверх при открытии
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -144,10 +164,10 @@ const NewsDetail: React.FC = () => {
             </div>
             
             <div className="flex gap-3">
-               <button className="p-2 text-slate-400 hover:text-primary-900 hover:bg-slate-100 rounded-full transition-colors" title="Поделиться">
+               <button onClick={handleShare} className="p-2 text-slate-400 hover:text-primary-900 hover:bg-slate-100 rounded-full transition-colors" title="Поделиться">
                   <Share2 className="w-4 h-4" />
                </button>
-               <button className="p-2 text-slate-400 hover:text-primary-900 hover:bg-slate-100 rounded-full transition-colors" title="Печать">
+               <button onClick={handlePrint} className="p-2 text-slate-400 hover:text-primary-900 hover:bg-slate-100 rounded-full transition-colors" title="Печать">
                   <Printer className="w-4 h-4" />
                </button>
             </div>
