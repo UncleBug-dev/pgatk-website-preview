@@ -7,6 +7,7 @@ export interface TelegramPost {
   category: string[];
   link: string;
   hasVideo?: boolean;
+  images?: string[];
 }
 
 export const fetchTelegramPosts = async (): Promise<TelegramPost[]> => {

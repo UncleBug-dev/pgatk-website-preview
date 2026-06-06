@@ -20,6 +20,73 @@ const NewsDetail: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
   const [showVideo, setShowVideo] = React.useState(false);
 
+  const getImageUrl = (url?: string) => {
+    if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+    if (url.startsWith('http')) return url;
+    return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
+  };
+
+  const NewsSlider = ({ images }: { images: string[] }) => {
+    const [currentSlide, setCurrentSlide] = React.useState(0);
+    
+    React.useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+      }, 5000);
+      return () => clearInterval(interval);
+    }, [images.length]);
+
+    const nextSlide = () => setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+
+    return (
+      <div className="relative w-full h-full bg-slate-900 overflow-hidden group">
+        {images.map((img, idx) => (
+          <div 
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${getImageUrl(img)})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+          </div>
+        ))}
+        
+        <button 
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); prevSlide(); }}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-black/30 hover:bg-black/60 text-white backdrop-blur-sm transition-all shadow-lg hidden group-hover:block"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        
+        <button 
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); nextSlide(); }}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-black/30 hover:bg-black/60 text-white backdrop-blur-sm transition-all shadow-lg hidden group-hover:block"
+        >
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        </button>
+        
+        <div className="absolute top-4 right-4 z-30 flex gap-2">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setCurrentSlide(idx); }}
+              className={`transition-all duration-300 rounded-full ${
+                idx === currentSlide 
+                  ? 'w-8 h-2.5 bg-accent-500 shadow-[0_0_10px_rgba(251,191,36,0.5)]' 
+                  : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   const TelegramEmbed = ({ url }: { url: string }) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
     React.useEffect(() => {
@@ -95,7 +162,8 @@ const NewsDetail: React.FC = () => {
             summary: found.summary,
             content: `<p>${found.summary.replace(/\n/g, '<br/>')}</p>`,
             link: found.link,
-            hasVideo: found.hasVideo
+            hasVideo: found.hasVideo,
+            images: found.images
           });
         }
         setLoading(false);
@@ -149,13 +217,17 @@ const NewsDetail: React.FC = () => {
       <article className="max-w-4xl mx-auto px-4 md:px-8 mt-8">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
           
-          {/* Hero Image */}
+          {/* Hero Image / Slider */}
           <div className="relative h-64 md:h-96 w-full bg-slate-200">
-            <img 
-              src={getImageUrl(newsItem.imageUrl)} 
-              alt={newsItem.title} 
-              className="w-full h-full object-cover"
-            />
+            {newsItem.images && newsItem.images.length > 1 ? (
+              <NewsSlider images={newsItem.images} />
+            ) : (
+              <img 
+                src={getImageUrl(newsItem.imageUrl)} 
+                alt={newsItem.title} 
+                className="w-full h-full object-cover"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full">
               <div className="flex flex-wrap gap-2 mb-4">
