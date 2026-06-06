@@ -222,11 +222,11 @@ const NewsDetail: React.FC = () => {
                 className="w-full h-full object-cover"
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full">
-              <div className="flex flex-wrap gap-2 mb-4">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full z-20 pointer-events-none">
+              <div className="flex flex-wrap gap-2 mb-4 pointer-events-auto">
                 {(Array.isArray(newsItem.category) ? newsItem.category : [newsItem.category || 'Telegram']).map((cat: string, idx: number) => (
-                  <span key={idx} className="bg-accent-500 text-primary-900 text-xs font-bold px-3 py-1 rounded inline-block">
+                  <span key={idx} className="bg-accent-500 text-primary-900 text-xs font-bold px-3 py-1 rounded inline-block shadow-sm">
                     {cat}
                   </span>
                 ))}
