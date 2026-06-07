@@ -65,10 +65,9 @@ def parse_telegram_channel(url, existing_ids, max_pages=100):
             id_match = re.search(r'/(\d+)$', link)
             post_id = id_match.group(1) if id_match else str(datetime.now().timestamp())
 
-            # Если мы уже спарсили этот пост ранее и у нас собрана хорошая база
-            if post_id in existing_ids and len(existing_ids) > 50:
-                reached_old_dates = True
-                break
+            # Если мы уже спарсили этот пост ранее, мы всё равно продолжаем
+            # парсить страницу, чтобы обновить ссылки на картинки (они протухают со временем)
+            # Остановка произойдет только по дате (год < 2026) или по лимиту страниц.
 
             text_node = msg.find('div', class_='tgme_widget_message_text')
             if not text_node:
