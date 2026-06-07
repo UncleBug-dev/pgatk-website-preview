@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="ru_project_title"><![CDATA[New Project]]></data>
+
+
+  <data name="ru_panogroup111_title"><![CDATA[Лабораторный корпус]]></data>
+
+  <data name="ru_pano273_title"><![CDATA[Главный корпус]]></data>
+  <data name="ru_pano285_title"><![CDATA[Кабинет технологии строительного производства]]></data>
+  <data name="ru_pano112_title"><![CDATA[Лаборатория электротехники и электроники]]></data>
+  <data name="ru_pano167_title"><![CDATA[Кабинет мелиорации, водоснабжения и  ГТС]]></data>
+  <data name="ru_pano163_title"><![CDATA[Кабинет организации строительного производства]]></data>
+  <data name="ru_pano283_title"><![CDATA[Комната приема пищи]]></data>
+  <data name="ru_pano290_title"><![CDATA[Лаборатория строительных материалов]]></data>
+
+  <data name="ru_panogroup132_title"><![CDATA[Главный корпус]]></data>
+
+  <data name="ru_pano131_title"><![CDATA[Спортивный зал №1]]></data>
+  <data name="ru_pano133_title"><![CDATA[Спортивный зал №2]]></data>
+  <data name="ru_pano194_title"><![CDATA[Актовый зал]]></data>
+  <data name="ru_pano206_title"><![CDATA[Кабинет истории и обществоведения]]></data>
+  <data name="ru_pano208_title"><![CDATA[Кабинет геодезии]]></data>
+  <data name="ru_pano214_title"><![CDATA[Кабинет допризывной и медицинской подготовки]]></data>
+  <data name="ru_pano217_title"><![CDATA[Кабинет охраны труда]]></data>
+  <data name="ru_pano219_title"><![CDATA[Кабинет экономики]]></data>
+  <data name="ru_pano221_title"><![CDATA[Кабинет физики]]></data>
+  <data name="ru_pano226_title"><![CDATA[Методический кабинет]]></data>
+  <data name="ru_pano271_title"><![CDATA[Кабинет математики]]></data>
+  <data name="ru_pano288_title"><![CDATA[Кабинет информатики и информационных технологий]]></data>
+
+  <data name="ru_panogroup232_title"><![CDATA[Учебный корпус №3]]></data>
+
+  <data name="ru_pano229_title"><![CDATA[Кабинет устройства и эксплуатации автомобилей]]></data>
+  <data name="ru_pano230_title"><![CDATA[Мастерская №1]]></data>
+  <data name="ru_pano231_title"><![CDATA[Мастерская №2]]></data>
+  <data name="ru_pano235_title"><![CDATA[Кабинет ПДД и безопасности дорожного движения]]></data>
+  <data name="ru_pano237_title"><![CDATA[Кабинет инженерной графики]]></data>
+  <data name="ru_pano248_title"><![CDATA[Кабинет технической механики]]></data>
+  <data name="ru_pano250_title"><![CDATA[Кабинет ремонта дорожных и строительных машин]]></data>
+  <data name="ru_pano252_title"><![CDATA[Кабинет менеджмента]]></data>
+
+
+
+
+
+
+  <data name="ru_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="ru_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="ru_contextmenunormallabel"><![CDATA[Normal View]]></data>
+  <data name="ru_contextmenuarchitecturallabel"><![CDATA[Architectural View]]></data>
+  <data name="ru_contextmenulittleplanetlabel"><![CDATA[Little Planet View]]></data>
+
+
+  <data name="ru_vr_setup_hmd0"><![CDATA[SELECT YOUR HMD]]></data>
+  <data name="ru_vr_setup_advanced"><![CDATA[ADVANCED SETTINGS]]></data>
+  <data name="ru_vr_setup_title"><![CDATA[WEB VR SETTINGS]]></data>
+  <data name="ru_vr_setup_dvn1"><![CDATA[Device:]]></data>
+  <data name="ru_vr_setup_siz1"><![CDATA[Screen size:]]></data>
+  <data name="ru_vr_setup_ipd1"><![CDATA[IPD:]]></data>
+  <data name="ru_vr_setup_hmd1"><![CDATA[HMD:]]></data>
+  <data name="ru_vr_setup_hmd3"><![CDATA[Customize]]></data>
+  <data name="ru_vr_setup_cal"><![CDATA[Calibrate gyroscope]]></data>
+  <data name="ru_vr_setup_sav"><![CDATA[SAVE]]></data>
+  <data name="ru_vr_setup_rst"><![CDATA[RESET]]></data>
+  <data name="ru_vr_setup_simple"><![CDATA[SIMPLE]]></data>
+  <data name="ru_vr_setup_cls"><![CDATA[CLOSE]]></data>
+  <data name="ru_vr_setup_m31"><![CDATA[HMD SETTINGS]]></data>
+  <data name="ru_vr_setup_fov1"><![CDATA[FOV:]]></data>
+  <data name="ru_vr_setup_dst1"><![CDATA[Distortion:]]></data>
+  <data name="ru_vr_setup_d2tx"><![CDATA[Distortion 2:]]></data>
+  <data name="ru_vr_setup_vig1"><![CDATA[Vignette:]]></data>
+  <data name="ru_vr_setup_cac1"><![CDATA[Chromatic aberration:]]></data>
+  <data name="ru_vr_setup_olp1"><![CDATA[Overlap:]]></data>
+  <data name="ru_vr_setup_m35"><![CDATA[RETURN]]></data>
+  <data name="ru_vr_setup_cb1"><![CDATA[GYROSCOPE]]></data>
+  <data name="ru_vr_setup_cb2"><![CDATA[Place the device on a flat and[br]stable surface and tab CALIBRATE[br]to correct a gyroscope drifting.]]></data>
+  <data name="ru_vr_setup_cb3"><![CDATA[CALIBRATE]]></data>
+  <data name="ru_vr_setup_cb4"><![CDATA[RESET]]></data>
+  <data name="ru_vr_setup_cb5"><![CDATA[RETURN]]></data>
+  <data name="ru_vr_setup_cb6"><![CDATA[Calibrating...]]></data>
+  <data name="ru_vr_setup_cb7"><![CDATA[Successful calibration]]></data>
+  <data name="ru_vr_setup_cb8"><![CDATA[Calibration failed]]></data>
+  <data name="ru_vr_setup_unavailable"><![CDATA[VR mode[br]is unavailable on your device]]></data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>

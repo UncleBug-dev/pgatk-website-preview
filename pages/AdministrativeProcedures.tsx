@@ -521,7 +521,7 @@ const AdministrativeProcedures: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           
           {/* SIDEBAR */}
-          <aside className="w-full lg:w-[320px] flex-shrink-0 order-1">
+          <aside className="w-full lg:w-[320px] flex-shrink-0 order-1 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden sticky top-28">
               <div className="bg-[#0088cc] px-5 py-4 border-b border-sky-600">
                 <Link to="/odno-okno" className="text-white text-sm font-bold uppercase tracking-widest hover:text-sky-100 transition-colors block">
@@ -543,8 +543,7 @@ const AdministrativeProcedures: React.FC = () => {
               <div className="m-4 p-4 bg-primary-900 rounded-lg text-white text-center">
                 <p className="text-xs text-accent-500 font-bold uppercase mb-2">Приемная комиссия</p>
                 <a href="tel:80165300688" className="text-lg font-bold hover:text-accent-400 transition-colors block">8 (0165) 30-06-88</a>
-                <p className="text-[10px] text-slate-400 mt-1">Пн-Пт: 8:00 - 17:00</p>
-              </div>
+                </div>
             </div>
           </aside>
 

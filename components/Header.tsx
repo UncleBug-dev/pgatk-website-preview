@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  Eye, Search, Menu, X, ChevronDown, MapPin, Mail, Instagram, Youtube, Phone, Type, Palette, RotateCcw
+  Eye, Search, Menu, X, ChevronDown, MapPin, Mail, Instagram, Youtube, Phone, Type, Palette, RotateCcw, ExternalLink, FileText
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { MAIN_MENU } from '../constants';
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full shadow-md font-display bg-white transition-all duration-300" onMouseLeave={closePanel}>
+    <header className="relative z-50 w-full shadow-md font-display bg-white transition-all duration-300" onMouseLeave={closePanel}>
       
       {/* Top Bar */}
       <div className="bg-primary-900 text-slate-200 text-xs py-2 px-4 md:px-8 transition-colors duration-300 relative z-[60]">
@@ -154,11 +154,22 @@ const Header: React.FC = () => {
                         </Link>
                         <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-500 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
                           <div className="py-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
-                            {item.submenu.map((sub) => (
-                              <Link key={sub.label} to={sub.href} className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary-900 hover:pl-6 transition-all border-l-2 border-transparent hover:border-accent-500">
-                                {sub.label}
-                              </Link>
-                            ))}
+                            {item.submenu.map((sub) => {
+                              const isExternal = sub.href.startsWith('http');
+                              const isPdf = sub.href.toLowerCase().includes('.pdf');
+                              return (
+                                <Link 
+                                  key={sub.label} 
+                                  to={sub.href} 
+                                  target={isExternal ? "_blank" : undefined}
+                                  rel={isExternal ? "noopener noreferrer" : undefined}
+                                  className="flex items-center px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary-900 hover:pl-6 transition-all border-l-2 border-transparent hover:border-accent-500"
+                                >
+                                  {isPdf ? <FileText className="w-3.5 h-3.5 mr-2 text-rose-500 flex-shrink-0" /> : isExternal ? <ExternalLink className="w-3.5 h-3.5 mr-2 text-blue-500 flex-shrink-0" /> : null}
+                                  <span className="whitespace-normal">{sub.label}</span>
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
                       </>
@@ -226,11 +237,23 @@ const Header: React.FC = () => {
                       </button>
                       {activeSubmenu === item.label && (
                         <div className="bg-slate-50 px-6 py-2 border-t border-slate-100 animate-in slide-in-from-top-2 duration-150">
-                          {item.submenu.map((sub) => (
-                            <Link key={sub.label} to={sub.href} className="block py-3 text-sm text-slate-600 border-l-2 border-slate-200 pl-4 hover:border-accent-500 hover:text-primary-900 transition-all" onClick={toggleMobileMenu}>
-                              {sub.label}
-                            </Link>
-                          ))}
+                          {item.submenu.map((sub) => {
+                            const isExternal = sub.href.startsWith('http');
+                            const isPdf = sub.href.toLowerCase().includes('.pdf');
+                            return (
+                              <Link 
+                                key={sub.label} 
+                                to={sub.href} 
+                                target={isExternal ? "_blank" : undefined}
+                                rel={isExternal ? "noopener noreferrer" : undefined}
+                                className="flex items-center py-3 text-sm text-slate-600 border-l-2 border-slate-200 pl-4 hover:border-accent-500 hover:text-primary-900 transition-all" 
+                                onClick={toggleMobileMenu}
+                              >
+                                {isPdf ? <FileText className="w-4 h-4 mr-2 text-rose-500 flex-shrink-0" /> : isExternal ? <ExternalLink className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" /> : null}
+                                <span>{sub.label}</span>
+                              </Link>
+                            );
+                          })}
                         </div>
                       )}
                     </div>

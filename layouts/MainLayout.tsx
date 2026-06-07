@@ -28,7 +28,7 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen w-full overflow-x-hidden relative">
+    <div className="flex flex-col min-h-screen w-full relative">
       <Header />
       
       <div className="flex-grow">
@@ -40,7 +40,7 @@ const MainLayout: React.FC = () => {
       <button
         onClick={scrollToTop}
         className={`
-          fixed bottom-8 right-8 z-40 p-4 rounded-full bg-accent-500 text-primary-900 
+          scroll-to-top-btn fixed bottom-8 right-8 z-40 p-4 rounded-full bg-accent-500 text-primary-900 
           shadow-xl border-2 border-white hover:bg-accent-400 hover:scale-110 
           transition-all duration-500 ease-in-out
           ${showScrollBtn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}

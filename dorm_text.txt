@@ -1,0 +1,127 @@
+<USER_REQUEST>
+Теперь Общежитие
+<div class="blog">
+		
+			<div class="page-header">
+					<h2 class="blogtitle" itemprop="headline">
+				Общежитие 2026			</h2>
+									</div>
+	    
+				<div class="clear"></div>
+		
+	
+	
+		
+								<div itemprop="articleBody">
+		<hr>
+<p style="text-align: center;"></p><div class="uk-scope">
+
+    <div id="wk-gridad2" class="uk-child-width-1-1 uk-grid-match uk-grid uk-grid-stack" uk-height-match="target: &gt; div &gt; .uk-panel, &gt; div &gt; .uk-card; row: true" uk-grid="" uk-lightbox="container: .uk-gallery-container; toggle: a[data-js-lightbox]">
+
+            
+        <div class="uk-first-column">
+        
+<div class="uk-panel">
+
+    
+        <div class="uk-inline-clip uk-transition-toggle ">
+
+            <img src="/images/Ideologiy/Obchechitie/Vospitateli/1.png" class="uk-transition-scale-up uk-transition-opaque" alt="1">
+            
+                        <div class="uk-overlay uk-overlay-primary uk-position-cover uk-transition-fade"></div>
+            
+                            <div class="uk-position-center uk-light">
+                    <span class="uk-transition-fade uk-icon uk-overlay-icon" uk-overlay-icon=""><svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect x="19" y="0" width="1" height="40"></rect><rect x="0" y="19" width="40" height="1"></rect></svg></span>
+                </div>
+            
+                                                                        <a class="uk-position-cover" data-js-lightbox="" href="/images/Ideologiy/Obchechitie/Vospitateli/1.png" data-type="image" data-caption="1"></a>
+                                                
+        </div>
+
+    
+    
+        
+        
+    
+    
+</div>
+        </div>
+
+            
+    </div>
+
+
+
+<script>
+
+    (function(UIkit){
+
+        var $ = UIkit.util;
+
+        $.ready(function () {
+            if (!$.$('.uk-gallery-container')) {
+                $.append(document.body, '<div class="uk-scope uk-gallery-container">');
+            }
+        });
+
+ 
+<truncated 45215 bytes>
+mages/Ideologiy/Obchechitie/Foto/10.jpg" data-type="image" data-caption="10"></a>
+                                                
+        </div>
+
+    
+    
+        
+        
+    
+    
+</div>
+        </div>
+
+                    
+        <div>
+        
+<div class="uk-panel">
+
+    
+        <div class="uk-inline-clip uk-transition-toggle ">
+
+            <img src="/images/Ideologiy/Obchechitie/Foto/11.jpg" class="uk-transition-scale-up uk-transition-opaque" alt="11">
+            
+                        <div class="uk-overlay uk-overlay-primary uk-position-cover uk-transition-fade"></div>
+            
+                            <div class="uk-position-center uk-light">
+                    <span class="uk-transition-fade uk-icon uk-overlay-icon" uk-overlay-icon=""><svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><rect x="19" y="0" width="1" height="40"></rect><rect x="0" y="19" width="40" height="1"></rect></svg></span>
+                </div>
+            
+                                                                        <a class="uk-position-cover" data-js-lightbox="" href="/images/Ideologiy/Obchechitie/Foto/11.jpg" data-type="image" data-caption="11"></a>
+                                                
+        </div>
+
+    
+    
+        
+        
+    
+    
+</div>
+        </div>
+
+                    
+        <div>
+        
+<div class="uk-panel">
+
+    
+        <div class="uk-inline-clip uk-transition-toggle ">
+
+            <img src="/images/Ideologiy/Obchechitie/Foto/12.jpg" class="uk-transition-scale-up uk-transition-opaque" alt="12">
+            
+                        <div class="uk-overlay uk-overlay-primary uk-position-cover uk-transition-fade"></div>
+            
+                            <div class="uk-position-center uk-light">
+                    <span class="uk-transition-fade uk-icon uk-overlay-icon" uk-overl
+<truncated 19488 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

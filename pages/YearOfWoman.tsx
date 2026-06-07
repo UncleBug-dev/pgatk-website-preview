@@ -64,11 +64,13 @@ const YearOfWoman: React.FC = () => {
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <img 
-                    src="https://img.belta.by/images/storage/news/with_archive/2026/000022_1770271104_762819_big.png" 
-                    alt="Логотип Года белорусской женщины" 
-                    className="w-full h-auto object-contain bg-slate-100 max-h-[500px]"
-                  />
+                  <div className="overflow-hidden bg-slate-100">
+                    <img 
+                      src="https://img.belta.by/images/storage/news/with_archive/2026/000022_1770271104_762819_big.png" 
+                      alt="Логотип Года белорусской женщины" 
+                      className="w-full h-auto object-contain max-h-[500px] group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
                   <div className="p-6 bg-slate-50 border-t border-slate-100 flex items-start gap-4">
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-slate-800 group-hover:text-rose-600 transition-colors">

@@ -14,12 +14,17 @@ const NEWS_CATEGORIES = [
   'Год белорусской женщины',
   'Жизнь колледжа',
   'Общежитие',
-  'БРСМ'
+  'БРСМ',
+  'ВПВ'
 ];
 
-const NewsList: React.FC = () => {
+interface NewsListProps {
+  initialCategory?: string;
+}
+
+const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState('Все');
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
 
   const [newsList, setNewsList] = useState<TelegramPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -89,13 +94,14 @@ const NewsList: React.FC = () => {
                 setSelectedCategory(category);
                 setCurrentPage(1);
               }}
+              title={category === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
               className={`whitespace-nowrap px-5 py-2.5 rounded-full font-bold text-sm transition-all border shadow-sm snap-start ${
                 selectedCategory === category
                   ? 'bg-accent-500 text-primary-900 border-accent-500 shadow-accent-500/30'
                   : 'bg-white text-slate-600 border-slate-200 hover:border-accent-400 hover:text-accent-600'
               }`}
             >
-              {category}
+              {category === 'ВПВ' ? '#ВПВ' : category}
             </button>
           ))}
         </div>
@@ -119,8 +125,12 @@ const NewsList: React.FC = () => {
                     />
                     <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 max-w-[90%]">
                       {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat, idx) => (
-                        <span key={idx} className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm">
-                          {cat}
+                        <span 
+                          key={idx} 
+                          className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm"
+                          title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
+                        >
+                          {cat === 'ВПВ' ? '#ВПВ' : cat}
                         </span>
                       ))}
                     </div>

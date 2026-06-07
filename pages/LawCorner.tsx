@@ -1,86 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import { 
-  Scale, ArrowLeft, ShieldAlert, Shield, Skull, 
-  Users, Gavel, ExternalLink, X, FileText, 
-  Train, Smartphone 
+  Scale, ArrowLeft, ShieldAlert, AlertTriangle, 
+  Users, ExternalLink, X, FileText, 
+  Smartphone 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface LawData {
-  tabs: { title: string; html: string }[];
+  tabs: { [key: string]: { title: string; html: string } };
 }
 
-const lawCards = [
+interface LawDocument {
+  name: string;
+  url: string;
+}
+
+interface LawCard {
+  id: string;
+  title: string;
+  icon: React.FC<any>;
+  color: string;
+  tabIndices: string[];
+  documents: LawDocument[];
+}
+
+const lawCards: LawCard[] = [
   {
-    id: 'law',
-    title: 'Уголовная и административная ответственность',
-    icon: Gavel,
-    color: 'bg-slate-700',
-    tabIndices: [1, 2], // Indices from the JSON
+    id: 'koap',
+    title: 'КОДЕКС РЕСПУБЛИКИ БЕЛАРУСЬ ОБ АДМИНИСТРАТИВНЫХ ПРАВОНАРУШЕНИЯХ',
+    icon: Scale,
+    color: 'bg-blue-600',
+    tabIndices: [],
     documents: [
-      { name: 'КоАП Республики Беларусь', url: 'https://pravo.by/document/?guid=12551&p0=HK2100091&p1=1' },
-      { name: 'Это нужно знать. Выписки из КоАП', url: '/downloads/ETONUSHNOZNAT.pdf' },
-      { name: 'Выписка из УК Республики Беларусь', url: '/downloads/UK_RB.pdf' },
-      { name: 'Об основах системы профилактики безнадзорности', url: '/downloads/BeznadzornostIPravonarusheniy.pdf' }
+      { name: 'Кодекс Республики Беларусь об административных правонарушениях', url: 'https://pravo.by/document/?guid=12551&p0=HK2100091&p1=1' }
     ]
   },
   {
-    id: 'cyber',
-    title: 'Профилактика киберпреступности',
-    icon: ShieldAlert,
-    color: 'bg-blue-600',
-    tabIndices: [], // No specific tab, just documents
+    id: 'kiber',
+    title: 'ПРОФИЛАКТИКА КИБЕРПРЕСТУПНОСТИ',
+    icon: Smartphone,
+    color: 'bg-indigo-600',
+    tabIndices: [],
     documents: [
       { name: 'Информационная безопасность', url: '/downloads/InfBezopasnost.pdf' },
-      { name: 'Фишинг - как не попасться', url: '/downloads/Fishing.pdf' },
-      { name: 'Вишинг - телефонные мошенники', url: '/downloads/Vishing.pdf' },
-      { name: 'Сбережения и их защита', url: '/downloads/Sberesheniy.pdf' },
-      { name: 'Безопасные покупки в сети', url: '/downloads/PokupkiVSetiInternet.pdf' },
-      { name: 'Мобильные устройства и безопасность', url: '/downloads/MobilnieUstroystvaIBezopasnost.pdf' }
-    ]
-  },
-  {
-    id: 'drugs',
-    title: 'Профилактика оборота наркотиков',
-    icon: Skull,
-    color: 'bg-purple-600',
-    tabIndices: [5], // Молодежь против наркотиков
-    documents: [
-      { name: 'Декрет №6. О мерах по противодействию незаконному обороту', url: 'https://president.gov.by/ru/documents/dekret-10535' }
+      { name: 'Фишинг', url: '/downloads/Fishing.pdf' },
+      { name: 'Киберпреступления', url: '/downloads/Kiberprestupleniy.pdf' },
+      { name: 'Мобильные устройства и безопасность', url: '/downloads/MobilnieUstroystvaIBezopasnost.pdf' },
+      { name: 'Покупки в сети Интернет', url: '/downloads/PokupkiVSetiInternet.pdf' },
+      { name: 'Сбережения', url: '/downloads/Sberesheniy.pdf' },
+      { name: 'Уловки мошенников', url: '/downloads/UlovkiMoshennikov.pdf' },
+      { name: 'Вишинг', url: '/downloads/Vishing.pdf' }
     ]
   },
   {
     id: 'extremism',
-    title: 'Профилактика экстремизма',
-    icon: Shield,
+    title: 'ПРОФИЛАКТИКА ЭКСТРЕМИЗМА И ТЕРРОРИЗМА',
+    icon: ShieldAlert,
     color: 'bg-red-600',
-    tabIndices: [7], // Профилактика экстремизма
+    tabIndices: ['extremism'],
+    documents: []
+  },
+  {
+    id: 'narkotiki',
+    title: 'Профилактика оборота наркотиков',
+    icon: AlertTriangle,
+    color: 'bg-amber-600',
+    tabIndices: ['narkotiki'],
     documents: [
-      { name: 'Памятка по профилактике экстремизма', url: 'https://pgatkk.by/podrostok-i-zakon/2-uncategorised/1823-pamyatka-po-profilaktike-ekstremizma-i-terrorizma' }
+      { name: 'Декрет №6. О неотложных мерах по противодействию незаконному обороту наркотиков', url: 'https://president.gov.by/ru/documents/dekret-10535' }
     ]
   },
   {
-    id: 'transport',
-    title: 'Правила поведения на транспорте',
-    icon: Train,
-    color: 'bg-amber-600',
-    tabIndices: [3], // Правила на ЖД
-    documents: []
-  },
-  {
-    id: 'virtual',
-    title: 'Виртуальное общение',
-    icon: Smartphone,
-    color: 'bg-pink-600',
-    tabIndices: [6], // Виртуальная дружба
-    documents: []
-  },
-  {
-    id: 'parents',
-    title: 'Родителям на заметку',
+    id: 'torgovlya',
+    title: 'Противодействие торговле людьми',
     icon: Users,
-    color: 'bg-teal-600',
-    tabIndices: [4], // Профилактика насилия в семье
+    color: 'bg-emerald-600',
+    tabIndices: ['torgovlya'],
+    documents: [
+      { name: 'Региональная карта помощи несовершеннолетним (Номера телефонов)', url: '/downloads/important/RegKarta2025_08.pdf' }
+    ]
+  },
+  {
+    id: 'otvetstvennost',
+    title: 'Ответственность несовершеннолетнего за административные и уголовные правонарушения',
+    icon: Scale,
+    color: 'bg-slate-700',
+    tabIndices: ['otvetstvennost'],
     documents: []
   }
 ];
@@ -130,7 +135,7 @@ const LawCorner: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {lawCards.map((card) => (
             <button 
               key={card.id}
@@ -165,11 +170,11 @@ const LawCorner: React.FC = () => {
             <div className={`px-6 py-4 flex items-center justify-between text-white ${activeCard.color}`}>
               <div className="flex items-center gap-3">
                 <activeCard.icon className="w-6 h-6" />
-                <h2 className="text-xl font-bold">{activeCard.title}</h2>
+                <h2 className="text-xl font-bold leading-tight">{activeCard.title}</h2>
               </div>
               <button 
                 onClick={() => setActiveModalId(null)}
-                className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                className="p-2 hover:bg-white/20 rounded-full transition-colors flex-shrink-0 ml-4"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -182,9 +187,9 @@ const LawCorner: React.FC = () => {
                 <div className="mb-8">
                   <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-slate-500" />
-                    Документы и памятки
+                    Документы и ссылки
                   </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {activeCard.documents.map((doc, i) => (
                       <a 
                         key={i} 
@@ -199,21 +204,6 @@ const LawCorner: React.FC = () => {
                         </span>
                       </a>
                     ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Special Parent Warning for 'parents' card */}
-              {activeCard.id === 'parents' && (
-                <div className="bg-rose-50 border-l-4 border-rose-500 p-6 rounded-r-xl mb-8">
-                  <h3 className="text-rose-800 font-bold text-lg mb-2 uppercase">Родители, Внимание!!!</h3>
-                  <div className="text-rose-700 space-y-3 text-sm md:text-base leading-relaxed">
-                    <p>
-                      Обратите внимание на движение ЧВК «Редан»! Участники движения носят одежду с символом группировки – пауком, а также клетчатые штаны.
-                    </p>
-                    <p className="font-semibold">
-                      Уважаемые родители! Обращайте внимание на увлечения ваших детей, интересуйтесь их жизнью, контролируйте, с кем они общаются, в том числе в интернете. Подпишитесь на них в социальных сетях.
-                    </p>
                   </div>
                 </div>
               )}

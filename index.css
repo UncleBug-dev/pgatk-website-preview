@@ -33,6 +33,21 @@ html.theme-wb nav {
   border-color: #fff !important;
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 20px;
+}
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
 html.theme-wb a {
   color: #ffff00 !important; /* Желтые ссылки */
   text-decoration: underline;
@@ -63,4 +78,10 @@ html.theme-blue header {
 html.theme-blue a {
   color: #0000cc !important;
   text-decoration: underline;
+}
+
+/* Lightbox Utilities */
+body.lightbox-open .scroll-to-top-btn {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }

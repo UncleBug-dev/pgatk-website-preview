@@ -4,7 +4,7 @@ import Hero from '../components/Hero';
 import QuickLinks from '../components/QuickLinks';
 import ImportantSection from '../components/ImportantSection';
 import { MOCK_NEWS } from '../constants';
-import { Calendar, ArrowRight, Loader2, ExternalLink } from 'lucide-react';
+import { Calendar, ArrowRight, Loader2, ExternalLink, Activity, Play } from 'lucide-react';
 import { fetchTelegramPosts, TelegramPost } from '../utils/telegram';
 
 const Home: React.FC = () => {
@@ -123,7 +123,7 @@ const Home: React.FC = () => {
                   </p>
                 </div>
                 
-                <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <div className="mt-8 flex flex-wrap gap-4">
                   <a 
                     href="https://president.gov.by/ru/documents/ukaz-no-1-ot-1-anvara-2026-g" 
                     target="_blank" 
@@ -132,6 +132,13 @@ const Home: React.FC = () => {
                   >
                     Читать официальный Указ
                   </a>
+                  <Link 
+                    to="/downloads/abiturient/hod_priema.pdf" 
+                    className="inline-flex items-center justify-center bg-rose-600/90 hover:bg-rose-600 backdrop-blur-sm border-2 border-rose-500/50 text-white font-bold py-3 px-6 rounded-lg transition-all shadow-lg animate-pulse"
+                  >
+                    <Activity className="w-5 h-5 mr-2" />
+                    Ход приема документов
+                  </Link>
                 </div>
               </div>
             </div>
@@ -157,8 +164,12 @@ const MainNewsCard = ({ news, getImageUrl }: { news: any, getImageUrl: (url?: st
     <div className="absolute bottom-0 left-0 p-8 text-white w-full">
       <div className="flex flex-wrap gap-2 mb-3">
         {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
-          <span key={idx} className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded inline-block">
-            {cat}
+          <span 
+            key={idx} 
+            className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded inline-block"
+            title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
+          >
+            {cat === 'ВПВ' ? '#ВПВ' : cat}
           </span>
         ))}
       </div>

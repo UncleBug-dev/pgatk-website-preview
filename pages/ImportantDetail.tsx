@@ -3,10 +3,11 @@ import { useParams, Link } from 'react-router-dom';
 import { IMPORTANT_ARTICLES } from '../data/importantData';
 import { IMPORTANT_NEWS } from '../constants';
 import { ArrowLeft, Calendar, FileText, X } from 'lucide-react';
+import { Lightbox } from '../components/Lightbox';
 
 const ImportantDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [activeImage, setActiveImage] = useState<string | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -19,6 +20,19 @@ const ImportantDetail: React.FC = () => {
 
   const article = id ? IMPORTANT_ARTICLES[id] : null;
   const mockArticle = IMPORTANT_NEWS.find(n => n.id === id);
+
+  const allImages = article 
+    ? article.blocks.flatMap((b: any) => {
+        if (b.type === 'image') return [resolvePath(b.url)];
+        if (b.type === 'gallery') return b.images.map(resolvePath);
+        return [];
+      })
+    : [];
+
+  const handleImageClick = (url: string) => {
+    const idx = allImages.indexOf(url);
+    if (idx !== -1) setSelectedImageIndex(idx);
+  };
 
   if (!article) {
     return (
@@ -78,7 +92,7 @@ const ImportantDetail: React.FC = () => {
                       src={resolvePath(block.url)} 
                       alt="Illustration" 
                       className="max-w-full h-auto cursor-pointer object-contain"
-                      onClick={() => setActiveImage(resolvePath(block.url))}
+                      onClick={() => handleImageClick(resolvePath(block.url))}
                     />
                   </div>
                 );
@@ -89,7 +103,7 @@ const ImportantDetail: React.FC = () => {
                     {block.images.map((imgUrl: string, idx: number) => (
                       <button 
                         key={idx} 
-                        onClick={() => setActiveImage(resolvePath(imgUrl))}
+                        onClick={() => handleImageClick(resolvePath(imgUrl))}
                         className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group border border-slate-200 bg-slate-100"
                       >
                         <img 
@@ -142,26 +156,13 @@ const ImportantDetail: React.FC = () => {
       </div>
 
       {/* Lightbox */}
-      {activeImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div 
-            className="absolute inset-0 bg-slate-900/90 backdrop-blur-sm transition-opacity" 
-            onClick={() => setActiveImage(null)}
-          ></div>
-          <div className="relative z-10 max-w-5xl max-h-[90vh] flex flex-col items-center">
-            <button 
-              onClick={() => setActiveImage(null)}
-              className="absolute -top-12 right-0 p-2 text-white hover:text-red-400 transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <img 
-              src={activeImage} 
-              alt="Увеличенное изображение" 
-              className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl animate-in zoom-in-95 duration-200"
-            />
-          </div>
-        </div>
+      {selectedImageIndex !== null && (
+        <Lightbox 
+          images={allImages}
+          selectedIndex={selectedImageIndex}
+          onClose={() => setSelectedImageIndex(null)}
+          onSelectIndex={setSelectedImageIndex}
+        />
       )}
     </div>
   );

@@ -101,36 +101,7 @@ const Specialties: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-20 font-sans">
-      
-      {/* Header Block */}
-      <div className="bg-primary-900 text-white pt-10 pb-20 md:pt-14 md:pb-28 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -ml-10 -mb-10 pointer-events-none"></div>
-        
-        <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
-          <nav className="flex items-center gap-2 text-sm text-slate-300 mb-6 font-medium">
-            <Link to="/" className="hover:text-white transition-colors flex items-center hover:bg-white/10 p-1.5 rounded-full">
-              <HomeIcon className="w-4 h-4" />
-            </Link>
-            <ChevronRight className="w-3 h-3 opacity-40" />
-            <span className="text-accent-500 font-bold">Абитуриентам</span>
-          </nav>
-          
-          <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold leading-tight mb-6">
-              Выбери профессию будущего
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 leading-relaxed">
-              #ПГАТККЛЕЩЕВА предлагает востребованные специальности в сфере агропромышленного комплекса, строительства и обслуживания. 
-              Получи качественное образование и гарантированное трудоустройство.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="w-full max-w-[1600px] mx-auto px-4 md:px-8 -mt-16 relative z-20">
+    <div className="w-full">
         
         {/* Stats Strip */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
@@ -170,16 +141,16 @@ const Specialties: React.FC = () => {
               <GraduationCap className="w-6 h-6 text-accent-600" /> База для поступления
             </h3>
             <p className="text-slate-600 leading-relaxed">
-              Прием ведется преимущественно на дневную форму обучения на основе общего базового образования (после 9 классов). На отдельные направления доступно поступление после 11 классов или на заочную форму.
+              Прием ведется на дневную и заочную формы обучения на основе общего базового, среднего и профессионально-технического образования в соответствии с актуальными правилами приема лиц для получения высшего и среднего специального образования
             </p>
           </div>
           <div className="hidden md:block w-px bg-slate-200"></div>
           <div className="flex-1">
             <h3 className="text-xl font-bold text-primary-900 mb-3 flex items-center gap-2">
-              <Hammer className="w-6 h-6 text-accent-600" /> Смежные рабочие профессии
+              <Hammer className="w-6 h-6 text-accent-600" /> Рабочие профессии
             </h3>
             <p className="text-slate-600 leading-relaxed">
-              Во время учебы студенты строительных отделений могут дополнительно получить разряды по рабочим профессиям (штукатур, маляр, каменщик, плотник-бетонщик, столяр или облицовщик).
+              Во время учебы учащиеся могут дополнительно получить рабочую профессию (штукатур, маляр, каменщик, плотник-бетонщик, столяр, облицовщик и другие).
             </p>
           </div>
         </div>
@@ -292,8 +263,7 @@ const Specialties: React.FC = () => {
         </div>
 
       </div>
-    </div>
-  );
+    );
 };
 
 export default Specialties;

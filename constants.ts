@@ -17,21 +17,46 @@ export const MAIN_MENU: MenuItem[] = [
       { label: "Режим работы", href: "/kolledg/rezhimraboty" },
       { label: "Мы в СМИ", href: "/kolledg/mi-v-smi" },
       { label: "Выдающиеся выпускники", href: "/kolledg/vydayushchiesya-vypusniki" },
-      { label: "Виртуальная Доска почета", href: "/kolledg/virtualnaya-doska-pocheta" },
+      { label: "Доска почета", href: "/kolledg/virtualnaya-doska-pocheta" },
       { label: "Организационная структура", href: "/kolledg/struktura-kolledga" },
-      { label: "Положение о перс. данных", href: "/images/1Novosti/2025/11Noybr/ObrabotkaPersonalnihDannih.pdf" },
-      { label: "Политика конфиденциальности", href: "https://pgatkk.by/images/1Novosti/2024/Dekabr/politika_konfidencialnosti.pdf" },
-      { label: "Политика обработки куки", href: "https://pgatkk.by/images/1Novosti/2024/Dekabr/poloshenie_cookie.pdf" },
-      { label: "Политика ИБ", href: "https://pgatkk.by/images/1Novosti/2024/Dekabr/politika_ib.pdf" }
+      { label: "Положение о перс. данных", href: "/downloads/policy/ObrabotkaPersonalnihDannih.pdf" },
+      { label: "Политика конфиденциальности", href: "/downloads/policy/politika_konfidencialnosti.pdf" },
+      { label: "Политика обработки куки", href: "/downloads/policy/poloshenie_cookie.pdf" },
+      { label: "Политика ИБ", href: "/downloads/policy/politika_ib.pdf" }
     ]
   },
+  /*
   {
     label: "НИКО",
     href: "/niko"
   },
+  */
   {
     label: "Абитуриентам",
-    href: "/abiturientam"
+    href: "/abiturientam",
+    submenu: [
+      { label: "Информация о ходе приема документов", href: "/downloads/abiturient/hod_priema.pdf" },
+      { label: "Проходные баллы 2025 года", href: "/downloads/abiturient/prohodnie_balli.pdf" },
+      { label: "Специальности, квалификации", href: "/abiturientam/spetsialnosti-kvalifikatsii" },
+      { label: "План приема в 2026 году", href: "/abiturientam/plan-priema" },
+      { label: "Перечень документов", href: "/abiturientam/perechen-dokumentov" },
+      { label: "Сроки приема документов и зачисление", href: "/abiturientam/sroki-priema-dokumentov-i-zachislenie" },
+      { label: "Условия приема в 2026 году", href: "/downloads/abiturient/usloviya_priema.pdf" },
+      { label: "Целевая подготовка", href: "/abiturientam/predlozhenie-o-tselevoj-podgotovke" },
+      { label: "Предложения о целевой подготовке", href: "/abiturientam/predlozheniya-o-tselevoj-podgotovke" },
+      { label: "Правила приема", href: "/downloads/abiturient/pravila_priema.pdf" },
+      { label: "Общежитие", href: "/abiturientam/obshechitie-abitur" },
+      { label: "Работа с базовыми предприятиями", href: "/abiturientam/rabota-s-bazovymi-predpriyatiyami" },
+      { label: "Нормативно-правовое обеспечение. Вступительная кампания", href: "https://portal.oumc.by/normativno-pravovoe-obespechenie-vstupitelnaya-kompaniya-2024/" },
+      { label: "Советы психолога по выбору профессии", href: "/abiturientam/sovety-psikhologa-po-vyboru-professii" },
+      { label: "Из уст молодых специалистов", href: "/abiturientam/iz-ust-molodykh-spetsialistov" },
+      { label: "Профориентационные новости", href: "/abiturientam/proforientatsionnye-novosti-o-nas-v-smi" },
+      { label: "Дни открытых дверей", href: "/abiturientam/dni-otkrytykh-dverej" },
+      { label: "Дистанционный день открытых дверей", href: "/abiturientam/dod-2024" },
+      { label: "Виртуальный кабинет профориентации", href: "https://profpgatkk.online/" },
+      { label: "ПрофиТест", href: "https://profitest.ripo.by/public/main" },
+      { label: "График профориентационных консультаций в 2025/2026", href: "/abiturientam/grafik-provedeniya-proforientatsionnykh-konsultatsij" }
+    ]
   },
   {
     label: "Образовательный процесс",
@@ -46,7 +71,38 @@ export const MAIN_MENU: MenuItem[] = [
   },
   {
     label: "Идеология и воспитание",
-    href: "/ideologicheskaya-i-vospitatelnaya-rabota"
+    href: "/ideologicheskaya-i-vospitatelnaya-rabota",
+    submenu: [
+      { label: "Государственная символика РБ", href: "https://president.gov.by/ru/gosudarstvo/simvolika" },
+      { label: "Цели и задачи", href: "/ideologicheskaya-i-vospitatelnaya-rabota" },
+      { label: "В помощь куратору", href: "/dokumentatsiya" },
+      { label: "Объединения по интересам", href: "/ob-edineniya-po-interesam" },
+      { label: "Военно-патриотическое воспитание", href: "/voenno-patrioticheskoe-vospitanie" },
+      { label: "Общественные объединение и организации", href: "/obshchestvennye-ob-edinenie-i-organizatsii" },
+      { label: "Информационно образовательный проект ШАГ", href: "/informatsionno-obrazovatelnyj-proekt-shkola-aktivnogo-grazhdanina" },
+      { label: "Штаб трудовых дел", href: "/shtab-trudovykh-del" },
+      { label: "Концепция развития системы образования до 2030", href: "/kontseptsiya-razvitiya-sistemy-obrazovaniya-respubliki-belarus-do-2030-goda" },
+      { label: "Правовая культура", href: "/pravovaya-kultura" },
+      { label: "Общежитие", href: "/obshchezhitie" },
+      { label: "Оказание социально-педагогической помощи", href: "/okazanie-socialno-pedagogicheskoy-pomochi" },
+      { label: "Единый день информирования", href: "/edinyj-den-informirovaniya" },
+      { label: "Спортивная жизнь", href: "/sportivnaya-zhizn" },
+      { label: "Здоровый образ жизни", href: "/zdorovyj-obraz-zhizni" },
+      { label: "Музей истории колледжа", href: "/muzej-istorii-kolledzha" },
+      { label: "Ученическое самоуправление", href: "/uchenicheskoe-samoupravlenie" },
+      { label: "Виртуальная экспозиция о геноциде", href: "/virtualnaya-ekspozitsiya-pamyat-i-bol-belorusskoj-zemli-posvyashchennykh-genotsidu-belorusskogo-naroda" },
+      { label: "Родителям", href: "/roditelyam" },
+      { label: "STOP-НАРКОТИК", href: "/stop-narkotik" },
+      { label: "Закон и подросток", href: "/zakon-i-podrostok" },
+      { label: "Лето 2025", href: "/leto-2024" },
+      { label: "Профилактика киберпреступлений", href: "/profilaktika-kiberprestuplenij" },
+      { label: "Профилактика табакокурения", href: "/profilaktika-tabakokureniya" },
+      { label: "Профилактика экстремизма", href: "/profilaktika-ekstremizma" },
+      { label: "Профилактика травматизма", href: "/profilaktika-tramatizma" },
+      { label: "Интерактивная платформа ПАТРИОТ.BY", href: "https://patriot.rcek.by/" },
+      { label: "Календарь Единых дней здоровья 2026", href: "https://disk.yandex.com/i/DOcCv1P9AcP59A" },
+      { label: "Детство без насилия", href: "/detstvo-bez-nasiliya" }
+    ]
   },
   {
     label: "Методическая работа",
@@ -60,7 +116,7 @@ export const MAIN_MENU: MenuItem[] = [
       { label: "План повышения квалификации", href: "/metodicheskaya-rabota/plan-povysheniya-kvalifikatsii-i-perepodgotovki-pedagogicheskikh-rabotnikov" },
       { label: "Состав аттестационной комиссии", href: "/metodicheskaya-rabota/sostav-attestatsionnoj-komissii" },
       { label: "Стажировка", href: "/metodicheskaya-rabota/stazhirovka" },
-      { label: "Положение об аттестации", href: "https://pgatkk.by/images/Metodicheskiy/UchGod2122/PoloshenieItAttest.pdf" },
+      { label: "Положение об аттестации", href: "/downloads/policy/PoloshenieItAttest.pdf" },
       { label: "График недель цикловых комиссий", href: "/metodicheskaya-rabota/grafik-provedeniya-nedel-tsiklovykh-komissij-na-2024-2025-uchebnyj-god" }
     ]
   },
@@ -68,12 +124,12 @@ export const MAIN_MENU: MenuItem[] = [
     label: "Учащимся",
     href: "/uchashchimsya",
     submenu: [
-      { label: "Правила для учащихся", href: "https://pgatkk.by/images/PravilaUchashihsyIRoditeley.pdf" },
-      { label: "Положение о стипендиях", href: "https://disk.yandex.com/i/kSfqLJfkT-hWiA" },
-      { label: "График образовательного процесса", href: "https://disk.yandex.com/i/DESCKqlOTFo8zg" },
+      { label: "Правила для учащихся", href: "/downloads/policy/PravilaUchashihsyIRoditeley.pdf" },
+      { label: "Положение о стипендиях", href: "/downloads/abiturient/stipendii.pdf" },
+      { label: "График образовательного процесса", href: "/downloads/abiturient/grafik_processa.pdf" },
       { label: "Расписание учебных занятий", href: "/uchashchimsya/raspisanie" },
       { label: "График работы по распределению", href: "/uchashchimsya/grafik-raboty-po-raspredeleniyu" },
-      { label: "Стоимость обучения", href: "https://disk.yandex.com/i/9G99aEWC1RDL9A" }
+      { label: "Стоимость обучения", href: "/downloads/abiturient/stoimost.pdf" }
     ]
   },
   {
@@ -140,34 +196,6 @@ export const MOCK_NEWS: NewsItem[] = [
     category: 'Год белорусской женщины',
     imageUrl: 'images/1Novosti/2025/12Dekabr/Genocid.png',
     summary: 'Урок памяти, посвященный расследованию уголовного дела о геноциде белорусского народа в годы Великой Отечественной войны.',
-    content: LOREM_CONTENT
-  },
-  // Дополнительные новости для проверки пагинации (используем повторно существующие картинки)
-  {
-    id: '5',
-    title: 'Участие в конкурсе профессионального мастерства',
-    date: '10 Декабря 2025',
-    category: 'Профориентация',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/Olimpiada/Olimpiada.png',
-    summary: 'Команда колледжа приняла участие в региональном отборе WorldSkills Belarus.',
-    content: LOREM_CONTENT
-  },
-  {
-    id: '6',
-    title: 'Единый день информирования',
-    date: '08 Декабря 2025',
-    category: 'Жизнь колледжа',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/ZimniyPatrul.png',
-    summary: 'Обсуждение актуальных вопросов социально-экономического развития страны.',
-    content: LOREM_CONTENT
-  },
-  {
-    id: '7',
-    title: 'Волонтерская помощь ветеранам',
-    date: '05 Декабря 2025',
-    category: 'Общежитие',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/Genocid.png',
-    summary: 'Волонтеры отряда "Доброе сердце" посетили ветеранов педагогического труда.',
     content: LOREM_CONTENT
   }
 ];
