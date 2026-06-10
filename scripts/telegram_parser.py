@@ -3,9 +3,27 @@ from bs4 import BeautifulSoup
 import json
 import os
 import re
+import shutil
 from datetime import datetime
 
-def is_valid_post(clean_text):
+TARGET_IMG_DIR = r"d:\Workspace\Web\PGATK Website\public\images\news"
+if not os.path.exists(TARGET_IMG_DIR):
+    os.makedirs(TARGET_IMG_DIR, exist_ok=True)
+
+def download_image(url, local_filename):
+    if not os.path.exists(local_filename):
+        try:
+            r = requests.get(url, stream=True)
+            if r.status_code == 200:
+                with open(local_filename, 'wb') as f:
+                    for chunk in r.iter_content(1024):
+                        f.write(chunk)
+                return True
+        except Exception as e:
+            print(f"Failed to download image {url}: {e}")
+    return False
+
+def is_valid_post(clean_text, has_media=False):
     text_lower = clean_text.lower()
     
     # 1. Пропускаем расписания и замены
@@ -14,8 +32,8 @@ def is_valid_post(clean_text):
         return False
         
     # 2. Пропускаем посты без описания (короткие, меньше 50 символов)
-    # Если пост состоит из 3-4 слов, это скорее всего просто фото без текста
-    if len(clean_text.strip()) < 50:
+    # Если пост состоит из 3-4 слов, это скорее всего просто фото без текста, НО если есть медиа, оставляем!
+    if not has_media and len(clean_text.strip()) < 50:
         return False
         
     return True
@@ -81,24 +99,35 @@ def parse_telegram_channel(url, existing_ids, max_pages=100):
             if not clean_text:
                 continue
 
-            # Проверяем пост на валидность (расписания, короткие без описания)
-            if not is_valid_post(clean_text):
-                continue
+
 
             # Фото
             photo_nodes = msg.find_all('a', class_='tgme_widget_message_photo_wrap')
             images = []
+            img_idx = 0
             for node in photo_nodes:
                 if node.has_attr('style'):
                     style = node['style']
                     match = re.search(r"background-image:url\('([^']+)'\)", style)
                     if match:
-                        images.append(match.group(1))
+                        img_url = match.group(1)
+                        local_filename = os.path.join(TARGET_IMG_DIR, f"{post_id}_{img_idx}.jpg")
+                        local_url = f"/images/news/{post_id}_{img_idx}.jpg"
+                        
+                        download_image(img_url, local_filename)
+                        images.append(local_url)
+                        img_idx += 1
             
             image_url = images[0] if images else None
                     
             # Check for video
-            has_video = bool(msg.find('video'))
+            has_video = bool(msg.find('video')) or bool(msg.find('a', class_='tgme_widget_message_video_player')) or bool(msg.find('i', class_='tgme_widget_message_video_thumb'))
+
+            has_media = bool(image_url) or has_video
+            
+            # Проверяем пост на валидность
+            if not is_valid_post(clean_text, has_media=has_media):
+                continue
 
             # Заголовок и summary
             title = 'Новости колледжа'
@@ -209,4 +238,12 @@ if __name__ == '__main__':
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(final_posts, f, ensure_ascii=False, indent=2)
     
+    # Также копируем файл в папку сайта для надежности
+    website_json = r"d:\Workspace\Web\PGATK Website\public\telegram_news.json"
+    try:
+        shutil.copy2(output_file, website_json)
+        print(f"Successfully copied to {website_json}")
+    except Exception as e:
+        print(f"Failed to copy json to website directory: {e}")
+        
     print(f"Successfully saved {len(final_posts)} total posts to {output_file}")
