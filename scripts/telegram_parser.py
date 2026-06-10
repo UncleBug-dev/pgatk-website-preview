@@ -118,6 +118,22 @@ def parse_telegram_channel(url, existing_ids, max_pages=100):
                         images.append(local_url)
                         img_idx += 1
             
+            # Если фоток нет, пытаемся найти превью видео (чтобы всегда была картинка)
+            if not images:
+                video_nodes = msg.find_all('i', class_='tgme_widget_message_video_thumb')
+                for node in video_nodes:
+                    if node.has_attr('style'):
+                        style = node['style']
+                        match = re.search(r"background-image:url\('([^']+)'\)", style)
+                        if match:
+                            img_url = match.group(1)
+                            local_filename = os.path.join(TARGET_IMG_DIR, f"{post_id}_{img_idx}.jpg")
+                            local_url = f"/images/news/{post_id}_{img_idx}.jpg"
+                            
+                            download_image(img_url, local_filename)
+                            images.append(local_url)
+                            img_idx += 1
+                            
             image_url = images[0] if images else None
                     
             # Check for video
