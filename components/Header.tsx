@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Eye, Search, Menu, X, ChevronDown, MapPin, Mail, Instagram, Youtube, Phone, Type, Palette, RotateCcw, ExternalLink, FileText
+  Phone, Mail, MapPin, Eye, Search, Menu, X, ChevronDown, ChevronRight, FileText, ExternalLink, Activity, Sparkles, Instagram, Youtube 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { MAIN_MENU } from '../constants';
+import AddressLink from './AddressLink';
 import { useAccessibility } from '../context/AccessibilityContext';
 import SearchModal from './SearchModal';
+import { useData } from '../context/DataContext';
 
 const VKIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="-48 -48 672 608" fill="currentColor">
@@ -27,12 +29,46 @@ const TelegramIcon = ({ className }: { className?: string }) => (
 );
 
 const Header: React.FC = () => {
+  const { settings } = useData();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const getCookie = (name: string) => {
+    if (typeof document === 'undefined') return null;
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length >= 2) return parts.pop()?.split(';').shift();
+    return null;
+  };
+
+  const currentLangCookie = getCookie('googtrans');
+  let currentLang = 'RU';
+  if (currentLangCookie?.endsWith('/be')) currentLang = 'BY';
+  if (currentLangCookie?.endsWith('/en')) currentLang = 'EN';
+
+  const setLanguage = (lang: string) => {
+    let googtrans = '/ru/ru';
+    if (lang === 'BY') googtrans = '/ru/be';
+    if (lang === 'EN') googtrans = '/ru/en';
+    
+    document.cookie = `googtrans=${googtrans}; path=/;`;
+    document.cookie = `googtrans=${googtrans}; domain=.${window.location.hostname}; path=/;`;
+    
+    window.location.reload();
+  };
 
   const { 
-    fontSize, setFontSize, contrast, setContrast, resetSettings, isPanelOpen, togglePanel, closePanel
+    fontSize, setFontSize, contrast, setContrast, imageMode, setImageMode, letterSpacing, setLetterSpacing, lineHeight, setLineHeight, resetSettings, isPanelOpen, togglePanel, closePanel
   } = useAccessibility();
 
   const isLargeFont = fontSize === 'large' || fontSize === 'extra';
@@ -45,21 +81,49 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="relative z-50 w-full shadow-md font-display bg-white transition-all duration-300" onMouseLeave={closePanel}>
+    <>
+    {/* Spacer — занимает место шапки когда она fixed, чтобы контент не прыгал */}
+    <div
+      className="w-full transition-all duration-300"
+      style={{ height: isScrolled ? '72px' : '0px' }}
+      aria-hidden="true"
+    />
+    <header
+      className={`font-display bg-white w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'fixed top-0 left-0 right-0 shadow-xl'
+          : 'relative shadow-md'
+      }`}
+    >
       
-      {/* Top Bar */}
-      <div className="bg-primary-900 text-slate-200 text-xs py-2 px-4 md:px-8 transition-colors duration-300 relative z-[60]">
+      {/* Top Bar — скрывается при скролле */}
+      <div
+        className={`bg-primary-900 text-slate-200 text-xs px-4 md:px-8 transition-all duration-300 overflow-hidden relative z-[60] ${
+          isScrolled ? 'max-h-0 py-0 opacity-0 pointer-events-none' : 'max-h-24 py-2 opacity-100'
+        }`}
+      >
         <div className="w-full max-w-[1600px] mx-auto flex flex-col md:flex-row flex-wrap justify-between items-center gap-x-4 gap-y-2">
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center sm:justify-start gap-x-6 gap-y-1 text-center sm:text-left">
             <div className="flex items-center space-x-2 cursor-default whitespace-nowrap">
               <MapPin className="w-3 h-3 text-accent-500" />
-              <span>г.Пинск, ул. Иркутско-Пинской дивизии, 25</span>
+              <span><AddressLink>{settings.address}</AddressLink></span>
             </div>
-            <a href="mailto:uo@pgatkk.by" className="flex items-center space-x-2 hover:text-accent-500 transition-colors whitespace-nowrap">
+            <a href={`mailto:${settings.email}`} className="flex items-center space-x-2 hover:text-accent-500 transition-colors whitespace-nowrap">
               <Mail className="w-3 h-3 text-accent-500" />
-              <span>uo@pgatkk.by</span>
+              <span>{settings.email}</span>
             </a>
           </div>
+
+          {settings.showAdmissionProgress && (
+            <Link 
+              to="/downloads/abiturient/hod_priema.pdf" 
+              target="_blank"
+              className="hidden xl:flex items-center bg-rose-600 hover:bg-rose-500 text-white font-bold py-1 px-4 rounded-full transition-colors shadow shadow-rose-500/50 animate-pulse whitespace-nowrap text-[11px] tracking-wide uppercase border border-rose-400/30"
+            >
+              <Activity className="w-3.5 h-3.5 mr-2" />
+              Ход приема документов
+            </Link>
+          )}
 
           <div className="flex items-center space-x-6 relative flex-wrap justify-center">
             <button onClick={togglePanel} className={`flex items-center space-x-2 transition-colors group whitespace-nowrap ${isPanelOpen ? 'text-accent-500' : 'hover:text-white'}`}>
@@ -67,38 +131,35 @@ const Header: React.FC = () => {
               <span className="font-bold">Версия для слабовидящих</span>
             </button>
             
-            {isPanelOpen && (
-              <div className="absolute top-full right-0 mt-3 w-72 max-w-[90vw] bg-white text-slate-800 shadow-2xl rounded-xl border border-slate-200 p-4 z-[100] animate-in fade-in slide-in-from-top-2">
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 text-sm font-bold text-primary-900 mb-2"><Type className="w-4 h-4" /> Размер шрифта</div>
-                  <div className="flex gap-2 bg-slate-100 p-1 rounded-lg">
-                    <button onClick={() => setFontSize('normal')} className={`flex-1 py-1 px-2 rounded text-sm ${fontSize === 'normal' ? 'bg-white shadow text-primary-900 font-bold' : 'text-slate-500'}`}>A</button>
-                    <button onClick={() => setFontSize('large')} className={`flex-1 py-1 px-2 rounded text-base ${fontSize === 'large' ? 'bg-white shadow text-primary-900 font-bold' : 'text-slate-500'}`}>A+</button>
-                    <button onClick={() => setFontSize('extra')} className={`flex-1 py-1 px-2 rounded text-lg ${fontSize === 'extra' ? 'bg-white shadow text-primary-900 font-bold' : 'text-slate-500'}`}>A++</button>
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <div className="flex items-center gap-2 text-sm font-bold text-primary-900 mb-2"><Palette className="w-4 h-4" /> Цветовая схема</div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button onClick={() => setContrast('normal')} className={`px-3 py-2 rounded text-xs border ${contrast === 'normal' ? 'border-primary-900 bg-primary-50 font-bold' : 'border-slate-200 hover:bg-slate-50'}`}>Обычная</button>
-                    <button onClick={() => setContrast('bw')} className={`px-3 py-2 rounded text-xs border filter grayscale ${contrast === 'bw' ? 'border-black font-bold ring-1 ring-black' : 'border-slate-200'}`}>Ч черно-белая</button>
-                    <button onClick={() => setContrast('wb')} className={`px-3 py-2 rounded text-xs border bg-black text-white ${contrast === 'wb' ? 'ring-2 ring-accent-500 font-bold' : 'border-slate-800'}`}>Инверсия</button>
-                    <button onClick={() => setContrast('blue')} className={`px-3 py-2 rounded text-xs border bg-[#cce5ff] text-[#003366] ${contrast === 'blue' ? 'ring-2 ring-blue-600 font-bold' : 'border-blue-200'}`}>Синяя</button>
-                  </div>
-                </div>
-                <button onClick={resetSettings} className="w-full py-2 flex items-center justify-center gap-2 text-sm text-slate-500 hover:text-red-500 hover:bg-red-50 rounded transition-colors"><RotateCcw className="w-3 h-3" /> Сбросить настройки</button>
-              </div>
-            )}
+
 
             <div className="h-4 w-px bg-primary-800 hidden sm:block"></div>
             
             {/* Языки */}
-            <div className="flex items-center space-x-2 font-bold text-[10px] sm:text-xs tracking-wider">
-              <button className="text-accent-500">RU</button>
-              <span className="text-primary-800 font-normal">|</span>
-              <button className="hover:text-accent-500 transition-colors">BY</button>
-              <span className="text-primary-800 font-normal">|</span>
-              <button className="hover:text-accent-500 transition-colors">EN</button>
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={() => setLanguage('RU')} 
+                title="Русский"
+                className={`relative w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden border-2 transition-all duration-300 ${currentLang === 'RU' ? 'border-accent-500 scale-110 shadow-[0_0_10px_rgba(243,75,10,0.5)]' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-110'}`}
+              >
+                <img src="https://flagcdn.com/w40/ru.png" alt="RU" className="w-full h-full object-cover" />
+              </button>
+              
+              <button 
+                onClick={() => setLanguage('BY')} 
+                title="Беларуская"
+                className={`relative w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden border-2 transition-all duration-300 ${currentLang === 'BY' ? 'border-accent-500 scale-110 shadow-[0_0_10px_rgba(243,75,10,0.5)]' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-110'}`}
+              >
+                <img src="https://flagcdn.com/w40/by.png" alt="BY" className="w-full h-full object-cover" />
+              </button>
+              
+              <button 
+                onClick={() => setLanguage('EN')} 
+                title="English"
+                className={`relative w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden border-2 transition-all duration-300 ${currentLang === 'EN' ? 'border-accent-500 scale-110 shadow-[0_0_10px_rgba(243,75,10,0.5)]' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-110'}`}
+              >
+                <img src="https://flagcdn.com/w40/gb.png" alt="EN" className="w-full h-full object-cover" />
+              </button>
             </div>
 
             <div className="flex items-center space-x-3">
@@ -113,90 +174,166 @@ const Header: React.FC = () => {
       </div>
 
       {/* Main Bar */}
-      <div className="bg-white border-b border-slate-100 relative z-50">
+      <div className={`bg-white border-b border-slate-100 relative z-50 transition-all duration-300 ${
+        isScrolled ? 'border-b-2 border-accent-500/30' : ''
+      }`}>
         <div className="w-full max-w-[1600px] mx-auto px-4 md:px-6">
-          <div className={`flex justify-between items-center py-2 lg:py-2 min-h-[90px] ${isLargeFont ? 'flex-wrap gap-y-4' : 'flex-nowrap'}`}>
+          <div className={`flex transition-all duration-300 ${
+            isScrolled ? 'py-1 min-h-[56px]' : 'py-2 lg:py-2 min-h-[90px]'
+          } ${isLargeFont ? 'flex-wrap gap-y-4' : 'flex-nowrap'}`}>
             
+            {/* Логотипы слева */}
             <div className="flex items-center flex-shrink-0 mr-4">
-              <Link to="/" className="flex items-center gap-4 group">
-                
-                {/* БЛОК ЛОГОТИПОВ (Два ряда) */}
-                <div className="flex flex-col items-center gap-2">
-                  {/* Верхний ряд: Основной Герб и Логотип */}
-                  <div className="flex items-center gap-3">
-                    <img src={resolvePath('images/Gerb.gif')} alt="Герб РБ" className="h-10 lg:h-12 w-auto object-contain" />
-                    <div className="h-8 w-px bg-slate-200"></div>
-                    <img src={resolvePath('images/logo/logo_pgatkk.png')} alt="Логотип #ПГАТККЛЕЩЕВА" className="h-12 lg:h-14 w-auto object-contain drop-shadow-sm" />
-                  </div>
-                  
-                  {/* Нижний ряд: Символика (Год белорусской женщины) */}
-                  <div className="flex items-center gap-3 justify-center w-full">
-                    <img src={resolvePath('images/symbols/God2026.png')} className="h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300 -mt-1" alt="Год белорусской женщины" title="2026 — Год белорусской женщины" />
-                  </div>
-                </div>
+              <Link to="/" className="flex items-center gap-3 group">
 
-                {/* ТЕКСТОВОЕ НАЗВАНИЕ */}
-                <div className="hidden xl:block ml-2 lg:ml-4 border-l border-slate-100 pl-3">
-                  <p className="text-[9px] lg:text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-0.5">Учреждение образования</p>
-                  <h1 className="text-primary-900 font-bold text-xs lg:text-[12px] 2xl:text-[13px] leading-[1.1] uppercase max-w-[250px] 2xl:max-w-[280px]">«Пинский государственный аграрно-технический колледж имени А.Е.Клещева»</h1>
-                </div>
+                {/* ── КОМПАКТНЫЙ РЕЖИМ (sticky) ──────────────────────────────────── */}
+                {isScrolled && (
+                  <div className="flex items-center gap-0 animate-in fade-in slide-in-from-top-1 duration-300">
+                    {/* Герб */}
+                    <img
+                      src={resolvePath('images/Gerb.gif')}
+                      alt="Герб РБ"
+                      className="h-8 lg:h-9 w-auto object-contain"
+                    />
+                    <div className="h-7 w-px bg-slate-200 mx-3" />
+                    {/* Логотип колледжа */}
+                    <img
+                      src={resolvePath('images/logo/logo_pgatkk.png')}
+                      alt="Логотип ПГАТК"
+                      className="h-9 lg:h-10 w-auto object-contain drop-shadow-sm"
+                    />
+                    <div className="h-7 w-px bg-slate-200 mx-3" />
+                    {/* Символика года */}
+                    <img
+                      src={resolvePath('images/symbols/God2026.png')}
+                      alt="Год белорусской женщины"
+                      title="2026 — Год белорусской женщины"
+                      className="h-9 lg:h-10 w-auto object-contain"
+                    />
+                    {/* Название — скрытое на маленьких, видно от lg */}
+                    <div className="hidden lg:block ml-4 pl-4 border-l border-slate-200">
+                      <p className="text-[9px] text-slate-400 font-bold tracking-widest uppercase leading-none mb-0.5">
+                        Учреждение образования
+                      </p>
+                      <h1 className="text-primary-900 font-bold text-[11px] lg:text-[12px] leading-tight uppercase max-w-[260px] lg:max-w-[320px]">
+                        «#ПГАТККЛЕЩЕВА»
+                      </h1>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── ОБЫЧНЫЙ РЕЖИМ ──────────────────────────────────────────────── */}
+                {!isScrolled && (
+                  <div className="flex flex-col items-center gap-2">
+                    {/* Верхний ряд: Герб + Логотип */}
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={resolvePath('images/Gerb.gif')}
+                        alt="Герб РБ"
+                        className="h-8 sm:h-10 lg:h-12 w-auto object-contain"
+                      />
+                      <div className="h-6 sm:h-8 w-px bg-slate-200" />
+                      <img
+                        src={resolvePath('images/logo/logo_pgatkk.png')}
+                        alt="Логотип #ПГАТККЛЕЩЕВА"
+                        className="h-10 sm:h-12 lg:h-14 w-auto object-contain drop-shadow-sm"
+                      />
+                    </div>
+                    {/* Нижний ряд: Символика года */}
+                    <div className="flex items-center gap-3 justify-center w-full">
+                      <img
+                        src={resolvePath('images/symbols/God2026.png')}
+                        className="h-8 sm:h-10 lg:h-12 w-auto object-contain hover:scale-105 transition-transform duration-300 -mt-1"
+                        alt="Год белорусской женщины"
+                        title="2026 — Год белорусской женщины"
+                      />
+                    </div>
+                  </div>
+                )}
+
+                {/* ТЕКСТОВОЕ НАЗВАНИЕ — только в обычном режиме на 2xl */}
+                {!isScrolled && (
+                  <div className="hidden 2xl:block ml-4 border-l border-slate-100 pl-3">
+                    <p className="text-[9px] lg:text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-0.5">Учреждение образования</p>
+                    <h1 className="text-primary-900 font-bold text-xs lg:text-[12px] 2xl:text-[13px] leading-[1.1] uppercase max-w-[250px] 2xl:max-w-[280px]">«Пинский государственный аграрно-технический колледж имени А.Е.Клещева»</h1>
+                  </div>
+                )}
               </Link>
             </div>
 
-            {!isLargeFont && (
-              <nav className="hidden 2xl:flex items-center gap-0 ml-auto mr-2">
-                {MAIN_MENU.map((item) => (
-                  <div key={item.label} className="relative group">
-                    {item.submenu ? (
-                      <>
-                        <Link to={item.href || '#'} className="px-1 py-2 text-[12px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tighter">
-                          {item.label} <ChevronDown className="w-3 h-3 ml-0.5 opacity-50" />
-                        </Link>
-                        <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-500 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                          <div className="py-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
-                            {item.submenu.map((sub) => {
-                              const isExternal = sub.href.startsWith('http');
-                              const isPdf = sub.href.toLowerCase().includes('.pdf');
-                              return (
-                                <Link 
-                                  key={sub.label} 
-                                  to={sub.href} 
-                                  target={isExternal ? "_blank" : undefined}
-                                  rel={isExternal ? "noopener noreferrer" : undefined}
-                                  className="flex items-center px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary-900 hover:pl-6 transition-all border-l-2 border-transparent hover:border-accent-500"
-                                >
-                                  {isPdf ? <FileText className="w-3.5 h-3.5 mr-2 text-rose-500 flex-shrink-0" /> : isExternal ? <ExternalLink className="w-3.5 h-3.5 mr-2 text-blue-500 flex-shrink-0" /> : null}
-                                  <span className="whitespace-normal">{sub.label}</span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </>
-                    ) : (
-                      <Link to={item.href || '#'} className="px-1 py-2 text-[12px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tighter">
-                        {item.label}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </nav>
-            )}
-
-            <div className="flex items-center space-x-3 lg:space-x-4 flex-shrink-0 ml-auto 2xl:ml-4">
-              <div className="hidden lg:flex flex-col items-end text-right">
-                <a href="tel:80165639293" className="flex items-center text-primary-900 font-bold text-sm hover:text-accent-600 transition-colors">
-                  <Phone className="w-4 h-4 mr-2 fill-current" /> 8 (0165) 63-92-93
-                </a>
-                <span className="text-[10px] text-accent-600 font-semibold uppercase tracking-wide block">Приемная директора</span>
+            {/* Правая часть: Название + Меню */}
+            <div className="flex flex-col flex-grow justify-center">
+              
+              {/* ТЕКСТОВОЕ НАЗВАНИЕ (сверху на средних HD экранах) — скрывается при скролле */}
+              <div className={`hidden xl:block 2xl:hidden overflow-hidden transition-all duration-300 ${
+                isScrolled ? 'max-h-0 pb-0 mb-0 opacity-0' : 'max-h-16 pb-2 mb-1 opacity-100 border-b border-slate-100/60 w-full'
+              }`}>
+                <Link to="/" className="inline-block hover:opacity-80 transition-opacity">
+                  <p className="text-[9px] lg:text-[10px] text-slate-500 font-bold tracking-widest uppercase mb-0.5">Учреждение образования</p>
+                  <h1 className="text-primary-900 font-bold text-xs lg:text-[12px] 2xl:text-[13px] leading-[1.1] uppercase">«Пинский государственный аграрно-технический колледж имени А.Е.Клещева»</h1>
+                </Link>
               </div>
-              <div className="h-8 w-px bg-slate-200 hidden lg:block"></div>
-              <button onClick={() => setIsSearchOpen(true)} className="p-2 text-slate-500 hover:text-accent-600 transition-colors hover:bg-slate-50 rounded-full">
-                <Search className="w-5 h-5 lg:w-6 lg:h-6" />
-              </button>
-              <button className={`p-2 text-slate-800 ${!isLargeFont ? '2xl:hidden' : ''}`} onClick={toggleMobileMenu}>
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
+
+              {/* Меню и Кнопки связи */}
+              <div className="flex justify-between items-center w-full">
+                {!isLargeFont && (
+                  <nav className="hidden xl:flex items-center gap-0 mr-2">
+                    {MAIN_MENU.map((item) => (
+                      <div key={item.label} className="relative group">
+                        {item.submenu ? (
+                          <>
+                            <Link to={item.href || '#'} className="px-1 py-2 text-[11px] 2xl:text-[12px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tighter">
+                              {item.label} <ChevronDown className="w-3 h-3 ml-0.5 opacity-50" />
+                            </Link>
+                            <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-b-lg border-t-4 border-accent-500 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+                              <div className="py-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
+                                {item.submenu.map((sub) => {
+                                  if (sub.label === "Информация о ходе приема документов" && !settings.showAdmissionProgress) return null;
+                                  const isExternal = sub.href.startsWith('http');
+                                  const isPdf = sub.href.toLowerCase().includes('.pdf');
+                                  return (
+                                    <Link 
+                                      key={sub.label} 
+                                      to={sub.href} 
+                                      target={isExternal ? "_blank" : undefined}
+                                      rel={isExternal ? "noopener noreferrer" : undefined}
+                                      className="flex items-center px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary-900 hover:pl-6 transition-all border-l-2 border-transparent hover:border-accent-500"
+                                    >
+                                      {isPdf ? <FileText className="w-3.5 h-3.5 mr-2 text-rose-500 flex-shrink-0" /> : isExternal ? <ExternalLink className="w-3.5 h-3.5 mr-2 text-blue-500 flex-shrink-0" /> : null}
+                                      <span className="whitespace-normal">{sub.label}</span>
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <Link to={item.href || '#'} className="px-1 py-2 text-[11px] 2xl:text-[12px] font-bold text-slate-700 hover:text-primary-900 hover:bg-slate-50 rounded-md flex items-center transition-all whitespace-nowrap tracking-tighter">
+                            {item.label}
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </nav>
+                )}
+
+                {/* Правый блок (Телефон, Поиск, Бургер) */}
+                <div className="flex items-center space-x-3 lg:space-x-4 flex-shrink-0 ml-auto">
+                  <div className="hidden lg:flex flex-col items-end text-right">
+                    <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="flex items-center text-primary-900 font-bold text-sm hover:text-accent-600 transition-colors">
+                      <Phone className="w-4 h-4 mr-2 fill-current" /> {settings.phone}
+                    </a>
+                    <span className="text-[10px] text-accent-600 font-semibold uppercase tracking-wide block">Приемная директора</span>
+                  </div>
+                  <div className="h-8 w-px bg-slate-200 hidden lg:block"></div>
+                  <button onClick={() => setIsSearchOpen(true)} className="p-2 text-slate-500 hover:text-accent-600 transition-colors hover:bg-slate-50 rounded-full">
+                    <Search className="w-5 h-5 lg:w-6 lg:h-6" />
+                  </button>
+                  <button className={`p-2 text-slate-800 ${!isLargeFont ? 'xl:hidden' : ''}`} onClick={toggleMobileMenu}>
+                    {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -221,7 +358,7 @@ const Header: React.FC = () => {
                 <Phone className="w-5 h-5 text-accent-500 mt-0.5 flex-shrink-0" />
                 <div className="flex flex-col gap-1">
                   <a href="tel:80165300688" className="hover:text-accent-600 transition-colors">8 (0165) 30-06-88 <span className="text-xs text-slate-400 block sm:inline">(Комиссия)</span></a>
-                  <a href="tel:80165639293" className="hover:text-accent-600 transition-colors">8 (0165) 63-92-93 <span className="text-xs text-slate-400 block sm:inline">(Приемная)</span></a>
+                  <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="hover:text-accent-600 transition-colors">{settings.phone} <span className="text-xs text-slate-400 block sm:inline">(Приемная)</span></a>
                 </div>
               </div>
             </div>
@@ -238,6 +375,7 @@ const Header: React.FC = () => {
                       {activeSubmenu === item.label && (
                         <div className="bg-slate-50 px-6 py-2 border-t border-slate-100 animate-in slide-in-from-top-2 duration-150">
                           {item.submenu.map((sub) => {
+                            if (sub.label === "Информация о ходе приема документов" && !settings.showAdmissionProgress) return null;
                             const isExternal = sub.href.startsWith('http');
                             const isPdf = sub.href.toLowerCase().includes('.pdf');
                             return (
@@ -270,8 +408,8 @@ const Header: React.FC = () => {
             <div className="border-t border-slate-100 p-6 bg-slate-50">
               <p className="text-xs text-center text-slate-400 font-bold uppercase mb-4 tracking-widest">Символика</p>
               <div className="flex justify-center items-center gap-6 flex-wrap">
-                <img src={resolvePath('images/symbols/gerb.png')} className="h-12 w-auto object-contain" alt="Герб РБ" />
-                <img src={resolvePath('images/symbols/God2026.png')} className="h-16 w-auto object-contain" alt="Год белорусской женщины" />
+                <img src={resolvePath('images/Gerb.gif')} className="h-12 w-auto object-contain drop-shadow-sm" alt="Герб РБ" />
+                <img src={resolvePath('images/symbols/God2026.png')} className="h-16 w-auto object-contain drop-shadow-sm" alt="Год белорусской женщины" />
               </div>
             </div>
 
@@ -281,6 +419,7 @@ const Header: React.FC = () => {
 
       <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
+    </>
   );
 };
 

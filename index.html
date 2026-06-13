@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ПГАТК им. А.Е. Клещева</title>
+    <title>#ПГАТККЛЕЩЕВА</title>
     <meta name="description" content="Пинский государственный аграрно-технический колледж имени А.Е.Клещева" />
     <!-- Open Graph / Facebook / Telegram -->
     <meta property="og:type" content="website" />
@@ -21,41 +21,9 @@
     
     <meta name="theme-color" content="#0e3146" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Inter', 'sans-serif'],
-          display: ['Manrope', 'sans-serif'],
-        },
-        colors: {
-          primary: {
-            50: '#f0f9ff',
-            100: '#e0f2fe',
-            200: '#bae6fd',
-            300: '#7dd3fc',
-            400: '#38bdf8',
-            500: '#007bff',
-            600: '#0284c7',
-            700: '#0e4684',
-            800: '#0e3146',
-            900: '#0c2838',
-          },
-          accent: {
-            400: '#fb7135',
-            500: '#f34b0a',
-            600: '#ea3a00',
-          },
-        }
-      }
-    }
-  }
-</script>
   <script type="importmap">
 {
   "imports": {
@@ -73,6 +41,15 @@
 <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="display:none;"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'ru', autoDisplay: false}, 'google_translate_element');
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

@@ -13,7 +13,11 @@ const OrganizationalStructure: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const currentPath = useLocation().pathname;
-  const parentSection = MAIN_MENU.find(item => item.href === '/kolledg');
+  const isOdnoOkno = currentPath.includes('odno-okno');
+  const parentHref = isOdnoOkno ? '/odno-okno' : '/kolledg';
+  const parentLabel = isOdnoOkno ? 'Одно окно' : 'Колледж';
+
+  const parentSection = MAIN_MENU.find(item => item.href === parentHref);
   const sidebarLinks = parentSection?.submenu || [];
 
   return (
@@ -29,7 +33,7 @@ const OrganizationalStructure: React.FC = () => {
               Главная
             </Link>
             <ChevronRight className="w-3 h-3 opacity-40" />
-            <Link to="/kolledg" className="hover:text-white transition-colors">Колледж</Link>
+            <Link to={parentHref} className="hover:text-white transition-colors">{parentLabel}</Link>
             <ChevronRight className="w-3 h-3 opacity-40" />
             <span className="text-accent-500 font-bold truncate">Организационная структура</span>
           </nav>
@@ -55,8 +59,8 @@ const OrganizationalStructure: React.FC = () => {
             </div>
 
             <div className={`bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden sticky top-28 ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
-              <div className="bg-slate-50 px-5 py-4 border-b border-slate-100">
-                <Link to="/kolledg" className="text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-accent-600 transition-colors block">
+              <div className="bg-primary-900 px-5 py-4 border-b border-primary-800">
+                <Link to="/kolledg" className="text-white text-xs font-bold uppercase tracking-widest hover:text-accent-300 transition-colors block">
                   {parentSection?.label}
                 </Link>
               </div>
@@ -81,7 +85,7 @@ const OrganizationalStructure: React.FC = () => {
                     </>
                   );
 
-                  const linkClass = `group flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${isActive ? 'bg-primary-50 text-primary-700 border-l-4 border-accent-500 translate-x-1' : 'text-slate-600 hover:bg-slate-50 hover:text-primary-900 border-l-4 border-transparent hover:translate-x-1'}`;
+                  const linkClass = `group flex items-center justify-between px-4 py-3 mb-1 rounded-lg text-[15px] font-medium transition-all duration-200 ${isActive ? 'bg-primary-50 text-primary-700 border-l-4 border-accent-500' : 'text-slate-600 hover:bg-slate-50 hover:text-primary-900 border-l-4 border-transparent'}`;
 
                   if (isExternal) {
                     return (

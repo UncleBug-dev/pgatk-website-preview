@@ -61,8 +61,8 @@ const Facilities: React.FC = () => {
             </div>
 
             <div className={`bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden sticky top-28 ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
-              <div className="bg-slate-50 px-5 py-4 border-b border-slate-100">
-                <Link to="/kolledg" className="text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-accent-600 transition-colors block">
+              <div className="bg-primary-900 px-5 py-4 border-b border-primary-800">
+                <Link to="/kolledg" className="text-white text-xs font-bold uppercase tracking-widest hover:text-accent-300 transition-colors block">
                   {parentSection?.label}
                 </Link>
               </div>

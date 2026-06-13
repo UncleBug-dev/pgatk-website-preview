@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Calendar, ChevronRight, Home as HomeIcon, ChevronLeft, Loader2, ExternalLink } from 'lucide-react';
+import { Calendar, ChevronRight, Home as HomeIcon, ChevronLeft, Loader2, ExternalLink, Image as ImageIcon, Play } from 'lucide-react';
 import { MOCK_NEWS } from '../constants';
 import { fetchTelegramPosts, TelegramPost } from '../utils/telegram';
+import { useData } from '../context/DataContext';
+import SEO from '../components/SEO';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -30,24 +32,8 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(queryCategory || initialCategory);
 
-  const [newsList, setNewsList] = useState<TelegramPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // Скролл наверх при смене страницы пагинации
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [currentPage]);
-
-  useEffect(() => {
-    fetchTelegramPosts().then(posts => {
-      if (posts && posts.length > 0) {
-        setNewsList(posts);
-      }
-      setLoading(false);
-    });
-  }, []);
-
-  const displayNews = newsList.length > 0 ? newsList : MOCK_NEWS.map(n => ({ ...n, link: `/news/${n.id}` }));
+  const { news: localNews } = useData();
+  const displayNews = localNews.map(n => ({ ...n, link: `/news/${n.id}` }));
   
   const filteredNews = displayNews.filter(news => {
     if (selectedCategory === 'Все') return true;
@@ -66,6 +52,10 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20 font-sans">
+      <SEO 
+        title={selectedCategory === 'Все' ? 'Новости' : `Новости - ${selectedCategory}`} 
+        description={`Архив новостей и событий Пинского государственного аграрного технологического колледжа. Категория: ${selectedCategory}.`}
+      />
       
       {/* Header Block (Unified Style) */}
       <div className="bg-primary-900 text-white pt-8 pb-12 md:pt-12 md:pb-20 relative overflow-hidden">
@@ -110,72 +100,72 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 -mt-6 md:-mt-8 relative z-20">
         {/* News Grid */}
-        {loading ? (
-          <div className="flex justify-center items-center h-64 mb-12">
-            <Loader2 className="w-12 h-12 text-accent-500 animate-spin" />
-            <span className="ml-4 text-slate-500 font-semibold">Загрузка новостей...</span>
+        {filteredNews.length === 0 ? (
+          <div className="flex flex-col justify-center items-center h-64 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
+            <Calendar className="w-12 h-12 text-slate-300 mb-4" />
+            <h3 className="text-xl font-bold text-slate-700">Новостей не найдено</h3>
+            <p className="text-slate-500 mt-2 text-center">Попробуйте выбрать другую категорию или зайдите позже.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {currentItems.map((news) => {
-              const CardContent = (
-                <>
-                  <div className="relative aspect-video overflow-hidden bg-slate-50 border-b border-slate-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {currentItems.map((news) => (
+              <Link 
+                key={news.id} 
+                to={`/news/${news.id}`}
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1"
+              >
+                <div className="relative h-56 bg-slate-100 overflow-hidden">
+                  {!news.imageUrl ? (
+                    <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center text-slate-300 transition-transform duration-700 group-hover:scale-105">
+                      <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`} alt="Логотип" className="w-16 h-16 mb-2 opacity-50 object-contain grayscale" />
+                      <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Нет фото</span>
+                    </div>
+                  ) : (
                     <img 
                       src={getImageUrl(news.imageUrl)} 
                       alt={news.title} 
-                      className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${!news.imageUrl ? 'p-8 object-contain opacity-60' : 'object-cover'}`}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 max-w-[90%]">
-                      {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat, idx) => (
-                        <span 
-                          key={idx} 
-                          className="bg-accent-500 text-primary-900 text-xs font-bold px-2 py-1 rounded shadow-sm"
-                          title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
-                        >
-                          {cat === 'ВПВ' ? '#ВПВ' : cat}
-                        </span>
-                      ))}
+                  )}
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
+                      <span 
+                        key={idx} 
+                        className="bg-accent-500 text-primary-900 text-xs font-bold px-3 py-1 rounded shadow-sm"
+                        title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
+                      >
+                        {cat === 'ВПВ' ? '#ВПВ' : cat}
+                      </span>
+                    ))}
+                  </div>
+                  {(news as any).hasVideo && (
+                    <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-md text-white p-2 rounded-full shadow-lg border border-white/10 group-hover:bg-accent-500 transition-colors duration-300">
+                      <Play className="w-4 h-4 fill-white translate-x-[1px]" />
                     </div>
+                  )}
+                </div>
+                
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="flex items-center text-sm text-slate-500 mb-4">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    {news.date}
                   </div>
                   
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="flex items-center justify-between text-xs text-slate-400 mb-3">
-                      <div className="flex items-center">
-                        <Calendar className="w-3 h-3 mr-1.5" />
-                        {news.date}
-                      </div>
-                      {news.link.startsWith('http') && <ExternalLink className="w-3 h-3 text-slate-300" />}
-                    </div>
-                    
-                    <h3 className="text-lg font-bold font-display text-primary-900 mb-3 leading-snug group-hover:text-accent-600 transition-colors line-clamp-2">
-                      {news.title}
-                    </h3>
-                    
-                    <p className="text-sm text-slate-600 mb-4 line-clamp-3 flex-grow">
-                      {news.summary}
-                    </p>
-                    
-                    <div className="pt-4 border-t border-slate-100 flex items-center text-accent-600 font-bold text-sm">
-                      Читать подробнее
-                      <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                  <h3 className="text-xl font-bold text-slate-800 mb-3 group-hover:text-primary-600 transition-colors line-clamp-2">
+                    {news.title}
+                  </h3>
+                  
+                  <p className="text-slate-600 line-clamp-3 mb-6 flex-grow text-sm">
+                    {news.content}
+                  </p>
+                  
+                  <div className="mt-auto flex items-center text-primary-600 font-semibold group-hover:text-accent-600 transition-colors text-sm">
+                    Читать далее
+                    <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </>
-              );
-
-              const cardClasses = "group flex flex-col bg-white rounded-xl shadow-md border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full";
-
-              return (
-                <Link 
-                  key={news.id} 
-                  to={`/news/${news.id}`}
-                  className={cardClasses}
-                >
-                  {CardContent}
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            ))}
           </div>
         )}
 

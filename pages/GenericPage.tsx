@@ -4,6 +4,7 @@ import {
   ChevronRight, Home as HomeIcon, Printer, Share2, Menu as MenuIcon, ChevronDown, FileText, FolderOpen, ExternalLink
 } from 'lucide-react';
 import { MAIN_MENU } from '../constants';
+import { useData } from '../context/DataContext';
 import AbiturientLanding from './AbiturientLanding';
 import Specialties from './Specialties';
 import AdmissionPlan from './AdmissionPlan';
@@ -48,11 +49,24 @@ import LaborHQ from './LaborHQ';
 import EducationConcept2030 from './EducationConcept2030';
 import LegalCulture from './LegalCulture';
 import Spps from './Spps';
+import NotFound from './NotFound';
+import SportsLife from './SportsLife';
 import IdnInspector from './IdnInspector';
 import UnifiedInformationDay from './UnifiedInformationDay';
 import UnderConstruction from './UnderConstruction';
 import HealthyLifestyle from './HealthyLifestyle';
 import InjuryPrevention from './InjuryPrevention';
+import CollegeMuseum from './CollegeMuseum';
+import StudentSelfGov from './StudentSelfGov';
+import GenocideExhibition from './GenocideExhibition';
+import Parents from './Parents';
+import StopDrug from './StopDrug';
+import ZakonIPodrostok from './ZakonIPodrostok';
+import Leto2025 from './Leto2025';
+import CybercrimePrevention from './CybercrimePrevention';
+import SmokingPrevention from './SmokingPrevention';
+import ExtremismPrevention from './ExtremismPrevention';
+import ChildhoodWithoutViolence from './ChildhoodWithoutViolence';
 
 const SidebarLinkItem = ({ link, currentPath }: { link: any, currentPath: string }) => {
   const isExternal = link.href.startsWith('http');
@@ -205,6 +219,7 @@ const GenericPage: React.FC = () => {
     '/obshchestvennye-ob-edinenie-i-organizatsii/veteranskaya': 'Первичная ветеранская организация',
     '/okazanie-socialno-pedagogicheskoy-pomochi/8-novosti/1174-po-vsem-voprosam-otnosyashchimsya-k-kompetentsii-inspektsii-po-delam-nesovershennoletnikh-vy-mozhete-obratitsya-k-uchastkovomu-inspektoru-idn-pinskogo-govd': 'Инспекция по делам несовершеннолетних',
     '/edinyj-den-informirovaniya': 'Единый день информирования',
+    '/abiturientam/obshechitie-abitur/galereya': 'Фотогалерея общежития',
   };
 
   if (customTitles[currentPath]) {
@@ -228,11 +243,24 @@ const GenericPage: React.FC = () => {
     }
   }
 
-  const sidebarLinks = parentSection?.submenu || [];
+  const { settings } = useData();
+  
+  const sidebarLinksRaw = parentSection?.submenu || [];
+  const sidebarLinks = sidebarLinksRaw.filter(link => {
+    if (link.label === "Информация о ходе приема документов" && !settings.showAdmissionProgress) return false;
+    return true;
+  });
   const hasSidebar = sidebarLinks.length > 0;
   
 
   const isSectionRoot = parentSection && (parentSection.href === currentPath || parentSection.href === currentPath + '/');
+  
+  // Determine if this is a true 404 (not in menu, not a custom title, not a PDF, and not the root menu item itself)
+  const isUnknownRoute = !parentSection && !customTitles[currentPath] && !currentPath.toLowerCase().endsWith('.pdf');
+
+  if (isUnknownRoute) {
+    return <NotFound />;
+  }
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20 font-sans">
@@ -283,8 +311,8 @@ const GenericPage: React.FC = () => {
               </div>
 
               <div className={`bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
-                <div className="bg-slate-50 px-5 py-4 border-b border-slate-100">
-                  <Link to={parentSection?.href || '#'} className="text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-accent-600 transition-colors block">
+                <div className="bg-primary-900 px-5 py-4 border-b border-primary-800">
+                  <Link to={parentSection?.href || '#'} className="text-white text-xs font-bold uppercase tracking-widest hover:text-accent-300 transition-colors block">
                     {parentSection?.label}
                   </Link>
                 </div>
@@ -338,7 +366,7 @@ const GenericPage: React.FC = () => {
                  <TargetedTrainingOffers />
               ) : currentPath === '/abiturientam/obshechitie-abitur' ? (
                  <Dormitory />
-              ) : currentPath === '/abiturientam/obshechitie-galereya' ? (
+              ) : currentPath === '/abiturientam/obshechitie-abitur/galereya' ? (
                  <DormitoryGallery />
               ) : currentPath === '/abiturientam/rabota-s-bazovymi-predpriyatiyami' ? (
                  <BaseEnterprises />
@@ -409,11 +437,33 @@ const GenericPage: React.FC = () => {
               ) : currentPath === '/edinyj-den-informirovaniya' ? (
                  <UnifiedInformationDay />
               ) : currentPath === '/sportivnaya-zhizn' ? (
-                 <UnderConstruction />
+                 <SportsLife />
               ) : currentPath === '/zdorovyj-obraz-zhizni' ? (
                  <HealthyLifestyle />
               ) : currentPath === '/profilaktika-tramatizma' ? (
                  <InjuryPrevention />
+              ) : currentPath === '/muzej-istorii-kolledzha' ? (
+                 <CollegeMuseum />
+              ) : currentPath === '/uchenicheskoe-samoupravlenie' ? (
+                 <StudentSelfGov />
+              ) : currentPath === '/virtualnaya-ekspozitsiya-pamyat-i-bol-belorusskoj-zemli-posvyashchennykh-genotsidu-belorusskogo-naroda' ? (
+                 <GenocideExhibition />
+              ) : currentPath === '/roditelyam' ? (
+                 <Parents />
+              ) : currentPath === '/stop-narkotik' ? (
+                 <StopDrug />
+              ) : currentPath === '/zakon-i-podrostok' ? (
+                 <ZakonIPodrostok />
+              ) : currentPath === '/leto-2025' || currentPath === '/leto-2024' ? (
+                 <Leto2025 />
+              ) : currentPath === '/profilaktika-kiberprestuplenij' ? (
+                 <CybercrimePrevention />
+              ) : currentPath === '/profilaktika-tabakokureniya' ? (
+                 <SmokingPrevention />
+              ) : currentPath === '/profilaktika-ekstremizma' ? (
+                 <ExtremismPrevention />
+              ) : currentPath === '/detstvo-bez-nasiliya' ? (
+                 <ChildhoodWithoutViolence />
               ) : currentPath === '/obshchestvennye-ob-edinenie-i-organizatsii/osvod' ? (
                  <Osvod />
               ) : currentPath === '/obshchestvennye-ob-edinenie-i-organizatsii/bszh' ? (
@@ -485,20 +535,8 @@ const GenericPage: React.FC = () => {
                   />
                 </div>
               ) : (
-                <div className="prose prose-slate prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-h2:text-primary-900 prose-a:text-accent-600 prose-a:no-underline hover:prose-a:underline">
-                  <p className="lead">Добро пожаловать в раздел <span className="text-primary-900">«{pageTitle}»</span>.</p>
-                  
-                  <div className="not-prose my-8 p-6 bg-blue-50 rounded-xl border-l-4 border-blue-500 flex flex-col sm:flex-row items-start gap-4">
-                    <div className="bg-white p-2 rounded-full shadow-sm flex-shrink-0"><FileText className="w-6 h-6 text-blue-600" /></div>
-                    <div>
-                      <h3 className="text-blue-900 font-bold text-lg mb-1">Информация обновляется</h3>
-                      <p className="text-sm text-blue-800/80 leading-relaxed">В данный момент страница наполняется материалами к новому учебному году.</p>
-                    </div>
-                  </div>
-
-                  <h2>Общая информация</h2>
-                  <p>Пинский государственный аграрно-технический колледж имени А.Е. Клещева обеспечивает подготовку специалистов высокого уровня.</p>
-                  <p>Мы гордимся нашими выпускниками и преподавательским составом. Образовательный процесс строится на использовании современных методик и технологий.</p>
+                <div className="animate-in fade-in zoom-in-95 duration-500">
+                  <UnderConstruction title={`Раздел «${pageTitle}» обновляется`} />
                 </div>
               )}
 

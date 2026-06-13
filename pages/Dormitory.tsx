@@ -95,7 +95,7 @@ const Dormitory: React.FC = () => {
         <div className="rounded-3xl overflow-hidden shadow-sm border border-slate-200">
           <img src="/images/Ideologiy/Obchechitie/VRObsh/VRvObsheshitii.png" alt="ВР в общежитии" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
         </div>
-        <Link to="/abiturientam/obshechitie-galereya" className="rounded-3xl overflow-hidden shadow-sm border border-slate-200 md:col-span-2 block group relative cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/50">
+        <Link to="/abiturientam/obshechitie-abitur/galereya" className="rounded-3xl overflow-hidden shadow-sm border border-slate-200 md:col-span-2 block group relative cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/50">
           <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/10 transition-colors z-10 flex items-center justify-center">
              <div className="bg-white/90 backdrop-blur-sm text-blue-900 font-bold px-6 py-3 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all shadow-xl">
                Смотреть галерею

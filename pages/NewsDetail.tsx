@@ -10,7 +10,8 @@ import {
   Clock,
   ExternalLink
 } from 'lucide-react';
-import { MOCK_NEWS } from '../constants';
+import { useData } from '../context/DataContext';
+import SEO from '../components/SEO';
 
 interface NewsDetailProps {
   isVocational?: boolean;
@@ -19,6 +20,7 @@ interface NewsDetailProps {
 const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { news } = useData();
 
   const [newsItem, setNewsItem] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(true);
@@ -26,7 +28,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
 
   const getImageUrl = (url?: string) => {
     if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
-    if (url.startsWith('http')) return url;
+    if (url.startsWith('http') || url.startsWith('data:')) return url;
     return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
   };
 
@@ -140,8 +142,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
   useEffect(() => {
     if (!id) return;
     
-    // Ищем в моковых новостях
-    const localItem = MOCK_NEWS.find(item => item.id === id);
+    // Ищем в локальных новостях
+    const localItem = news.find(item => item.id.toString() === id.toString());
     if (localItem) {
       setNewsItem(localItem);
       setLoading(false);
@@ -195,6 +197,12 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20 font-sans">
+      <SEO 
+        title={newsItem.title} 
+        description={newsItem.summary} 
+        type="article"
+        image={getImageUrl(newsItem.imageUrl)}
+      />
       
       {/* Header Strip (Small) */}
       <div className="bg-primary-900 text-white py-4 shadow-md z-30 relative">
@@ -350,12 +358,12 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
       <div className="max-w-4xl mx-auto px-4 md:px-8 mt-12">
          <h3 className="text-xl font-bold text-primary-900 mb-6">Читайте также</h3>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {MOCK_NEWS.filter(n => n.id !== id && (!isVocational || (Array.isArray(n.category) ? n.category : [n.category]).some(c => c && c.toLowerCase() === 'профориентация'))).slice(0, 2).map(news => (
-               <Link key={news.id} to={isVocational ? `/abiturientam/proforientatsionnye-novosti-o-nas-v-smi/${news.id}` : `/news/${news.id}`} className="flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all group">
-                  <img src={getImageUrl(news.imageUrl)} alt="" className="w-24 h-24 object-cover rounded-lg flex-shrink-0 bg-slate-100" />
+            {news.filter(n => n.id.toString() !== id && (!isVocational || (Array.isArray(n.category) ? n.category : [n.category]).some(c => c && c.toLowerCase() === 'профориентация'))).slice(0, 2).map(newsItem => (
+               <Link key={newsItem.id} to={isVocational ? `/abiturientam/proforientatsionnye-novosti-o-nas-v-smi/${newsItem.id}` : `/news/${newsItem.id}`} className="flex gap-4 bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-all group">
+                  <img src={getImageUrl(newsItem.imageUrl)} alt="" className="w-24 h-24 object-cover rounded-lg flex-shrink-0 bg-slate-100" />
                   <div>
                     <div className="flex flex-wrap gap-2 mb-1">
-                      {(Array.isArray(news.category) ? news.category : [news.category]).map((cat, idx) => (
+                      {(Array.isArray(newsItem.category) ? newsItem.category : [newsItem.category]).map((cat, idx) => (
                         <span 
                           key={idx} 
                           className="bg-accent-500 text-primary-900 text-[10px] font-bold px-2 py-0.5 rounded"
@@ -365,8 +373,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
                         </span>
                       ))}
                     </div>
-                     <h4 className="font-bold text-slate-800 leading-tight group-hover:text-primary-900 transition-colors line-clamp-2">{news.title}</h4>
-                     <div className="text-xs text-slate-400 mt-2">{news.date}</div>
+                     <h4 className="font-bold text-slate-800 leading-tight group-hover:text-primary-900 transition-colors line-clamp-2">{newsItem.title}</h4>
+                     <div className="text-xs text-slate-400 mt-2">{newsItem.date}</div>
                   </div>
                </Link>
             ))}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по сборке и публикации сайта ПГАТК</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --accent: #f34b0a;
+            --bg: #f8fafc;
+            --text: #334155;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: var(--primary);
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .highlight {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #0f172a;
+        }
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .card {
+            border-left: 4px solid var(--accent);
+            background-color: #fff7ed;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .card-title {
+            font-weight: bold;
+            color: #c2410c;
+            margin-bottom: 10px;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Инструкция по проекту (React + Vite)</h1>
+    
+    <p>Это руководство объясняет основные принципы работы современных сайтов (SPA - Single Page Application), как локально запускать проект, как собирать финальную версию и как публиковать её на хостингах вроде <strong>beCloud</strong>.</p>
+
+    <h2>1. Как устроен наш сайт?</h2>
+    <p>Сайт разрабатывается на <strong>TypeScript</strong> с использованием библиотеки <strong>React</strong> и сборщика <strong>Vite</strong>. На этапе разработки код представляет собой сложную структуру компонентов (папки <code>components</code>, <code>pages</code>, файлы <code>.tsx</code>).</p>
+    <p>Браузеры напрямую такой код не понимают. Поэтому перед публикацией сайт необходимо <strong>скомпилировать (собрать)</strong>.</p>
+
+    <div class="card">
+        <div class="card-title">💡 Суть компиляции</div>
+        Инструмент Vite берет сотни файлов проекта и сжимает их в компактный набор <strong>абсолютно обычных статических файлов</strong> (один <code>index.html</code>, оптимизированный JavaScript и CSS). В таком виде сайту больше не нужен сложный сервер (Node.js/PHP) — он готов к загрузке на любой базовый хостинг.
+    </div>
+
+    <h2>2. Основные команды (Терминал)</h2>
+    <p>Все команды выполняются в терминале (в папке проекта <code>PGATK Website</code>).</p>
+
+    <h3>Режим разработчика (Development)</h3>
+    <pre><code>npm run dev</code></pre>
+    <p>Запускает локальный сервер для разработки. Все изменения в коде мгновенно отображаются в браузере. Эта команда используется <strong>только во время написания кода</strong>.</p>
+
+    <h3>Сборка финальной версии (Production Build)</h3>
+    <pre><code>npm run build</code></pre>
+    <p>Эта команда компилирует проект. В корне проекта появится папка <code class="highlight">dist</code> (сокращение от distribution). Именно эту папку и нужно загружать на рабочий сервер beCloud.</p>
+
+    <h3>Локальный просмотр финальной сборки</h3>
+    <pre><code>npm run preview</code></pre>
+    <p>Если вы просто попытаетесь открыть файл <code>dist/index.html</code> двойным кликом в браузере, вы увидите пустой экран (из-за современных политик безопасности браузера). <br>Команда <code>preview</code> запускает мини-сервер, который позволяет вам посмотреть собранный в папке <code>dist</code> сайт в точности так, как он будет работать на реальном сервере.</p>
+
+
+    <h2>3. Публикация на хостинг (beCloud / Apache / Nginx)</h2>
+    <p>Сайт в папке <code>dist</code> состоит только из HTML, JS, CSS и картинок. Это означает, что он будет летать на самых дешевых и простых тарифах без необходимости поддержки PHP или Node.js.</p>
+    
+    <h3>Важный нюанс (Настройка роутинга)</h3>
+    <p>Поскольку у нас одностраничное приложение (React Router), сервер при обновлении любой страницы (например, <code>/news</code>) будет искать папку "news", которой физически не существует в <code>dist</code>.</p>
+    <p>Чтобы сервер не выдавал ошибку "404 Not Found", его нужно настроить так, чтобы на любой запрос он всегда отдавал главный файл <code>index.html</code>. А React Router уже сам разберется, какую страницу показать.</p>
+
+    <h4>Для хостинга на Apache (beCloud обычно использует его):</h4>
+    <p>Создайте текстовый файл с названием <code>.htaccess</code> в папке <code>dist</code> (и загрузите его на сервер вместе с файлами сайта) со следующим содержимым:</p>
+    <pre><code>&lt;IfModule mod_rewrite.c&gt;
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+&lt;/IfModule&gt;</code></pre>
+
+    <h4>Для хостинга на Nginx:</h4>
+    <p>В настройках сайта в конфигурационном файле nginx необходимо указать директиву <code>try_files</code>:</p>
+    <pre><code>location / {
+  root   /path/to/your/dist;
+  index  index.html index.htm;
+  try_files $uri $uri/ /index.html;
+}</code></pre>
+
+    <h2>4. Краткий чек-лист для публикации</h2>
+    <ul>
+        <li>Откройте терминал и выполните <code>npm run build</code>.</li>
+        <li>Дождитесь появления сообщения об успешной сборке.</li>
+        <li>Откройте появившуюся папку <code>dist</code>.</li>
+        <li>Добавьте файл <code>.htaccess</code> (если сервер Apache).</li>
+        <li>Скопируйте всё содержимое папки <code>dist</code> в корень вашего сайта на хостинге beCloud через FTP или файловый менеджер панели управления.</li>
+    </ul>
+
+</div>
+
+</body>
+</html>

@@ -1,10 +1,15 @@
 import React from 'react';
 import { Phone, MapPin, Send, ExternalLink, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AddressLink from '../components/AddressLink';
+import { useData } from '../context/DataContext';
+import SEO from '../components/SEO';
 
 const AbiturientLanding: React.FC = () => {
+  const { settings } = useData();
   return (
     <div className="flex flex-col gap-8 w-full animate-in fade-in duration-500">
+      <SEO title="Абитуриенту" description="Информация для поступающих в Пинский государственный аграрный технологический колледж. Приемная комиссия, правила приема, проходные баллы и контактная информация." />
       <div className="bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:scale-110 transition-transform duration-700"></div>
         <div className="absolute bottom-0 left-0 w-40 h-40 bg-black/5 rounded-full blur-2xl -ml-10 -mb-10 group-hover:scale-110 transition-transform duration-700"></div>
@@ -24,36 +29,38 @@ const AbiturientLanding: React.FC = () => {
         </div>
       </div>
 
-      {/* Prominent Admission Progress Banner (From July 20th) */}
-      <div className="bg-white rounded-3xl p-1 relative overflow-hidden shadow-2xl border border-rose-100 group">
-        <div className="absolute inset-0 bg-gradient-to-r from-rose-500 via-accent-500 to-rose-500 opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 via-accent-500 to-rose-500"></div>
-        <div className="bg-white/80 backdrop-blur-sm rounded-[22px] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-          <div className="flex items-center gap-6">
-            <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center shrink-0">
-              <Activity className="w-8 h-8 text-rose-600 animate-pulse" />
-            </div>
-            <div>
-              <div className="inline-block bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-2">
-                С 20 июля
+      {settings.showAdmissionProgress && (
+        <div className="bg-white rounded-3xl p-1 relative overflow-hidden shadow-2xl border border-rose-100 group">
+          <div className="absolute inset-0 bg-gradient-to-r from-rose-500 via-accent-500 to-rose-500 opacity-10 group-hover:opacity-20 transition-opacity duration-500"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-500 via-accent-500 to-rose-500"></div>
+          <div className="bg-white/80 backdrop-blur-sm rounded-[22px] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="flex items-center gap-6">
+              <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center shrink-0">
+                <Activity className="w-8 h-8 text-rose-600 animate-pulse" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-primary-900 leading-tight">
-                Информация о ходе приема документов
-              </h3>
-              <p className="text-slate-600 mt-2 font-medium">
-                Обновляется каждые 3 часа. Следите за конкурсной ситуацией в реальном времени!
-              </p>
+              <div>
+                <div className="inline-block bg-rose-100 text-rose-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-2">
+                  С 20 июля
+                </div>
+                <h3 className="text-2xl md:text-3xl font-display font-bold text-primary-900 leading-tight">
+                  Информация о ходе приема документов
+                </h3>
+                <p className="text-slate-600 mt-2 font-medium">
+                  Обновляется каждые 3 часа. Следите за конкурсной ситуацией в реальном времени!
+                </p>
+              </div>
             </div>
+            <Link 
+              to="/downloads/abiturient/hod_priema.pdf" 
+              target="_blank"
+              className="w-full md:w-auto shrink-0 bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-rose-600/30 flex items-center justify-center gap-2 hover:-translate-y-1"
+            >
+              Смотреть мониторинг
+              <ExternalLink className="w-5 h-5" />
+            </Link>
           </div>
-          <Link 
-            to="/downloads/abiturient/hod_priema.pdf" 
-            className="w-full md:w-auto shrink-0 bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-rose-600/30 flex items-center justify-center gap-2 hover:-translate-y-1"
-          >
-            Смотреть мониторинг
-            <ExternalLink className="w-5 h-5" />
-          </Link>
         </div>
-      </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white p-10 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-center items-center text-center hover:shadow-xl transition-shadow">
@@ -61,7 +68,7 @@ const AbiturientLanding: React.FC = () => {
                <MapPin className="w-10 h-10" />
            </div>
            <h3 className="text-2xl font-bold text-primary-900 mb-4 font-display">Наш адрес</h3>
-           <p className="text-slate-600 text-lg leading-relaxed">225710, г. Пинск, ул. Иркутско-Пинской дивизии, 25</p>
+           <p className="text-slate-600 text-lg leading-relaxed"><AddressLink>225710, г. Пинск, ул. Иркутско-Пинской дивизии, 25</AddressLink></p>
         </div>
 
         <div className="bg-white p-10 rounded-2xl shadow-lg border border-slate-100 flex flex-col justify-center items-center text-center relative overflow-hidden hover:shadow-xl transition-shadow">

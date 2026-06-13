@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Info, ChevronLeft, ChevronRight, Download, Building2, UserCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AddressLink from '../components/AddressLink';
 
 const GraduatesInformation: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'orgs' | 'specialist'>('orgs');
@@ -54,7 +55,7 @@ const GraduatesInformation: React.FC = () => {
               </p>
               <div className="bg-sky-50 p-6 rounded-xl border border-sky-100">
                 <p className="font-bold text-sky-900 mb-2">Информацию направлять по адресу:</p>
-                <p>225710 г. Пинск, ул. Иркутско-Пинской дивизии, 25. Факс (0165) 32 44 02</p>
+                <p>225710 <AddressLink>г. Пинск, ул. Иркутско-Пинской дивизии, 25</AddressLink>. Факс (0165) 32 44 02</p>
               </div>
 
               <div className="my-8">

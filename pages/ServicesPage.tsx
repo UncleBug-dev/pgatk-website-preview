@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home as HomeIcon, Printer } from 'lucide-react';
 import { MAIN_MENU } from '../constants';
-import Partners from '../components/Partners';
 
 const ServicesPage: React.FC = () => {
   useEffect(() => {
@@ -10,6 +9,9 @@ const ServicesPage: React.FC = () => {
   }, []);
 
   const sidebarLinks = MAIN_MENU.find(item => item.label === "Одно окно")?.submenu || [];
+  
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const [courseForm, setCourseForm] = useState({
     name: '', email: '', phone: '', type: '', extra: '', agreement: false
@@ -50,25 +52,32 @@ const ServicesPage: React.FC = () => {
           {/* --- SIDEBAR (ИДЕНТИЧНЫЙ ONE WINDOW) --- */}
           <aside className="w-full lg:w-[320px] flex-shrink-0 order-1 lg:sticky lg:top-8 lg:self-start lg:max-h-[calc(100vh-4rem)] lg:overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden sticky top-28">
-              <div className="bg-[#0088cc] px-5 py-4 border-b border-sky-600">
+              <div className="bg-primary-900 px-5 py-4 border-b border-primary-800">
                  <Link 
                   to="/odno-okno" 
-                  className="text-white text-sm font-bold uppercase tracking-widest hover:text-sky-100 transition-colors block"
+                  className="text-white text-xs font-bold uppercase tracking-widest hover:text-accent-300 transition-colors block"
                 >
                   Одно окно
                 </Link>
               </div>
               <nav className="flex flex-col">
-                {sidebarLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    to={link.href}
-                    className={`group flex items-center justify-between px-4 py-3 text-sm font-medium text-slate-700 border-b border-slate-100 last:border-0 transition-all ${link.href.includes('uslugi') ? 'text-[#0088cc] bg-sky-50' : 'hover:bg-sky-50 hover:text-[#0088cc]'}`}
-                  >
-                    <span>{link.label}</span>
-                    <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#0088cc]" />
-                  </Link>
-                ))}
+                {sidebarLinks.map((link) => {
+                  const isActive = link.href === currentPath;
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className={`group flex items-center justify-between px-4 py-3 mb-1 rounded-lg text-[15px] font-medium transition-all duration-200 ${
+                        isActive 
+                          ? 'bg-primary-50 text-primary-700 border-l-4 border-accent-500' 
+                          : 'text-slate-600 hover:bg-slate-50 hover:text-primary-900 border-l-4 border-transparent'
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      {isActive && <ChevronRight className="w-4 h-4 text-accent-500" />}
+                    </Link>
+                  );
+                })}
               </nav>
               
               <div className="m-4 p-4 bg-primary-900 rounded-lg text-white text-center">
@@ -261,12 +270,7 @@ const ServicesPage: React.FC = () => {
                 </form>
               </div>
 
-              {/* BACK BUTTON */}
-              <div className="mb-10">
-                 <button onClick={() => window.history.back()} className="px-6 py-2 bg-slate-400 text-white font-bold text-xs uppercase rounded hover:bg-slate-500 transition shadow hover:shadow-md">
-                    Назад
-                 </button>
-              </div>
+
 
               {/* BANNERS */}
               <div className="space-y-6">
@@ -291,7 +295,6 @@ const ServicesPage: React.FC = () => {
       </div>
       
       {/* PARTNERS BOTTOM */}
-      <Partners />
     </div>
   );
 };

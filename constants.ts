@@ -1,4 +1,69 @@
-import { MenuItem, NewsItem } from './types';
+﻿import { MenuItem, NewsItem } from './types';
+
+// ── Слайды Hero ─────────────────────────────────────────────────────────────
+export interface SlideData {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  href?: string;
+  buttonLabel?: string;
+  isExternal?: boolean;
+  enabled: boolean;
+  order: number;
+}
+
+export const DEFAULT_SLIDES: SlideData[] = [
+  {
+    id: 'year2026',
+    title: 'Год белорусской женщины',
+    subtitle: 'Тематика 2026 года',
+    description: '2026 год в Республике Беларусь объявлен Годом белорусской женщины.',
+    image: 'images/slide/SlideYear2026.jpg',
+    href: 'https://president.gov.by/ru/documents/ukaz-no-1-ot-1-anvara-2026-g',
+    buttonLabel: 'Подробнее',
+    isExternal: true,
+    enabled: true,
+    order: 0,
+  },
+  {
+    id: 'patriot',
+    title: 'Центр патриотического воспитания',
+    subtitle: 'Молодежь и будущее',
+    description: 'Объявлен сбор средств на реконструкцию Республиканского центра патриотического воспитания молодежи в Брестской крепости.',
+    image: 'images/slide/CentrPV.jpg',
+    href: '/news/patriot-center',
+    buttonLabel: 'Подробнее',
+    isExternal: false,
+    enabled: true,
+    order: 1,
+  },
+  {
+    id: 'admission',
+    title: 'Абитуриенту 2026',
+    subtitle: 'Приемная кампания',
+    description: 'Твое будущее начинается с #ПГАТККЛЕЩЕВА. Современные специальности, гарантированное трудоустройство.',
+    image: 'images/slide/banner2022postupay.jpg',
+    href: '/abiturientam',
+    buttonLabel: 'Подробнее',
+    isExternal: false,
+    enabled: false,
+    order: 2,
+  },
+  {
+    id: 'profitest',
+    title: 'ПрофиТест',
+    subtitle: 'Профориентация',
+    description: 'Пройди комплексное тестирование и узнай, какая профессия подходит именно тебе. Сделай осознанный выбор.',
+    image: 'images/slide/ProfiTest.jpg',
+    href: 'http://profitest.ripo.by',
+    buttonLabel: 'Пройти тест',
+    isExternal: true,
+    enabled: true,
+    order: 3,
+  },
+];
 
 export const MAIN_MENU: MenuItem[] = [
   {
@@ -102,11 +167,11 @@ export const MAIN_MENU: MenuItem[] = [
       { label: "Здоровый образ жизни", href: "/zdorovyj-obraz-zhizni" },
       { label: "Музей истории колледжа", href: "/muzej-istorii-kolledzha" },
       { label: "Ученическое самоуправление", href: "/uchenicheskoe-samoupravlenie" },
-      { label: "Виртуальная экспозиция о геноциде", href: "/virtualnaya-ekspozitsiya-pamyat-i-bol-belorusskoj-zemli-posvyashchennykh-genotsidu-belorusskogo-naroda" },
+      { label: "Виртуальная экспозиция «Память и боль белорусской земли», посвященная геноциду белорусского народа", href: "/virtualnaya-ekspozitsiya-pamyat-i-bol-belorusskoj-zemli-posvyashchennykh-genotsidu-belorusskogo-naroda" },
       { label: "Родителям", href: "/roditelyam" },
       { label: "STOP-НАРКОТИК", href: "/stop-narkotik" },
       { label: "Закон и подросток", href: "/zakon-i-podrostok" },
-      { label: "Лето 2025", href: "/leto-2024" },
+      { label: "Лето 2025", href: "/leto-2025" },
       { label: "Профилактика киберпреступлений", href: "/profilaktika-kiberprestuplenij" },
       { label: "Профилактика табакокурения", href: "/profilaktika-tabakokureniya" },
       { label: "Профилактика экстремизма", href: "/profilaktika-ekstremizma" },
@@ -125,7 +190,7 @@ export const MAIN_MENU: MenuItem[] = [
       { label: "Материалы к началу уч. года", href: "/metodicheskaya-rabota/materialy-k-nachalu-uchebnogo-goda" },
       { label: "Образцы документов", href: "/metodicheskaya-rabota/obraztsy-dokumentov" },
       { label: "Обобщение пед. опыта", href: "/metodicheskaya-rabota/obobshchenie-pedagogicheskogo-opyta" },
-      { label: "План повышения квалификации", href: "/metodicheskaya-rabota/plan-povysheniya-kvalifikatsii-i-perepodgotovki-pedagogicheskikh-rabotnikov" },
+      { label: "План повышения квалификации", href: "https://disk.yandex.com/i/dPG2skhCnTDhFA", external: true },
       { label: "Состав аттестационной комиссии", href: "/metodicheskaya-rabota/sostav-attestatsionnoj-komissii" },
       { label: "Стажировка", href: "/metodicheskaya-rabota/stazhirovka" },
       { label: "Положение об аттестации", href: "/downloads/policy/PoloshenieItAttest.pdf" },
@@ -150,10 +215,12 @@ export const MAIN_MENU: MenuItem[] = [
     submenu: [
       { label: "Услуги населению", href: "/odno-okno/uslugi" },
       { label: "Наши контакты и реквизиты", href: "/odno-okno/kontakty" },
+      { label: "Приём граждан", href: "/odno-okno/priem-grazhdan" },
       { label: "Административные процедуры", href: "/odno-okno/admin-procedury" },
       { label: "Организационная структура", href: "/odno-okno/struktura" },
       { label: "Вышестоящие организации", href: "/odno-okno/vyshestoyashchie" },
-      { label: "Посещение объекта инвалидом", href: "/odno-okno/invalidy" }
+      { label: "Посещение объекта инвалидом", href: "/odno-okno/invalidy" },
+      { label: "Прямые телефонные линии", href: "/odno-okno/pryamye-linii" }
     ]
   }
 ];
@@ -387,4 +454,16 @@ export const IMPORTANT_NEWS = [
     'date': '19 мая 2022',
     'image': '/downloads/important/thumbs/29_EtoVashno.jpg'
   }
+];
+
+export const AVAILABLE_CATEGORIES = [
+  'Новости',
+  'Достижения',
+  'Профилактика',
+  'БРСМ',
+  'Спорт',
+  'Жизнь колледжа',
+  'Профориентация',
+  'ВПВ',
+  'Год белорусской женщины'
 ];

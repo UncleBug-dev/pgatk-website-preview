@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home as HomeIcon, Menu as MenuIcon, ChevronDown, FileText, ExternalLink } from 'lucide-react';
 import PersonCard, { PersonProps } from '../components/PersonCard';
 import { MAIN_MENU } from '../constants';
+import SEO from '../components/SEO';
 
 // MOCK DATA - Данные об администрации
 const ADMINISTRATION_DATA: PersonProps[] = [
@@ -69,7 +70,7 @@ const Staff: React.FC = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20 font-sans">
-      
+      <SEO title="Администрация" description="Руководство и администрация Пинского государственного аграрного технологического колледжа. Контактные телефоны и график приема граждан." />
       {/* Header Block */}
       <div className="bg-primary-900 text-white pt-10 pb-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
@@ -106,8 +107,8 @@ const Staff: React.FC = () => {
             </div>
 
             <div className={`bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden sticky top-28 ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
-              <div className="bg-slate-50 px-5 py-4 border-b border-slate-100">
-                <Link to="/kolledg" className="text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-accent-600 transition-colors block">
+              <div className="bg-primary-900 px-5 py-4 border-b border-primary-800">
+                <Link to="/kolledg" className="text-white text-xs font-bold uppercase tracking-widest hover:text-accent-300 transition-colors block">
                   {parentSection?.label}
                 </Link>
               </div>

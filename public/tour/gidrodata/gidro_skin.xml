@@ -188,7 +188,7 @@
 
 
   <action name="controlBar_ibuildMenuBar">
-    ifnot (controlBar_ibarbuilt, controlBar_ibuildMenu(); set(controlBar_ibarbuilt, true););
+    ifnot (controlBar_ibarbuilt, set(controlBar_ibarbuilt, true););
   </action>
 
   <style name="controlBar_i_btn_style"
@@ -544,13 +544,13 @@ if (device.desktop,
 
 	set(layer[controlBar_i_menu_bg].width, get(controlBar_ibackgroundwidthwhenclosed));
 
-	set(layer[controlBar_i_menu_bg].visible, true);
+	set(layer[controlBar_i_menu_bg].visible, false);
   </action>
   <action name="controlBar_ishowMenuControls">
     set(controlBar_iIsOpened, true);
     set(layer[controlBar_ibtn_hidecontrols].visible, true);
     set(layer[controlBar_ibtn_showcontrols].visible, false);
-	set(layer[controlBar_i_menu_bg].visible, true);
+	set(layer[controlBar_i_menu_bg].visible, false);
 if (scene.count GT 1,
 	set(layer[controlBar_ibtn_next_pano].visible, true);
 	set(layer[controlBar_ibtn_prev_pano].visible, true);

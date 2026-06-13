@@ -13,7 +13,9 @@ export interface TelegramPost {
 export const fetchTelegramPosts = async (): Promise<TelegramPost[]> => {
   try {
     // Ветка master (или main), репозиторий itservicepgatk/pgatk-news-parser
-    const dataUrl = 'https://raw.githubusercontent.com/itservicepgatk/pgatk-news-parser/main/telegram_news.json';
+    const dataUrl = import.meta.env.DEV 
+      ? '/telegram_news.json' 
+      : 'https://raw.githubusercontent.com/itservicepgatk/pgatk-news-parser/main/telegram_news.json';
     
     // Добавляем timestamp чтобы сбросить жесткое кеширование браузера
     // GitHub сам кэширует на 5 минут, поэтому мы добавляем метку округленную до 5 минут

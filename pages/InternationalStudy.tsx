@@ -1,5 +1,6 @@
 import React from 'react';
 import { Globe, FileText, CheckCircle2, Phone, Mail, MapPin, Download, ChevronRight } from 'lucide-react';
+import AddressLink from '../components/AddressLink';
 
 const InternationalStudy: React.FC = () => {
   const countries = [
@@ -61,7 +62,7 @@ const InternationalStudy: React.FC = () => {
               Необходимые документы для участия в конкурсе
             </h3>
             <p className="text-slate-600 mb-6 text-lg">
-              Для участия в конкурсном отборе кандидатам необходимо предоставить в кабинет 211 (г. Пинск, ул. Иркутско-Пинской дивизии, 25):
+              Для участия в конкурсном отборе кандидатам необходимо предоставить в кабинет 211 (<AddressLink>г. Пинск, ул. Иркутско-Пинской дивизии, 25</AddressLink>):
             </p>
             
             <ul className="space-y-4">

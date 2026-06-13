@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, Mail, User } from 'lucide-react';
+import OptimizedImage from './OptimizedImage';
 
 export interface PersonProps {
   name: string;
@@ -24,7 +25,7 @@ const PersonCard: React.FC<PersonProps> = ({
       <div className="p-6 flex flex-col items-center border-b border-slate-100 bg-slate-50/50">
         <div className="w-32 h-32 mb-4 rounded-full overflow-hidden border-4 border-white shadow-sm flex-shrink-0 bg-slate-200 flex items-center justify-center">
           {photoUrl ? (
-            <img src={photoUrl} alt={name} className="w-full h-full object-cover" />
+            <OptimizedImage src={photoUrl} alt={name} className="w-full h-full" />
           ) : (
             <User className="w-16 h-16 text-slate-400" />
           )}

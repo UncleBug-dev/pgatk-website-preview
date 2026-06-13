@@ -1,6 +1,6 @@
 import React from 'react';
-import { BookOpen, FileText, ChevronRight, CheckCircle2 } from 'lucide-react';
-import conceptData from '../src/data/Concept2030Data.json';
+import { BookOpen, FileText } from 'lucide-react';
+import EducationConcept2030Content from './EducationConcept2030Content';
 
 const EducationConcept2030: React.FC = () => {
   return (
@@ -29,51 +29,7 @@ const EducationConcept2030: React.FC = () => {
       </div>
 
       {/* Content Rendering */}
-      <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-        {conceptData.map((section: any, index: number) => {
-          // Skip the first title if it matches the main title exactly, or just render normally.
-          const isMainTitle = index === 0 && section.title.includes("Концепция");
-          
-          if (isMainTitle && section.content.length === 0) return null;
-
-          return (
-            <div key={index} className={`p-8 md:p-12 ${index > 0 ? 'border-t border-slate-100' : ''}`}>
-              {/* Section Title */}
-              {(!isMainTitle && section.title) && (
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0 mt-1">
-                    <ChevronRight className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-primary-900 leading-tight">
-                    {section.title}
-                  </h3>
-                </div>
-              )}
-              
-              {/* Section Content */}
-              <div className="space-y-4 text-slate-700 leading-relaxed text-lg text-justify">
-                {section.content.map((paragraph: string, pIdx: number) => {
-                  // If paragraph looks like a list item
-                  if (paragraph.startsWith('-') || paragraph.match(/^\d+\./)) {
-                    return (
-                      <div key={pIdx} className="flex items-start gap-3 pl-4 sm:pl-8 my-2">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-1" />
-                        <span className="text-slate-700">{paragraph.replace(/^- /, '')}</span>
-                      </div>
-                    );
-                  }
-                  
-                  return (
-                    <p key={pIdx} className="mb-4">
-                      {paragraph}
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      <EducationConcept2030Content />
 
     </div>
   );

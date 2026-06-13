@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { IMPORTANT_ARTICLES } from '../data/importantData';
-import { IMPORTANT_NEWS } from '../constants';
 import { ArrowLeft, Calendar, FileText, X } from 'lucide-react';
 import { Lightbox } from '../components/Lightbox';
+import { useData } from '../context/DataContext';
 
 const ImportantDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -13,13 +13,36 @@ const ImportantDetail: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
 
+  const { importantDocs } = useData();
+  const docFromContext = id ? importantDocs.find(d => d.id.toString() === id.toString()) : null;
+
   const resolvePath = (path: string) => {
-    if (path.startsWith('http')) return path;
+    if (!path) return '';
+    if (path.startsWith('http') || path.startsWith('data:')) return path;
     return `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
   };
 
-  const article = id ? IMPORTANT_ARTICLES[id] : null;
-  const mockArticle = IMPORTANT_NEWS.find(n => n.id === id);
+  let article = id ? IMPORTANT_ARTICLES[id] : null;
+
+  if (article && docFromContext) {
+    article = {
+      ...article,
+      title: docFromContext.title || article.title,
+      date: docFromContext.date || article.date
+    };
+  } else if (!article && docFromContext) {
+    article = {
+      title: docFromContext.title,
+      date: docFromContext.date,
+      blocks: []
+    };
+    if (docFromContext.image) {
+      article.blocks.push({ type: 'image', url: docFromContext.image });
+    }
+    if (docFromContext.content) {
+      article.blocks.push({ type: 'html', content: docFromContext.content });
+    }
+  }
 
   const allImages = article 
     ? article.blocks.flatMap((b: any) => {
@@ -39,7 +62,7 @@ const ImportantDetail: React.FC = () => {
       <div className="min-h-screen bg-slate-50 pt-24 pb-12 font-sans flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold text-slate-800 mb-4">Материал готовится к публикации</h1>
         <p className="text-slate-600 mb-8 text-center max-w-md">
-          {mockArticle ? mockArticle.title : 'Страница в разработке.'}
+          {docFromContext ? docFromContext.title : 'Страница в разработке.'}
         </p>
         <Link to="/" className="px-6 py-3 bg-accent-500 text-white rounded-lg font-bold hover:bg-accent-600 transition-colors">
           Вернуться на главную

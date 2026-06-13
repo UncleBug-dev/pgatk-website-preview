@@ -1,9 +1,12 @@
 import React from 'react';
 import { MapPin, Phone, Mail, FileText, ExternalLink, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import AddressLink from './AddressLink';
 import Partners from './Partners';
+import { useData } from '../context/DataContext';
 
 const Footer: React.FC = () => {
+  const { settings } = useData();
   const resolvePath = (path: string) => {
     return `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
   };
@@ -46,15 +49,15 @@ const Footer: React.FC = () => {
               <div className="space-y-4">
                 <p className="flex items-start space-x-3">
                   <MapPin className="w-5 h-5 text-accent-500 flex-shrink-0 mt-0.5" />
-                  <span>Брестская область, г. Пинск, ул. Иркутско-Пинской дивизии, 25</span>
+                  <span><AddressLink>{settings.address}</AddressLink></span>
                 </p>
                 <p className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-accent-500 flex-shrink-0" />
-                  <span>Приемная (факс): 8 (0165) 63-92-93<br/>Директор: 8 (0165) 63-94-99</span>
+                  <span>Приемная (факс): {settings.phone}<br/>Директор: 8 (0165) 63-94-99</span>
                 </p>
                 <p className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-accent-500 flex-shrink-0" />
-                  <a href="mailto:uo@pgatkk.by" className="hover:text-white transition-colors">uo@pgatkk.by</a>
+                  <a href={`mailto:${settings.email}`} className="hover:text-white transition-colors">{settings.email}</a>
                 </p>
               </div>
 

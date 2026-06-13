@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CookieBanner from '../components/CookieBanner';
+import UncleBug from '../components/UncleBug';
+import AccessibilityDrawer from '../components/AccessibilityDrawer';
 
 const MainLayout: React.FC = () => {
   const [showScrollBtn, setShowScrollBtn] = useState(false);
@@ -19,6 +22,29 @@ const MainLayout: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const location = useLocation();
+  const prevPath = useRef(location.pathname);
+
+  useEffect(() => {
+    if (prevPath.current !== location.pathname) {
+      prevPath.current = location.pathname;
+      window.scrollTo(0, 0); // Scroll to top on navigation
+
+      // Fix for Google Translate in SPA:
+      // If language is not RU, force a hard reload so the widget translates new DOM
+      const getCookie = (name: string) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop()?.split(';').shift();
+        return null;
+      };
+      const googtrans = getCookie('googtrans');
+      if (googtrans && googtrans !== '/ru/ru') {
+        window.location.reload();
+      }
+    }
+  }, [location.pathname]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -50,6 +76,10 @@ const MainLayout: React.FC = () => {
       >
         <ArrowUp className="w-6 h-6" />
       </button>
+
+      <CookieBanner />
+      <UncleBug />
+      <AccessibilityDrawer />
     </div>
   );
 };

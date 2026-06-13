@@ -4,9 +4,13 @@ import {
   Menu as MenuIcon, ChevronDown, FileText, ExternalLink, ChevronRight, 
   MapPin, Phone, Mail, Building2, Printer
 } from 'lucide-react';
+import AddressLink from '../components/AddressLink';
 import { MAIN_MENU } from '../constants';
+import { useData } from '../context/DataContext';
+import SEO from '../components/SEO';
 
 const Contacts: React.FC = () => {
+  const { settings } = useData();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
@@ -16,6 +20,7 @@ const Contacts: React.FC = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20 font-sans">
+      <SEO title="Наши контакты" description="Контактная информация Пинского государственного аграрного технологического колледжа. Адрес, телефоны приемной комиссии, электронная почта и карта проезда." />
       
       {/* Header Block */}
       <div className="bg-primary-900 text-white pt-10 pb-20 md:pt-14 md:pb-24 relative overflow-hidden">
@@ -53,8 +58,8 @@ const Contacts: React.FC = () => {
             </div>
 
             <div className={`bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden sticky top-28 ${isMobileMenuOpen ? 'block' : 'hidden lg:block'}`}>
-              <div className="bg-slate-50 px-5 py-4 border-b border-slate-100">
-                <Link to="/kolledg" className="text-slate-500 text-xs font-bold uppercase tracking-widest hover:text-accent-600 transition-colors block">
+              <div className="bg-primary-900 px-5 py-4 border-b border-primary-800">
+                <Link to="/kolledg" className="text-white text-xs font-bold uppercase tracking-widest hover:text-accent-300 transition-colors block">
                   {parentSection?.label}
                 </Link>
               </div>
@@ -133,7 +138,7 @@ const Contacts: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Наш адрес</h3>
-                    <p className="font-medium text-primary-900 leading-snug">Республика Беларусь, 225710<br />г. Пинск, улица Иркутско-Пинской дивизии, 25</p>
+                    <p className="font-medium text-primary-900 leading-snug"><AddressLink>{settings.address}</AddressLink></p>
                   </div>
                 </div>
 
@@ -144,7 +149,7 @@ const Contacts: React.FC = () => {
                   <div className="space-y-3 w-full">
                     <div>
                       <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Приёмная (тел)</h3>
-                      <a href="tel:+375165639293" className="text-lg font-bold text-primary-900 hover:text-accent-500 transition-colors block">8 (0165) 63-92-93</a>
+                      <a href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`} className="text-lg font-bold text-primary-900 hover:text-accent-500 transition-colors block">{settings.phone}</a>
                     </div>
                     <div className="h-px bg-slate-200 w-full my-2"></div>
                     <div>
@@ -163,7 +168,7 @@ const Contacts: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Электронная почта</h3>
-                    <a href="mailto:uo@pgatkk.by" className="text-lg font-bold text-primary-900 hover:text-accent-500 transition-colors block">uo@pgatkk.by</a>
+                    <a href={`mailto:${settings.email}`} className="text-lg font-bold text-primary-900 hover:text-accent-500 transition-colors block">{settings.email}</a>
                   </div>
                 </div>
 
@@ -173,7 +178,7 @@ const Contacts: React.FC = () => {
                 <h2 className="text-2xl font-bold text-primary-900 mb-6">Мы на карте</h2>
                 <div className="w-full h-[450px] rounded-2xl overflow-hidden shadow-inner border border-slate-200 bg-slate-100">
                   <iframe 
-                    src="https://yandex.ru/map-widget/v1/?text=Пинск,%20улица%20Иркутско-Пинской%20дивизии,%2025&z=16" 
+                    src={`https://yandex.ru/map-widget/v1/?text=${encodeURIComponent(settings.address)}&z=16`} 
                     width="100%" 
                     height="100%" 
                     frameBorder="0"

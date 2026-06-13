@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, ChevronRight, Loader2, ExternalLink, Newspaper } from 'lucide-react';
+import { Calendar, ChevronRight, Loader2, ExternalLink, Newspaper, Image as ImageIcon, Play } from 'lucide-react';
 import { MOCK_NEWS } from '../constants';
 import { fetchTelegramPosts, TelegramPost } from '../utils/telegram';
 
@@ -70,11 +70,18 @@ const VocationalGuidanceNews: React.FC = () => {
             const CardContent = (
               <>
                 <div className="relative aspect-video overflow-hidden bg-slate-50 border-b border-slate-100">
-                  <img 
-                    src={getImageUrl(news.imageUrl)} 
-                    alt={news.title} 
-                    className={`w-full h-full transition-transform duration-700 group-hover:scale-105 ${!news.imageUrl ? 'p-8 object-contain opacity-60' : 'object-cover'}`}
-                  />
+                  {!news.imageUrl ? (
+                    <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center text-slate-300 transition-transform duration-700 group-hover:scale-105">
+                      <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`} alt="Логотип" className="w-16 h-16 mb-2 opacity-50 object-contain grayscale" />
+                      <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Нет фото</span>
+                    </div>
+                  ) : (
+                    <img 
+                      src={getImageUrl(news.imageUrl)} 
+                      alt={news.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  )}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2 z-10 max-w-[90%]">
                     {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat, idx) => (
                       <span 
@@ -86,6 +93,11 @@ const VocationalGuidanceNews: React.FC = () => {
                       </span>
                     ))}
                   </div>
+                  {(news as any).hasVideo && (
+                    <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-md text-white p-2 rounded-full shadow-lg border border-white/10 group-hover:bg-accent-500 transition-colors duration-300">
+                      <Play className="w-4 h-4 fill-white translate-x-[1px]" />
+                    </div>
+                  )}
                 </div>
                 
                 <div className="p-6 flex flex-col flex-grow">

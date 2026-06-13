@@ -1,23 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronDown, Map, Menu, X } from 'lucide-react';
+import { ChevronLeft, ChevronDown, Map, Menu, X, ZoomIn, ZoomOut, ArrowLeft, ArrowRight, ArrowUp, ArrowDown, Maximize, Minimize, RefreshCw } from 'lucide-react';
 
 const TOUR_DATA = [
   {
-    title: 'Лабораторный корпус',
-    items: [
-      { id: 'pano273', label: 'Главный корпус' },
-      { id: 'pano285', label: 'Кабинет технологии строительного производства' },
-      { id: 'pano112', label: 'Лаборатория электротехники и электроники' },
-      { id: 'pano167', label: 'Кабинет мелиорации, водоснабжения и ГТС' },
-      { id: 'pano163', label: 'Кабинет организации строительного производства' },
-      { id: 'pano283', label: 'Комната приема пищи' },
-      { id: 'pano290', label: 'Лаборатория строительных материалов' },
-    ]
-  },
-  {
     title: 'Главный корпус',
     items: [
+      { id: 'pano273', label: 'Главный корпус' },
       { id: 'pano131', label: 'Спортивный зал №1' },
       { id: 'pano133', label: 'Спортивный зал №2' },
       { id: 'pano194', label: 'Актовый зал' },
@@ -30,6 +19,17 @@ const TOUR_DATA = [
       { id: 'pano226', label: 'Методический кабинет' },
       { id: 'pano271', label: 'Кабинет математики' },
       { id: 'pano288', label: 'Кабинет информатики и информационных технологий' },
+    ]
+  },
+  {
+    title: 'Лабораторный корпус',
+    items: [
+      { id: 'pano285', label: 'Кабинет технологии строительного производства' },
+      { id: 'pano112', label: 'Лаборатория электротехники и электроники' },
+      { id: 'pano167', label: 'Кабинет мелиорации, водоснабжения и ГТС' },
+      { id: 'pano163', label: 'Кабинет организации строительного производства' },
+      { id: 'pano283', label: 'Комната приема пищи' },
+      { id: 'pano290', label: 'Лаборатория строительных материалов' },
     ]
   },
   {
@@ -52,7 +52,39 @@ const VirtualTour: React.FC = () => {
   const [activePano, setActivePano] = useState<string>('pano273');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isAutorotating, setIsAutorotating] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const callKrpano = (action: string) => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      const krpano = iframeRef.current.contentWindow.document.getElementById('krpanoSWFObject') as any;
+      if (krpano && typeof krpano.call === 'function') {
+        krpano.call(action);
+      }
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+      setIsFullscreen(true);
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+        setIsFullscreen(false);
+      }
+    }
+  };
+
+  const toggleAutorotation = () => {
+    if (isAutorotating) {
+      callKrpano('pauseautorotation();');
+    } else {
+      callKrpano('resumeautorotation();');
+    }
+    setIsAutorotating(!isAutorotating);
+  };
 
   useEffect(() => {
     // Poll krpano to sync active scene if user navigates via 3D hotspots
@@ -143,6 +175,102 @@ const VirtualTour: React.FC = () => {
           )}
         </div>
       )}
+
+      {/* Modern Control Bar */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-1 md:gap-2 bg-black/60 backdrop-blur-xl border border-white/20 p-2 rounded-2xl shadow-2xl transition-all hover:bg-black/70">
+        
+        <button 
+          onMouseDown={() => callKrpano('set(hlookat_moveforce, -1);')}
+          onMouseUp={() => callKrpano('set(hlookat_moveforce, 0);')}
+          onMouseLeave={() => callKrpano('set(hlookat_moveforce, 0);')}
+          onTouchStart={() => callKrpano('set(hlookat_moveforce, -1);')}
+          onTouchEnd={() => callKrpano('set(hlookat_moveforce, 0);')}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all"
+          title="Влево"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        
+        <button 
+          onMouseDown={() => callKrpano('set(hlookat_moveforce, 1);')}
+          onMouseUp={() => callKrpano('set(hlookat_moveforce, 0);')}
+          onMouseLeave={() => callKrpano('set(hlookat_moveforce, 0);')}
+          onTouchStart={() => callKrpano('set(hlookat_moveforce, 1);')}
+          onTouchEnd={() => callKrpano('set(hlookat_moveforce, 0);')}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all"
+          title="Вправо"
+        >
+          <ArrowRight className="w-5 h-5" />
+        </button>
+
+        <button 
+          onMouseDown={() => callKrpano('set(vlookat_moveforce, -1);')}
+          onMouseUp={() => callKrpano('set(vlookat_moveforce, 0);')}
+          onMouseLeave={() => callKrpano('set(vlookat_moveforce, 0);')}
+          onTouchStart={() => callKrpano('set(vlookat_moveforce, -1);')}
+          onTouchEnd={() => callKrpano('set(vlookat_moveforce, 0);')}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all hidden sm:block"
+          title="Вверх"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </button>
+
+        <button 
+          onMouseDown={() => callKrpano('set(vlookat_moveforce, 1);')}
+          onMouseUp={() => callKrpano('set(vlookat_moveforce, 0);')}
+          onMouseLeave={() => callKrpano('set(vlookat_moveforce, 0);')}
+          onTouchStart={() => callKrpano('set(vlookat_moveforce, 1);')}
+          onTouchEnd={() => callKrpano('set(vlookat_moveforce, 0);')}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all hidden sm:block"
+          title="Вниз"
+        >
+          <ArrowDown className="w-5 h-5" />
+        </button>
+        
+        <div className="w-px h-8 bg-white/20 mx-1"></div>
+
+        <button 
+          onMouseDown={() => callKrpano('set(fov_moveforce, -1);')}
+          onMouseUp={() => callKrpano('set(fov_moveforce, 0);')}
+          onMouseLeave={() => callKrpano('set(fov_moveforce, 0);')}
+          onTouchStart={() => callKrpano('set(fov_moveforce, -1);')}
+          onTouchEnd={() => callKrpano('set(fov_moveforce, 0);')}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all"
+          title="Приблизить"
+        >
+          <ZoomIn className="w-5 h-5" />
+        </button>
+
+        <button 
+          onMouseDown={() => callKrpano('set(fov_moveforce, 1);')}
+          onMouseUp={() => callKrpano('set(fov_moveforce, 0);')}
+          onMouseLeave={() => callKrpano('set(fov_moveforce, 0);')}
+          onTouchStart={() => callKrpano('set(fov_moveforce, 1);')}
+          onTouchEnd={() => callKrpano('set(fov_moveforce, 0);')}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all"
+          title="Отдалить"
+        >
+          <ZoomOut className="w-5 h-5" />
+        </button>
+
+        <div className="w-px h-8 bg-white/20 mx-1"></div>
+
+        <button 
+          onClick={toggleAutorotation}
+          className={`p-2 md:p-3 rounded-xl transition-all ${isAutorotating ? 'text-accent-400 bg-white/10' : 'text-white/80 hover:text-white hover:bg-white/20'}`}
+          title="Авто-вращение"
+        >
+          <RefreshCw className={`w-5 h-5 ${isAutorotating ? 'animate-spin' : ''}`} />
+        </button>
+
+        <button 
+          onClick={toggleFullscreen}
+          className="p-2 md:p-3 text-white/80 hover:text-white hover:bg-white/20 rounded-xl transition-all hidden md:block"
+          title="На весь экран"
+        >
+          {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
+        </button>
+      </div>
 
       {/* Sidebar Overlay (Glassmorphism) */}
       <div 

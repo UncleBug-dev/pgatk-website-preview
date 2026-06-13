@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, Clock, User, MapPin, Phone } from 'lucide-react';
+import AddressLink from '../components/AddressLink';
 
 const VocationalGuidanceSchedule: React.FC = () => {
   return (
@@ -72,7 +73,7 @@ const VocationalGuidanceSchedule: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-bold uppercase">Адрес</p>
-                  <p className="text-base font-bold text-slate-700 leading-snug mt-1">г. Пинск,<br/>ул. Иркутско-Пинской дивизии, 25</p>
+                  <p className="text-base font-bold text-slate-700 leading-snug mt-1"><AddressLink>г. Пинск,<br/>ул. Иркутско-Пинской дивизии, 25</AddressLink></p>
                 </div>
               </div>
             </div>

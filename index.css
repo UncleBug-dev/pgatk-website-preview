@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Google Translate Widget Override */
+body {
+  top: 0 !important;
+}
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+.skiptranslate {
+  display: none !important;
+}
+body > .skiptranslate {
+    display: none !important;
+}
+#goog-gt-tt, .goog-te-balloon-frame {
+  display: none !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+/* Allow our page to translate but prevent unwanted ui */
+.notranslate {
+  transform: none !important;
+}
+
 /* === Accessibility Modes === */
 
 /* Font Scaling (Tailwind uses REM, so this scales everything) */
@@ -21,13 +46,7 @@ html.theme-wb {
   color: #fff !important;
 }
 
-html.theme-wb body, 
-html.theme-wb header, 
-html.theme-wb footer, 
-html.theme-wb div, 
-html.theme-wb section, 
-html.theme-wb article, 
-html.theme-wb nav {
+html.theme-wb *:not(.ignore-theme):not(.ignore-theme *) {
   background-color: #000 !important;
   color: #fff !important;
   border-color: #fff !important;
@@ -68,11 +87,10 @@ html.theme-blue {
   color: #000000 !important;
 }
 
-html.theme-blue body,
-html.theme-blue div,
-html.theme-blue header {
+html.theme-blue *:not(.ignore-theme):not(.ignore-theme *) {
   background-color: #cce5ff !important;
   color: #003366 !important;
+  border-color: #003366 !important;
 }
 
 html.theme-blue a {
@@ -85,3 +103,91 @@ body.lightbox-open .scroll-to-top-btn {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* === Slider Animations (Ken Burns effect) === */
+@keyframes kenburns-0 {
+  0% { transform: scale(1.0) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-2%, -2%); }
+}
+@keyframes kenburns-1 {
+  0% { transform: scale(1.0) translate(-2%, 0); }
+  100% { transform: scale(1.15) translate(2%, 2%); }
+}
+@keyframes kenburns-2 {
+  0% { transform: scale(1.0) translate(0, -2%); }
+  100% { transform: scale(1.15) translate(-2%, 2%); }
+}
+@keyframes kenburns-3 {
+  0% { transform: scale(1.0) translate(0, 0); }
+  100% { transform: scale(1.15) translate(2%, -2%); }
+}
+
+.animate-kenburns-0 { animation: kenburns-0 12s ease-out forwards; }
+.animate-kenburns-1 { animation: kenburns-1 12s ease-out forwards; }
+.animate-kenburns-2 { animation: kenburns-2 12s ease-out forwards; }
+.animate-kenburns-3 { animation: kenburns-3 12s ease-out forwards; }
+
+/* === Swipe hint arrows (Hero mobile) === */
+@keyframes bounce-left {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(-5px); }
+}
+@keyframes bounce-right {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(5px); }
+}
+.animate-bounce-x-left  { animation: bounce-left  1.2s ease-in-out infinite; }
+.animate-bounce-x-right { animation: bounce-right 1.2s ease-in-out infinite 0.3s; }
+
+/* === Accessibility Advanced Options === */
+
+/* Images */
+html.img-grayscale img, html.img-grayscale video {
+  filter: grayscale(100%) !important;
+}
+html.img-hidden img, html.img-hidden video, html.img-hidden iframe {
+  display: none !important;
+}
+
+/* Letter Spacing */
+html.tracking-normal body { letter-spacing: normal; }
+html.tracking-wide body { letter-spacing: 0.05em !important; }
+html.tracking-extra body { letter-spacing: 0.1em !important; }
+
+/* Disable Animations */
+html.animations-disabled *,
+html.animations-disabled *::before,
+html.animations-disabled *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* React Quill Overrides */
+.quill-container .ql-container {
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 300px;
+  border: none !important;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
+.quill-container .ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background-color: #f8fafc;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+}
+.quill-container .ql-editor {
+  min-height: 300px;
+}
+
+/* Line Height */
+html.leading-normal body { line-height: 1.5; }
+html.leading-medium body { line-height: 1.75 !important; }
+html.leading-large body { line-height: 2 !important; }
+
+/* === News Carousel — скрыть нативный скроллбар === */
+.news-carousel-track::-webkit-scrollbar { display: none; }
+.news-carousel-track { -ms-overflow-style: none; scrollbar-width: none; }

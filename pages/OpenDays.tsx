@@ -1,29 +1,30 @@
 import React from 'react';
 import { CalendarDays, Clock, MapPin, User, DoorOpen } from 'lucide-react';
+import AddressLink from '../components/AddressLink';
 
 const schedule = [
   {
     date: "15 февраля 2025",
     time: "11.00 часов",
-    location: "Учебный корпус № 3 (г.Пинск, ул.Революционная,12)",
+    location: <>Учебный корпус № 3 (<AddressLink searchQuery="Пинск, улица Революционная, 12">г.Пинск, ул.Революционная,12</AddressLink>)</>,
     responsible: "Макарушко Н.Н. заведующий отделением"
   },
   {
     date: "15 марта 2025",
     time: "12.00 часов",
-    location: "Учебный корпус № 3 (г.Пинск, ул.Революционная,12)",
+    location: <>Учебный корпус № 3 (<AddressLink searchQuery="Пинск, улица Революционная, 12">г.Пинск, ул.Революционная,12</AddressLink>)</>,
     responsible: "Пашкевич С.В., заместитель директора по воспитательной работе"
   },
   {
     date: "19 апреля 2025",
     time: "12.00 часов",
-    location: "Учебный корпус 31 (г.Пинск, ул. Иркутско-Пинской дивизии, 25)",
+    location: <>Учебный корпус 31 (<AddressLink>г.Пинск, ул. Иркутско-Пинской дивизии, 25</AddressLink>)</>,
     responsible: "Макарушко Н.Н. заведующий отделением"
   },
   {
     date: "16 мая 2025",
     time: "11.00 часов",
-    location: "Учебный корпус 31 (г.Пинск, ул. Иркутско-Пинской дивизии, 25)",
+    location: <>Учебный корпус 31 (<AddressLink>г.Пинск, ул. Иркутско-Пинской дивизии, 25</AddressLink>)</>,
     responsible: "Пашкевич С.В., заместитель директора по воспитательной работе"
   }
 ];

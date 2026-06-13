@@ -30,9 +30,26 @@ const Contests: React.FC = () => {
 
             </div>
             <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 mt-auto">
-              <a href="#" className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors">
+              <a href="/docs/hoziaeva.doc" download className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors">
                 <Download className="w-4 h-4 mr-2" />
                 Скачать положение
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-md transition-shadow group flex flex-col">
+            <div className="p-6 flex-grow">
+              <div className="w-12 h-12 bg-red-50 text-red-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <FileText className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-800 mb-2 leading-tight">
+                Правила проведения Международного молодежного конкурса социальной антикоррупционной рекламы «Вместе против коррупции!»
+              </h3>
+            </div>
+            <div className="px-6 py-4 bg-slate-50 border-t border-slate-100 mt-auto">
+              <a href="/docs/vmeste.pdf" download className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium text-sm transition-colors">
+                <Download className="w-4 h-4 mr-2" />
+                Скачать правила
               </a>
             </div>
           </div>
