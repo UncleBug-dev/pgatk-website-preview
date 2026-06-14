@@ -1,7 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Truck, Users, MapPin, Phone, Car, Flame, Wrench, ShieldAlert, Send } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const Retraining: React.FC = () => {
+  const [courseForm, setCourseForm] = useState({
+    name: '', email: '', phone: '', type: '', extra: '', agreement: false
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBTfG5FloQSaXxp_aQ6tqHqYrR9m7MLnUarTaMaOR59fpXNiHVu7bR_3xI9uTHHEh8OQ/exec";
+
+  const handleCourseSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!courseForm.agreement) return;
+
+    if (!GOOGLE_SCRIPT_URL) {
+      toast.error("Скрипт отправки еще не настроен.");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            subject: "Новая заявка: Подготовка и переподготовка (из раздела Колледж)",
+            name: courseForm.name,
+            email: courseForm.email,
+            phone: courseForm.phone,
+            service: courseForm.type,
+            extra: courseForm.extra
+        })
+      });
+
+      if (response.ok) {
+        toast.success("Спасибо! Ваша заявка отправлена. Специалист свяжется с Вами.");
+        setCourseForm({ name: '', email: '', phone: '', type: '', extra: '', agreement: false });
+      } else {
+        toast.error("Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.");
+      }
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Проверьте подключение к интернету.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <div className="animate-in fade-in duration-500 w-full space-y-8">
       
@@ -167,11 +210,13 @@ const Retraining: React.FC = () => {
               Подайте заявку на обучение, не выходя из дома! В течение дня с Вами свяжется специалист для уточнения данных.
             </p>
 
-            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-5" onSubmit={handleCourseSubmit}>
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-1">Ваше ФИО <span className="text-rose-500">*</span></label>
                 <input 
                   type="text" 
+                  value={courseForm.name}
+                  onChange={(e) => setCourseForm({...courseForm, name: e.target.value})}
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all"
                   placeholder="Иванов Иван Иванович"
                   required
@@ -183,6 +228,8 @@ const Retraining: React.FC = () => {
                   <label className="block text-sm font-bold text-slate-700 mb-1">Телефон <span className="text-rose-500">*</span></label>
                   <input 
                     type="tel" 
+                    value={courseForm.phone}
+                    onChange={(e) => setCourseForm({...courseForm, phone: e.target.value})}
                     className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all"
                     placeholder="+375 (XX) XXX-XX-XX"
                     required
@@ -192,6 +239,8 @@ const Retraining: React.FC = () => {
                   <label className="block text-sm font-bold text-slate-700 mb-1">Email</label>
                   <input 
                     type="email" 
+                    value={courseForm.email}
+                    onChange={(e) => setCourseForm({...courseForm, email: e.target.value})}
                     className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all"
                     placeholder="example@mail.com"
                   />
@@ -203,23 +252,26 @@ const Retraining: React.FC = () => {
                 <select 
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all appearance-none cursor-pointer"
                   required
-                  defaultValue=""
+                  value={courseForm.type}
+                  onChange={(e) => setCourseForm({...courseForm, type: e.target.value})}
                 >
                   <option value="" disabled>-- Выберите из списка --</option>
-                  <option value="1">Водители категории «В», с «В» на «С»</option>
-                  <option value="2">Водители категории «СЕ»</option>
-                  <option value="3">Водители категории «D»</option>
-                  <option value="4">Трактористы-машинисты категории «B,D,F»</option>
-                  <option value="5">Водители, перевозка опасных грузов (АDR)</option>
-                  <option value="6">Специалисты по безопасности перевозки опасных грузов</option>
-                  <option value="7">Слесарь по ремонту автомобилей / стропальщик</option>
-                  <option value="8">Машинист (кочегар) / оператор котельной</option>
+                  <option value="Водители категории «В», с «В» на «С»">Водители категории «В», с «В» на «С»</option>
+                  <option value="Водители категории «СЕ»">Водители категории «СЕ»</option>
+                  <option value="Водители категории «D»">Водители категории «D»</option>
+                  <option value="Трактористы-машинисты категории «B,D,F»">Трактористы-машинисты категории «B,D,F»</option>
+                  <option value="Водители, перевозка опасных грузов (АDR)">Водители, перевозка опасных грузов (АDR)</option>
+                  <option value="Специалисты по безопасности перевозки опасных грузов">Специалисты по безопасности перевозки опасных грузов</option>
+                  <option value="Слесарь по ремонту автомобилей / стропальщик">Слесарь по ремонту автомобилей / стропальщик</option>
+                  <option value="Машинист (кочегар) / оператор котельной">Машинист (кочегар) / оператор котельной</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-1">Дополнительная информация</label>
                 <textarea 
+                  value={courseForm.extra}
+                  onChange={(e) => setCourseForm({...courseForm, extra: e.target.value})}
                   className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all resize-y min-h-[100px]"
                   placeholder="Ваши вопросы или уточнения..."
                 ></textarea>
@@ -229,6 +281,8 @@ const Retraining: React.FC = () => {
                 <input 
                   type="checkbox" 
                   id="consent"
+                  checked={courseForm.agreement}
+                  onChange={(e) => setCourseForm({...courseForm, agreement: e.target.checked})}
                   className="mt-1 w-4 h-4 text-sky-600 rounded focus:ring-sky-500 cursor-pointer"
                   required
                 />
@@ -239,10 +293,11 @@ const Retraining: React.FC = () => {
 
               <button 
                 type="submit"
-                className="w-full mt-6 flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md hover:shadow-lg group"
+                disabled={isSubmitting}
+                className="w-full mt-6 flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-md hover:shadow-lg group disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                Записаться!
+                {isSubmitting ? "Отправка..." : "Записаться!"}
               </button>
             </form>
           </div>

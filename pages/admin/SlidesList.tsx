@@ -194,7 +194,7 @@ const SlideForm: React.FC<{
             value={form.image}
             onChange={e => set('image', e.target.value)}
             className="flex-grow border border-slate-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-            placeholder="images/slide/SlideYear2026.jpg"
+            placeholder="images/slide/SlideYear2026.webp"
           />
           {previewSrc && (
             <img

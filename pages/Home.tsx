@@ -25,14 +25,14 @@ const Home: React.FC = () => {
   const sideNews = displayNews.slice(1, 4);
   const extraNews = displayNews.slice(4); // новости 5+ — в карусель
 
-  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollegeOrUniversity",
     "name": "Пинский государственный аграрный технологический колледж",
     "url": "https://pgatk.by",
-    "logo": "https://pgatk.by/images/logo/logo_pgatkk.png",
+    "logo": "https://pgatk.by/images/logo/logo_pgatkk.webp",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "ул. Иркутско-Пинской Дивизии, 42",
@@ -131,7 +131,7 @@ const Home: React.FC = () => {
                 {/* Logo/Image */}
                 <div className="flex-shrink-0 rounded-2xl overflow-hidden shadow-xl lg:w-2/5 flex items-center justify-center border border-slate-700">
                   <img 
-                    src={`${import.meta.env.BASE_URL}images/slide/SlideYear2026.jpg`} 
+                    src={`${import.meta.env.BASE_URL}images/slide/SlideYear2026.webp`} 
                     className="w-full h-auto object-cover" 
                     alt="Год белорусской женщины" 
                   />

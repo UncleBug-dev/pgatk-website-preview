@@ -5,8 +5,8 @@ import { MAIN_MENU } from '../constants';
 import { Lightbox } from '../components/Lightbox';
 
 const ALUMNI_IMAGES = [
-  '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', 
-  '7.png', '8.png', '9.png', '9_1.png', '9_2.png', '9_3.png', '10.png'
+  '1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', 
+  '7.webp', '8.webp', '9.webp', '9_1.webp', '9_2.webp', '9_3.webp', '10.webp'
 ];
 
 const NotableAlumni: React.FC = () => {

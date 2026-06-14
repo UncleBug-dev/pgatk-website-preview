@@ -31,8 +31,8 @@ const kachnovich = {
   author: "Кахнович Геннадий Иосифович",
   subtitle: "Выпускник 1966 года",
   images: [
-    "/images/Abiturientu/2022/Kachnovich.gif",
-    "/images/Abiturientu/2022/PismoKachnovich.jpg"
+    "/images/Abiturientu/2022/Kachnovich.webp",
+    "/images/Abiturientu/2022/PismoKachnovich.webp"
   ]
 };
 

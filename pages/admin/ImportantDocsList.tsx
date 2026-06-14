@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const getImageUrl = (url?: string) => {
-  if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+  if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
   if (url.startsWith('http') || url.startsWith('data:')) return url;
   return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
 };

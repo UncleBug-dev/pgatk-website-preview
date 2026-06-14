@@ -37,11 +37,11 @@ const ExtramuralStudies: React.FC = () => {
           </div>
           <div className="w-full md:w-1/3 flex justify-center">
              <img 
-               src="/images/ObrProcess/zaochnoe.png" 
+               src="/images/ObrProcess/zaochnoe.webp" 
                alt="Заочное отделение" 
                className="rounded-2xl shadow-lg border-4 border-white/20 w-full max-w-[280px] object-cover cursor-pointer hover:scale-105 transition-transform"
                onClick={() => {
-                 setLightboxImages(['/images/ObrProcess/zaochnoe.png']);
+                 setLightboxImages(['/images/ObrProcess/zaochnoe.webp']);
                  setSelectedImageIndex(0);
                }}
              />

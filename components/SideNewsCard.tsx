@@ -10,7 +10,7 @@ const SideNewsCard: React.FC<Props> = ({ news, getImageUrl }) => (
   <>
     <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border border-slate-200">
       {!news.imageUrl ? (
-        <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`} alt="Логотип" className="w-8 h-8 opacity-50 object-contain grayscale" />
+        <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`} alt="Логотип" className="w-8 h-8 opacity-50 object-contain grayscale" />
       ) : (
         <img
           src={getImageUrl(news.imageUrl)}

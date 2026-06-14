@@ -7,10 +7,10 @@ const ExtramuralOrientationSchedule: React.FC = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const images = [
-    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__1.jpg',
-    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__2.jpg',
-    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__3.jpg',
-    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__4.jpg'
+    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__1.webp',
+    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__2.webp',
+    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__3.webp',
+    '/images/1Novosti/2026/Fevral/Kovakchuk/Ustanovochnie/__4.webp'
   ];
 
   return (

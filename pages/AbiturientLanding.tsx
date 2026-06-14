@@ -92,14 +92,14 @@ const AbiturientLanding: React.FC = () => {
       {/* Banners Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
         <a href="https://profitest.ripo.by/public/main" target="_blank" rel="noopener noreferrer" className="block group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 bg-white flex items-center justify-center p-2 border border-slate-100">
-           <img src="/images/slide/ProfiTest.jpg" alt="ProfiTest" className="w-full h-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" />
+           <img src="/images/slide/ProfiTest.webp" alt="ProfiTest" className="w-full h-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" />
         </a>
         <a href="https://belta.by/society/view/logotip-goda-belorusskoj-zhenschiny-opredelen-vybrali-edinoglasno-iz-bolee-chem-100-variantov-762819-2026/" target="_blank" rel="noopener noreferrer" className="block group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 bg-white flex flex-col items-center justify-center p-4 border border-slate-100">
            <img src="https://img.belta.by/images/storage/news/with_archive/2026/000022_1770271104_762819_big.png" alt="2026 Год Белорусской женщины" className="w-full h-auto max-h-32 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500 mb-2" />
            <span className="text-xs text-center text-primary-900 font-bold leading-tight group-hover:text-accent-600 transition-colors">Год белорусской женщины</span>
         </a>
         <a href="https://t.me/stop_extremism_bot" target="_blank" rel="noopener noreferrer" className="block group rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 bg-white flex items-center justify-center p-2 border border-slate-100">
-           <img src="/images/1Novosti/2025/4Aprel/stop.png" alt="Stop Extremism" className="w-full h-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" />
+           <img src="/images/1Novosti/2025/4Aprel/stop.webp" alt="Stop Extremism" className="w-full h-auto object-contain rounded-xl group-hover:scale-105 transition-transform duration-500" />
         </a>
       </div>
     </div>

@@ -42,7 +42,7 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
     return cats.some(c => c.toLowerCase() === selectedCategory.toLowerCase());
   });
 
-  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
 
   // Логика пагинации
   const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
@@ -117,7 +117,7 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
                 <div className="relative h-56 bg-slate-100 overflow-hidden">
                   {!news.imageUrl ? (
                     <div className="w-full h-full bg-slate-100 flex flex-col items-center justify-center text-slate-300 transition-transform duration-700 group-hover:scale-105">
-                      <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`} alt="Логотип" className="w-16 h-16 mb-2 opacity-50 object-contain grayscale" />
+                      <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`} alt="Логотип" className="w-16 h-16 mb-2 opacity-50 object-contain grayscale" />
                       <span className="text-xs font-semibold uppercase tracking-wider opacity-60">Нет фото</span>
                     </div>
                   ) : (

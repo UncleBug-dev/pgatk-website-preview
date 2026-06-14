@@ -11,7 +11,7 @@ const BelUnionWomen: React.FC = () => {
         
         <div className="w-48 h-48 md:w-56 md:h-56 shrink-0 relative z-10 rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-slate-100">
           <img 
-            src="/images/Ideologiy/Organozacii/Kiseleva_.png" 
+            src="/images/Ideologiy/Organozacii/Kiseleva_.webp" 
             alt="Киселева Алла Андреевна" 
             className="w-full h-full object-cover"
             onError={(e) => {

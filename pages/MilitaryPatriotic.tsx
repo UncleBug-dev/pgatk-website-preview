@@ -69,7 +69,7 @@ const MilitaryPatriotic: React.FC = () => {
         <div className="relative z-10 flex flex-col items-center gap-8">
           <div className="w-full max-w-4xl mx-auto">
              <img 
-               src={`${import.meta.env.BASE_URL}images/Ideologiy/VPV/VPV.jpg`} 
+               src={`${import.meta.env.BASE_URL}images/Ideologiy/VPV/VPV.webp`} 
                alt="Военно-патриотическое воспитание" 
                className="w-full h-auto object-contain rounded-2xl shadow-2xl border-2 border-white/20"
              />

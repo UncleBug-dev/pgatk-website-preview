@@ -36,14 +36,14 @@ export default function InjuryPrevention() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images = [
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/1.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/2.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/3.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/4.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/5.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/6.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/VnimanieGololed_1.jpg',
-    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/VnimanieGololed_2.jpg'
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/1.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/2.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/3.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/4.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/5.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/6.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/VnimanieGololed_1.webp',
+    '/images/1Novosti/2023/Noybr/ProfilaktikaTravmatizma/VnimanieGololed_2.webp'
   ];
 
   return (

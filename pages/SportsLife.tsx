@@ -13,7 +13,7 @@ export default function SportsLife() {
     return cats.some(c => typeof c === 'string' && c.toLowerCase().includes('спорт'));
   });
 
-  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+  const getImageUrl = (url?: string) => url || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
 
   const tabs = [
     {

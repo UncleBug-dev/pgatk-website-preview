@@ -8,8 +8,8 @@ import { MAIN_MENU } from '../constants';
 import { Lightbox } from '../components/Lightbox';
 
 const HISTORY_IMAGES = [
-  '/images/history/kolledg_st.jpg',
-  '/images/history/gidro_star.jpg'
+  '/images/history/kolledg_st.webp',
+  '/images/history/gidro_star.webp'
 ];
 
 const ALUMNI = [

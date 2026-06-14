@@ -99,29 +99,29 @@ const StatCard: React.FC<{ stat: Stat; active: boolean; index: number }> = ({
 
   const inner = (
     <div
-      className={`group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 ${stat.borderColor} p-6 md:p-8 flex items-center gap-5 h-full overflow-hidden`}
+      className={`group relative bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 ${stat.borderColor} p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-5 h-full overflow-hidden`}
     >
       {/* Фоновый орнамент */}
       <div
-        className={`absolute -right-4 -bottom-4 w-24 h-24 rounded-full opacity-10 ${stat.color}`}
+        className={`absolute -right-4 -bottom-4 w-16 h-16 sm:w-24 sm:h-24 rounded-full opacity-10 ${stat.color}`}
       />
 
       {/* Иконка */}
       <div
-        className={`flex-shrink-0 w-14 h-14 rounded-xl ${stat.color} ${stat.textColor} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}
+        className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl ${stat.color} ${stat.textColor} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}
       >
-        <Icon className="w-7 h-7" />
+        <Icon className="w-6 h-6 sm:w-7 sm:h-7" />
       </div>
 
       {/* Текст */}
-      <div className="relative">
-        <div className={`text-4xl md:text-5xl font-extrabold font-display leading-none ${stat.textColor} notranslate`} translate="no">
+      <div className="relative mt-1 sm:mt-0">
+        <div className={`text-2xl sm:text-4xl md:text-5xl font-extrabold font-display leading-none ${stat.textColor} notranslate`} translate="no">
           {stat.prefix}{formatNumber(count)}{stat.suffix}
         </div>
-        <div className="text-base md:text-lg font-bold text-slate-800 mt-1">
+        <div className="text-sm sm:text-base md:text-lg font-bold text-slate-800 mt-1 leading-tight">
           {stat.label}
         </div>
-        <div className="text-xs md:text-sm text-slate-500 mt-0.5 leading-snug">
+        <div className="text-[11px] sm:text-xs md:text-sm text-slate-500 mt-1 leading-snug">
           {stat.sublabel}
         </div>
       </div>
@@ -129,7 +129,7 @@ const StatCard: React.FC<{ stat: Stat; active: boolean; index: number }> = ({
       {/* Стрелка-ссылка */}
       {stat.href && (
         <ArrowRight
-          className={`absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 ${stat.textColor} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300`}
+          className={`absolute right-3 sm:right-5 top-4 sm:top-1/2 sm:-translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 ${stat.textColor} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300`}
         />
       )}
     </div>
@@ -185,7 +185,7 @@ const StatsSection: React.FC = () => {
       </div>
 
       {/* Сетка карточек */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
         {STATS.map((stat, i) => (
           <div
             key={stat.label}

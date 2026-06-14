@@ -43,12 +43,12 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
-            src: '/images/logo/logo_pgatkk.png',
+            src: '/images/logo/logo_pgatkk.webp',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/images/logo/logo_pgatkk.png',
+            src: '/images/logo/logo_pgatkk.webp',
             sizes: '512x512',
             type: 'image/png'
           }

@@ -64,7 +64,7 @@ export default function ExtremismPrevention() {
       <div className="container mx-auto px-4 lg:px-8 max-w-5xl" onClick={handleClick}>
         <div className="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 md:p-12 mb-8 prose prose-lg max-w-none text-slate-700 prose-headings:text-slate-800 prose-a:text-red-600 hover:prose-a:text-red-800" dangerouslySetInnerHTML={{ __html: `<div itemprop="articleBody">
 <hr/>
-<p class="text-center mb-4 text-slate-700 leading-relaxed"><a href="https://t.me/stop_extremism_bot"><img class="w-full h-auto rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 object-cover" alt="" src="/images/1Novosti/2025/4Aprel/stop.png"/></a></p>
+<p class="text-center mb-4 text-slate-700 leading-relaxed"><a href="https://t.me/stop_extremism_bot"><img class="w-full h-auto rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 object-cover" alt="" src="/images/1Novosti/2025/4Aprel/stop.webp"/></a></p>
 <p class="text-center mb-4 text-slate-700 leading-relaxed"><strong><a href="https://t.me/stop_extremism_bot">Телеграм-бот «Стоп ЭКСТРЕМИЗМ»</a> позволяет проверить сайты и телеграм-каналы на наличие в списке экстремистских материалов в Республике Беларусь. Просто отправьте боту ссылку на интересующий вас сайт или телеграм-канал, и он мгновенно проведет проверку, уведомив вас о его статусе.</strong></p>
 <hr/>
 <p class="text-center mb-4 text-slate-700 leading-relaxed"><a href="https://pravo.by/document/?guid=3871&amp;p0=h10700203">ЗАКОН РЕСПУБЛИКИ БЕЛАРУСЬ от 4 января 2007 г. № 203-З «О противодействии экстремизму»</a></p>

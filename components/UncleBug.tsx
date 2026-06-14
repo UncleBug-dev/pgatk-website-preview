@@ -79,7 +79,7 @@ const UncleBug: React.FC = () => {
         onClick={handleClick}
       >
         <img 
-          src={`${import.meta.env.BASE_URL}images/unclebug/${mouthOpen ? '2.png' : '1.png'}`} 
+          src={`${import.meta.env.BASE_URL}images/unclebug/${mouthOpen ? '2.webp' : '1.webp'}`} 
           alt="Uncle Bug" 
           className="w-16 h-auto"
         />

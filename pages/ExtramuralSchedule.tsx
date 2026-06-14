@@ -7,8 +7,8 @@ const ExtramuralSchedule: React.FC = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const images = [
-    '/images/1Novosti/2026/Jznvar/GObrPrYr/GOP.jpg',
-    '/images/1Novosti/2026/Fevral/Kovakchuk/GrafikOP/GrafikOP.jpg'
+    '/images/1Novosti/2026/Jznvar/GObrPrYr/GOP.webp',
+    '/images/1Novosti/2026/Fevral/Kovakchuk/GrafikOP/GrafikOP.webp'
   ];
 
   return (

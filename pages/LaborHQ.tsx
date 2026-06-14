@@ -25,7 +25,7 @@ const LaborHQ: React.FC = () => {
       <div className="relative rounded-3xl overflow-hidden bg-slate-900 shadow-xl border border-slate-800">
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/Ideologiy/ShtabTrDel/stud-otryady.jpg" 
+            src="/images/Ideologiy/ShtabTrDel/stud-otryady.webp" 
             alt="Студотряды" 
             className="w-full h-full object-cover opacity-40 mix-blend-overlay"
             onError={(e) => {
@@ -115,7 +115,7 @@ const LaborHQ: React.FC = () => {
           <div className="grid grid-cols-2 gap-4">
             <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white p-4 flex items-center justify-center aspect-square">
               <img 
-                src="/images/Ideologiy/ShtabTrDel/ShTD.png" 
+                src="/images/Ideologiy/ShtabTrDel/ShTD.webp" 
                 alt="Логотип Штаб трудовых дел" 
                 className="w-full h-full object-contain"
                 onError={(e) => {
@@ -125,7 +125,7 @@ const LaborHQ: React.FC = () => {
             </div>
             <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm aspect-square">
               <img 
-                src="/images/Ideologiy/ShtabTrDel/ShTD-1.jpg" 
+                src="/images/Ideologiy/ShtabTrDel/ShTD-1.webp" 
                 alt="Студотряд" 
                 className="w-full h-full object-cover"
                 onError={(e) => {

@@ -21,7 +21,7 @@ const NotFound: React.FC = () => {
           <div className="absolute inset-0 flex items-center justify-center pt-8">
             <div className="relative group">
               <img 
-                src={`${import.meta.env.BASE_URL}images/unclebug/1.png`} 
+                src={`${import.meta.env.BASE_URL}images/unclebug/1.webp`} 
                 alt="UncleBug Lost" 
                 className="w-40 sm:w-56 h-auto drop-shadow-2xl animate-[bounce_3s_infinite] group-hover:rotate-12 transition-transform duration-300"
               />

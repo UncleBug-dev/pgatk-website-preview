@@ -45,19 +45,19 @@ const RemoteOpenDay: React.FC = () => {
 
       <div className="flex flex-col md:flex-row gap-6 justify-center">
         <img 
-          src="/images/Abiturientu/2024/PRIVETSVIE_.png" 
+          src="/images/Abiturientu/2024/PRIVETSVIE_.webp" 
           alt="Приветствие 1" 
           onClick={() => {
-            setLightboxImages(['/images/Abiturientu/2024/PRIVETSVIE_.png', '/images/Abiturientu/2024/PRIVETSVIE2.png']);
+            setLightboxImages(['/images/Abiturientu/2024/PRIVETSVIE_.webp', '/images/Abiturientu/2024/PRIVETSVIE2.webp']);
             setSelectedImageIndex(0);
           }}
           className="cursor-pointer hover:scale-105 transition-transform duration-300 rounded-2xl shadow-lg border border-slate-100 max-w-full md:max-w-md object-contain" 
         />
         <img 
-          src="/images/Abiturientu/2024/PRIVETSVIE2.png" 
+          src="/images/Abiturientu/2024/PRIVETSVIE2.webp" 
           alt="Приветствие 2" 
           onClick={() => {
-            setLightboxImages(['/images/Abiturientu/2024/PRIVETSVIE_.png', '/images/Abiturientu/2024/PRIVETSVIE2.png']);
+            setLightboxImages(['/images/Abiturientu/2024/PRIVETSVIE_.webp', '/images/Abiturientu/2024/PRIVETSVIE2.webp']);
             setSelectedImageIndex(1);
           }}
           className="cursor-pointer hover:scale-105 transition-transform duration-300 rounded-2xl shadow-lg border border-slate-100 max-w-full md:max-w-md object-contain" 
@@ -87,7 +87,7 @@ const RemoteOpenDay: React.FC = () => {
       {/* Banners & Links */}
       <div className="grid grid-cols-1 gap-6">
         <Link to="/abiturientam/predlozhenie-o-tselevoj-podgotovke" className="block rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all border border-slate-100">
-          <img src="/images/1Novosti/2024/May/CelevayPodgotovka.jpg" alt="Целевая подготовка" className="w-full object-cover" />
+          <img src="/images/1Novosti/2024/May/CelevayPodgotovka.webp" alt="Целевая подготовка" className="w-full object-cover" />
         </Link>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -116,7 +116,7 @@ const RemoteOpenDay: React.FC = () => {
             className="block group relative rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 hover:border-accent-400 transition-colors duration-300"
           >
             <img 
-              src="/images/VEkskursiy/VEkskursiy.gif" 
+              src="/images/VEkskursiy/VEkskursiy.webp" 
               alt="Виртуальная экскурсия по колледжу" 
               className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700" 
             />
@@ -135,10 +135,10 @@ const RemoteOpenDay: React.FC = () => {
         <h3 className="text-3xl font-display font-bold text-center text-primary-900">Информационные материалы</h3>
         <div className="flex justify-center">
           <img 
-            src="/images/Abiturientu/2026/Buklet2026/Buklet1.png" 
+            src="/images/Abiturientu/2026/Buklet2026/Buklet1.webp" 
             alt="Буклет" 
             onClick={() => {
-              setLightboxImages(['/images/Abiturientu/2026/Buklet2026/Buklet1.png']);
+              setLightboxImages(['/images/Abiturientu/2026/Buklet2026/Buklet1.webp']);
               setSelectedImageIndex(0);
             }}
             className="cursor-pointer hover:scale-[1.02] transition-transform rounded-2xl shadow-md border border-slate-100 max-w-full md:max-w-2xl" 

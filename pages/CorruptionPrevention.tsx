@@ -34,17 +34,17 @@ const inspectors = [
 ];
 
 const poloshenieImages = [
-  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__1.jpg',
-  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__2.jpg',
-  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__3.jpg',
-  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__4.jpg',
-  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__5.jpg',
-  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__6.jpg'
+  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__1.webp',
+  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__2.webp',
+  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__3.webp',
+  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__4.webp',
+  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__5.webp',
+  import.meta.env.BASE_URL + 'downloads/PoloshenieKor__6.webp'
 ];
 
 const posters = [
-  import.meta.env.BASE_URL + 'downloads/0001.jpg',
-  import.meta.env.BASE_URL + 'downloads/0002.jpg'
+  import.meta.env.BASE_URL + 'downloads/0001.webp',
+  import.meta.env.BASE_URL + 'downloads/0002.webp'
 ];
 
 const CorruptionPrevention: React.FC = () => {

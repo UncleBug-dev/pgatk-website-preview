@@ -20,7 +20,7 @@ export const DEFAULT_SLIDES: SlideData[] = [
     title: 'Год белорусской женщины',
     subtitle: 'Тематика 2026 года',
     description: '2026 год в Республике Беларусь объявлен Годом белорусской женщины.',
-    image: 'images/slide/SlideYear2026.jpg',
+    image: 'images/slide/SlideYear2026.webp',
     href: 'https://president.gov.by/ru/documents/ukaz-no-1-ot-1-anvara-2026-g',
     buttonLabel: 'Подробнее',
     isExternal: true,
@@ -32,7 +32,7 @@ export const DEFAULT_SLIDES: SlideData[] = [
     title: 'Центр патриотического воспитания',
     subtitle: 'Молодежь и будущее',
     description: 'Объявлен сбор средств на реконструкцию Республиканского центра патриотического воспитания молодежи в Брестской крепости.',
-    image: 'images/slide/CentrPV.jpg',
+    image: 'images/slide/CentrPV.webp',
     href: '/news/patriot-center',
     buttonLabel: 'Подробнее',
     isExternal: false,
@@ -44,7 +44,7 @@ export const DEFAULT_SLIDES: SlideData[] = [
     title: 'Абитуриенту 2026',
     subtitle: 'Приемная кампания',
     description: 'Твое будущее начинается с #ПГАТККЛЕЩЕВА. Современные специальности, гарантированное трудоустройство.',
-    image: 'images/slide/banner2022postupay.jpg',
+    image: 'images/slide/banner2022postupay.webp',
     href: '/abiturientam',
     buttonLabel: 'Подробнее',
     isExternal: false,
@@ -56,7 +56,7 @@ export const DEFAULT_SLIDES: SlideData[] = [
     title: 'ПрофиТест',
     subtitle: 'Профориентация',
     description: 'Пройди комплексное тестирование и узнай, какая профессия подходит именно тебе. Сделай осознанный выбор.',
-    image: 'images/slide/ProfiTest.jpg',
+    image: 'images/slide/ProfiTest.webp',
     href: 'http://profitest.ripo.by',
     buttonLabel: 'Пройти тест',
     isExternal: true,
@@ -245,7 +245,7 @@ export const MOCK_NEWS: NewsItem[] = [
     title: 'Победа в областной олимпиаде',
     date: '20 Декабря 2025',
     category: 'Достижения',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/Olimpiada/Olimpiada.png',
+    imageUrl: 'images/1Novosti/2025/12Dekabr/Olimpiada/Olimpiada.webp',
     summary: 'Поздравляем победителей областного этапа республиканской олимпиады по учебным предметам! Наши учащиеся показали высокий уровень знаний.',
     isMain: true,
     content: LOREM_CONTENT
@@ -255,7 +255,7 @@ export const MOCK_NEWS: NewsItem[] = [
     title: 'Акция "Зимний патруль"',
     date: '18 Декабря 2025',
     category: 'БРСМ',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/ZimniyPatrul.png',
+    imageUrl: 'images/1Novosti/2025/12Dekabr/ZimniyPatrul.webp',
     summary: 'Активисты МООП и БРСМ колледжа совместно с представителями ОСВОД провели профилактический рейд по водоемам.',
     content: LOREM_CONTENT
   },
@@ -264,7 +264,7 @@ export const MOCK_NEWS: NewsItem[] = [
     title: 'Профилактика: Антинаркотическая площадка',
     date: '15 Декабря 2025',
     category: 'Профилактика',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/Antinarko/Antinarkoticheskay.png',
+    imageUrl: 'images/1Novosti/2025/12Dekabr/Antinarko/Antinarkoticheskay.webp',
     summary: 'В рамках декады правовых знаний состоялась встреча учащихся с сотрудниками правоохранительных органов по вопросам профилактики наркомании.',
     content: LOREM_CONTENT
   },
@@ -273,7 +273,7 @@ export const MOCK_NEWS: NewsItem[] = [
     title: 'Геноцид белорусского народа: память и боль',
     date: '12 Декабря 2025',
     category: 'Год белорусской женщины',
-    imageUrl: 'images/1Novosti/2025/12Dekabr/Genocid.png',
+    imageUrl: 'images/1Novosti/2025/12Dekabr/Genocid.webp',
     summary: 'Урок памяти, посвященный расследованию уголовного дела о геноциде белорусского народа в годы Великой Отечественной войны.',
     content: LOREM_CONTENT
   }
@@ -284,175 +284,175 @@ export const IMPORTANT_NEWS = [
     'id': '101',
     'title': 'План мероприятий в рамках месячника «Ценность человеческой жизни»',
     'date': '10 марта 2026',
-    'image': '/downloads/important/thumbs/1_789933201414.jpg'
+    'image': '/downloads/important/thumbs/1_789933201414.webp'
   },
   {
     'id': '1',
     'title': 'Оказание помощи несовершеннолетним потерпевшим от сексуального насилия, торговли людьми и связанных с ней преступлений',
     'date': '14 августа 2025',
-    'image': '/downloads/important/thumbs/2_RKBrestskayOblast.jpg'
+    'image': '/downloads/important/thumbs/2_RKBrestskayOblast.webp'
   },
   {
     'id': '3',
     'title': 'Детство без насилия',
     'date': '23 мая 2025',
-    'image': '/downloads/important/thumbs/3_DETSTVOBEZMASILIY.png'
+    'image': '/downloads/important/thumbs/3_DETSTVOBEZMASILIY.webp'
   },
   {
     'id': '2',
     'title': 'Важно! Безопасность на воде!',
     'date': '29 июня 2024',
-    'image': '/downloads/important/thumbs/4_shutterstock_222618070.jpg'
+    'image': '/downloads/important/thumbs/4_shutterstock_222618070.webp'
   },
   {
     'id': '105',
     'title': 'Телеграм-канал «Компас»',
     'date': '12 июня 2024',
-    'image': '/downloads/important/thumbs/5_tmkompas.jpg'
+    'image': '/downloads/important/thumbs/5_tmkompas.webp'
   },
   {
     'id': '106',
     'title': 'Государственный профилактический проект \'Здоровые города и поселки\'',
     'date': '11 июня 2024',
-    'image': '/downloads/important/thumbs/6_ZdGorodaIPoselki.jpg'
+    'image': '/downloads/important/thumbs/6_ZdGorodaIPoselki.webp'
   },
   {
     'id': '107',
     'title': 'Пакет \'Безопасность\'',
     'date': '22 апреля 2024',
-    'image': '/downloads/important/thumbs/7_PaketBezopasnost.jpg'
+    'image': '/downloads/important/thumbs/7_PaketBezopasnost.webp'
   },
   {
     'id': '108',
     'title': 'Курение и ответственность. Важно знать!',
     'date': '10 апреля 2024',
-    'image': '/downloads/important/thumbs/8_Kurenie.png'
+    'image': '/downloads/important/thumbs/8_Kurenie.webp'
   },
   {
     'id': '109',
     'title': 'Чат-бот Стоп Экстремизм позволит проверить любой ресурс',
     'date': '05 марта 2024',
-    'image': '/downloads/important/thumbs/9_Screenshot_1.png'
+    'image': '/downloads/important/thumbs/9_Screenshot_1.webp'
   },
   {
     'id': '110',
     'title': 'Анонимный чат-бот «Помощь»',
     'date': '20 декабря 2023',
-    'image': '/downloads/important/thumbs/10_IMG_20231221_124124_213.jpg'
+    'image': '/downloads/important/thumbs/10_IMG_20231221_124124_213.webp'
   },
   {
     'id': '111',
     'title': 'Об изменении стоимости обучения с 01.12.2023 при реализации образовательных программ среднего специального образования на платной основе',
     'date': '09 декабря 2023',
-    'image': '/downloads/important/thumbs/11_d3f4e1d6-fe1d-4db7-8bcf-cb28d6768e25.jpg'
+    'image': '/downloads/important/thumbs/11_d3f4e1d6-fe1d-4db7-8bcf-cb28d6768e25.webp'
   },
   {
     'id': '112',
     'title': 'Антинаркотическая площадка',
     'date': '03 декабря 2023',
-    'image': '/downloads/important/thumbs/12_antinafrkoticheskay.jpg'
+    'image': '/downloads/important/thumbs/12_antinafrkoticheskay.webp'
   },
   {
     'id': '113',
     'title': 'Профилактика травматизма',
     'date': '25 ноября 2023',
-    'image': '/downloads/important/thumbs/13_8782200.jpg'
+    'image': '/downloads/important/thumbs/13_8782200.webp'
   },
   {
     'id': '114',
     'title': 'Соблюдай правила безопасности',
     'date': '15 ноября 2023',
-    'image': '/downloads/important/thumbs/14_3.jpg'
+    'image': '/downloads/important/thumbs/14_3.webp'
   },
   {
     'id': '115',
     'title': 'Виртуальная дружба, контакты и общение: правила безопасности',
     'date': '01 ноября 2023',
-    'image': '/downloads/important/thumbs/15_photo_2023-10-31_15-34-04.jpg'
+    'image': '/downloads/important/thumbs/15_photo_2023-10-31_15-34-04.webp'
   },
   {
     'id': '116',
     'title': 'Мы в социальных сетях!',
     'date': '17 октября 2023',
-    'image': '/downloads/important/thumbs/16_MiSocSeti.jpg'
+    'image': '/downloads/important/thumbs/16_MiSocSeti.webp'
   },
   {
     'id': '117',
     'title': 'Cкажи, о чем ты молчишь?',
     'date': '14 сентября 2023',
-    'image': '/downloads/important/thumbs/17_SkashiOChemTiMolchish_1.jpg'
+    'image': '/downloads/important/thumbs/17_SkashiOChemTiMolchish_1.webp'
   },
   {
     'id': '118',
     'title': 'По всем вопросам, относящимся к компетенции инспекции по делам несовершеннолетних, Вы можете обратиться к участковому инспектору ИДН Пинского ГОВД',
     'date': '07 сентября 2023',
-    'image': '/downloads/important/thumbs/18_maxresdefault.jpg'
+    'image': '/downloads/important/thumbs/18_maxresdefault.webp'
   },
   {
     'id': '119',
     'title': 'Cлужба экстренной психологической помощи - \'Телефон доверия\' - 160',
     'date': '07 сентября 2023',
-    'image': '/downloads/important/thumbs/19_PsihPomosh.jpg'
+    'image': '/downloads/important/thumbs/19_PsihPomosh.webp'
   },
   {
     'id': '120',
     'title': 'Республиканский центр патриотического воспитания молодежи',
     'date': '06 июня 2023',
-    'image': '/downloads/important/thumbs/20_CPV.jpg'
+    'image': '/downloads/important/thumbs/20_CPV.webp'
   },
   {
     'id': '121',
     'title': 'Памятка для родителей: как уберечь детей от педофилии',
     'date': '19 мая 2023',
-    'image': '/downloads/important/thumbs/21_fon.jpg'
+    'image': '/downloads/important/thumbs/21_fon.webp'
   },
   {
     'id': '122',
     'title': 'Тебе уже 14? Время поработать!',
     'date': '05 мая 2023',
-    'image': '/downloads/important/thumbs/22_zanytost.jpg'
+    'image': '/downloads/important/thumbs/22_zanytost.webp'
   },
   {
     'id': '123',
     'title': 'Внимание! Мошенничество!',
     'date': '01 марта 2023',
-    'image': '/downloads/important/thumbs/23_Perevodchik.jpg'
+    'image': '/downloads/important/thumbs/23_Perevodchik.webp'
   },
   {
     'id': '124',
     'title': 'Понять и помочь',
     'date': '13 сентября 2022',
-    'image': '/downloads/important/thumbs/24_PonytiPomoch.jpg'
+    'image': '/downloads/important/thumbs/24_PonytiPomoch.webp'
   },
   {
     'id': '125',
     'title': 'Об утверждении Правил педагогических работников',
     'date': '11 августа 2022',
-    'image': '/downloads/important/thumbs/25_pravila_ped_rab.gif'
+    'image': '/downloads/important/thumbs/25_pravila_ped_rab.webp'
   },
   {
     'id': '126',
     'title': 'STOP наркотик',
     'date': '05 августа 2022',
-    'image': '/downloads/important/thumbs/26_StoNarkotik.jpg'
+    'image': '/downloads/important/thumbs/26_StoNarkotik.webp'
   },
   {
     'id': '127',
     'title': 'Кибербезопасность! Важно знать!',
     'date': '31 мая 2022',
-    'image': '/downloads/important/thumbs/27_Kiber.jpg'
+    'image': '/downloads/important/thumbs/27_Kiber.webp'
   },
   {
     'id': '128',
     'title': 'Внимание! Мошенничество на торговых площадках!',
     'date': '28 мая 2022',
-    'image': '/downloads/important/thumbs/28_Perevodchik.jpg'
+    'image': '/downloads/important/thumbs/28_Perevodchik.webp'
   },
   {
     'id': '129',
     'title': 'Это важно! Статья 18.2. Нарушение правил, обеспечивающих безопасность движения на железнодорожном или городском электрическом транспорте. Статья 18.35. Нарушение правил использования воздушного пространства.',
     'date': '19 мая 2022',
-    'image': '/downloads/important/thumbs/29_EtoVashno.jpg'
+    'image': '/downloads/important/thumbs/29_EtoVashno.webp'
   }
 ];
 

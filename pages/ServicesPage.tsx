@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home as HomeIcon, Printer } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { MAIN_MENU } from '../constants';
 
 const ServicesPage: React.FC = () => {
@@ -17,9 +18,86 @@ const ServicesPage: React.FC = () => {
     name: '', email: '', phone: '', type: '', extra: '', agreement: false
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [servicesForm, setServicesForm] = useState({
+    name: '', email: '', phone: '', type: '', extra: '', agreement: false
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Сюда мы вставим ссылку, которую выдаст Google
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBTfG5FloQSaXxp_aQ6tqHqYrR9m7MLnUarTaMaOR59fpXNiHVu7bR_3xI9uTHHEh8OQ/exec";
+
+  const handleCourseSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Спасибо! Ваша заявка отправлена. Специалист свяжется с вами.");
+    if (!courseForm.agreement) return;
+
+    if (!GOOGLE_SCRIPT_URL) {
+      toast.error("Скрипт отправки еще не настроен.");
+      return;
+    }
+    
+    setIsSubmitting(true);
+    try {
+      // Отправляем как текст (Content-Type: text/plain по умолчанию), чтобы избежать проблем с CORS
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            subject: "Новая заявка: Курсы переподготовки",
+            name: courseForm.name,
+            email: courseForm.email,
+            phone: courseForm.phone,
+            service: courseForm.type,
+            extra: courseForm.extra
+        })
+      });
+
+      if (response.ok) {
+        toast.success("Спасибо! Ваша заявка отправлена. Специалист свяжется с Вами.");
+        setCourseForm({ name: '', email: '', phone: '', type: '', extra: '', agreement: false });
+      } else {
+        toast.error("Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.");
+      }
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Проверьте подключение к интернету.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleServicesSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!servicesForm.agreement) return;
+
+    if (!GOOGLE_SCRIPT_URL) {
+      toast.error("Скрипт отправки еще не настроен.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        body: JSON.stringify({
+            subject: "Новая заявка: Услуги населению",
+            name: servicesForm.name,
+            email: servicesForm.email,
+            phone: servicesForm.phone,
+            service: servicesForm.type,
+            extra: servicesForm.extra
+        })
+      });
+
+      if (response.ok) {
+        toast.success("Спасибо! Ваша заявка отправлена. Специалист свяжется с Вами.");
+        setServicesForm({ name: '', email: '', phone: '', type: '', extra: '', agreement: false });
+      } else {
+        toast.error("Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.");
+      }
+    } catch (error) {
+      toast.error("Произошла ошибка при отправке заявки. Проверьте подключение к интернету.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -137,43 +215,43 @@ const ServicesPage: React.FC = () => {
                 <h2 className="text-xl font-bold text-slate-800 mb-2">Запись на курсы переподготовки online!</h2>
                 <p className="text-sm text-slate-600 mb-6 max-w-2xl">Подай заявку на обучение не выходя из дома! В течении дня с Вами свяжется специалист для уточнения данных!</p>
 
-                <form onSubmit={handleSubmit} className="space-y-4 max-w-3xl">
+                <form onSubmit={handleCourseSubmit} className="space-y-4 max-w-3xl">
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Ваше ФИО*</label>
-                    <input type="text" required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
+                    <input type="text" value={courseForm.name} onChange={(e) => setCourseForm({...courseForm, name: e.target.value})} required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Email</label>
-                    <input type="email" className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
+                    <input type="email" value={courseForm.email} onChange={(e) => setCourseForm({...courseForm, email: e.target.value})} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Телефон*</label>
-                    <input type="tel" required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
+                    <input type="tel" value={courseForm.phone} onChange={(e) => setCourseForm({...courseForm, phone: e.target.value})} required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Выберите услугу*</label>
-                    <select required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none bg-white">
+                    <select required value={courseForm.type} onChange={(e) => setCourseForm({...courseForm, type: e.target.value})} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none bg-white">
                       <option value="">-- Выберите курс --</option>
-                      <option value="B">Категория B</option>
-                      <option value="BC">C "B" на "C"</option>
-                      <option value="CE">Категория CE</option>
-                      <option value="D">Категория D</option>
-                      <option value="ADR">ADR (Опасные грузы)</option>
+                      <option value="Категория B">Категория B</option>
+                      <option value="C B на C">C "B" на "C"</option>
+                      <option value="Категория CE">Категория CE</option>
+                      <option value="Категория D">Категория D</option>
+                      <option value="ADR (Опасные грузы)">ADR (Опасные грузы)</option>
                     </select>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right pt-2">Дополнительно</label>
-                    <textarea rows={3} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none"></textarea>
+                    <textarea rows={3} value={courseForm.extra} onChange={(e) => setCourseForm({...courseForm, extra: e.target.value})} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none"></textarea>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
                     <div className="md:col-start-4 md:col-span-9">
                        <label className="flex items-start gap-3 text-xs text-slate-600 cursor-pointer p-2 hover:bg-slate-100 rounded">
-                          <input type="checkbox" required className="mt-1" />
+                          <input type="checkbox" required checked={courseForm.agreement} onChange={(e) => setCourseForm({...courseForm, agreement: e.target.checked})} className="mt-1" />
                           <span>*Нажимая кнопку "Записаться", Вы подтверждаете свою осведомленность и согласие на обработку Ваших персональных данных.</span>
                        </label>
                     </div>
@@ -181,8 +259,8 @@ const ServicesPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-4">
                     <div className="md:col-start-4 md:col-span-9">
-                       <button type="submit" className="bg-gradient-to-b from-slate-100 to-slate-200 border border-slate-300 hover:bg-white text-slate-900 font-bold py-2 px-6 rounded shadow-sm text-sm transform hover:-translate-y-0.5 transition-all">
-                          Записаться!
+                       <button type="submit" disabled={isSubmitting} className="bg-gradient-to-b from-slate-100 to-slate-200 border border-slate-300 hover:bg-white text-slate-900 font-bold py-2 px-6 rounded shadow-sm text-sm transform hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                          {isSubmitting ? "Отправка..." : "Записаться!"}
                        </button>
                     </div>
                   </div>
@@ -219,42 +297,42 @@ const ServicesPage: React.FC = () => {
                 <h2 className="text-xl font-bold text-slate-800 mb-2">Услуги населению! Закажи online!</h2>
                 <p className="text-sm text-red-600 font-bold mb-6">Услуги по перевозке пассажиров, перевозке грузов! Услуги трактора, фронтального погрузчика!</p>
 
-                <form onSubmit={handleSubmit} className="space-y-4 max-w-3xl">
+                <form onSubmit={handleServicesSubmit} className="space-y-4 max-w-3xl">
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Ваше Ф.И.О.*</label>
-                    <input type="text" required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
+                    <input type="text" value={servicesForm.name} onChange={(e) => setServicesForm({...servicesForm, name: e.target.value})} required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Email</label>
-                    <input type="email" className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
+                    <input type="email" value={servicesForm.email} onChange={(e) => setServicesForm({...servicesForm, email: e.target.value})} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-                    <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Телефон</label>
-                    <input type="tel" className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
+                    <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Телефон*</label>
+                    <input type="tel" value={servicesForm.phone} onChange={(e) => setServicesForm({...servicesForm, phone: e.target.value})} required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right">Выберите услугу*</label>
-                    <select required className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none bg-white">
+                    <select required value={servicesForm.type} onChange={(e) => setServicesForm({...servicesForm, type: e.target.value})} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none bg-white">
                       <option value="">-- Выберите услугу --</option>
-                      <option value="tractor">Услуги трактора</option>
-                      <option value="loader">Фронтальный погрузчик</option>
-                      <option value="cargo">Перевозка грузов</option>
-                      <option value="passenger">Перевозка пассажиров (Автобус)</option>
+                      <option value="Услуги трактора">Услуги трактора</option>
+                      <option value="Фронтальный погрузчик">Фронтальный погрузчик</option>
+                      <option value="Перевозка грузов">Перевозка грузов</option>
+                      <option value="Перевозка пассажиров (Автобус)">Перевозка пассажиров (Автобус)</option>
                     </select>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
                     <label className="text-sm font-medium text-slate-700 md:col-span-3 md:text-right pt-2">Дополнительно</label>
-                    <textarea rows={3} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none"></textarea>
+                    <textarea rows={3} value={servicesForm.extra} onChange={(e) => setServicesForm({...servicesForm, extra: e.target.value})} className="md:col-span-9 w-full p-2 border border-slate-300 rounded focus:ring-2 focus:ring-accent-500 focus:border-transparent outline-none"></textarea>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
                     <div className="md:col-start-4 md:col-span-9">
                        <label className="flex items-start gap-3 text-xs text-slate-600 cursor-pointer p-2 hover:bg-slate-100 rounded">
-                          <input type="checkbox" required className="mt-1" />
+                          <input type="checkbox" required checked={servicesForm.agreement} onChange={(e) => setServicesForm({...servicesForm, agreement: e.target.checked})} className="mt-1" />
                           <span>*Нажимая кнопку "Сохранить", Вы подтверждаете согласие на обработку данных.</span>
                        </label>
                     </div>
@@ -262,8 +340,8 @@ const ServicesPage: React.FC = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-4">
                     <div className="md:col-start-4 md:col-span-9">
-                       <button type="submit" className="bg-gradient-to-b from-slate-100 to-slate-200 border border-slate-300 hover:bg-white text-slate-900 font-bold py-2 px-6 rounded shadow-sm text-sm transform hover:-translate-y-0.5 transition-all">
-                          Заказать услугу
+                       <button type="submit" disabled={isSubmitting} className="bg-gradient-to-b from-slate-100 to-slate-200 border border-slate-300 hover:bg-white text-slate-900 font-bold py-2 px-6 rounded shadow-sm text-sm transform hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                          {isSubmitting ? "Отправка..." : "Заказать услугу"}
                        </button>
                     </div>
                   </div>

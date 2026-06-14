@@ -10,12 +10,12 @@ const ExtramuralConsultations: React.FC = () => {
     {
       title: 'Заведующий отделением',
       name: 'Яромчик Ирина Михайловна',
-      image: '/images/1Novosti/2026/Jznvar/KonsYaromchik/Kons1_2__1.jpg'
+      image: '/images/1Novosti/2026/Jznvar/KonsYaromchik/Kons1_2__1.webp'
     },
     {
       title: 'Заведующий отделением',
       name: 'Ковальчук Евгения Васильевна',
-      image: '/images/1Novosti/2026/Fevral/Kovakchuk/Konsult/Komsuly.jpg'
+      image: '/images/1Novosti/2026/Fevral/Kovakchuk/Konsult/Komsuly.webp'
     }
   ];
 

@@ -38,7 +38,7 @@ const BelayaRus: React.FC = () => {
         
         <div className="w-48 h-48 md:w-56 md:h-56 shrink-0 relative z-10 rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-slate-100">
           <img 
-            src="/images/administration/Beger_OA.jpeg" 
+            src="/images/administration/Beger_OA.webp" 
             alt="Бегер Олег Александрович" 
             className="w-full h-full object-cover"
             onError={(e) => {
@@ -171,7 +171,7 @@ const BelayaRus: React.FC = () => {
           
           {/* Logo/Banner */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
-             <img src="/images/Ideologiy/i0by3iqkhtk4xo40g4tcyxsm74wqvlsd.jpg" alt="Белая Русь" className="w-full h-auto object-cover" />
+             <img src="/images/Ideologiy/i0by3iqkhtk4xo40g4tcyxsm74wqvlsd.webp" alt="Белая Русь" className="w-full h-auto object-cover" />
           </div>
         </div>
 

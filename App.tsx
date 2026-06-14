@@ -59,10 +59,13 @@ const ImportantDocsList = lazy(() => import('./pages/admin/ImportantDocsList'));
 const ImportantDocEditor = lazy(() => import('./pages/admin/ImportantDocEditor'));
 const Settings = lazy(() => import('./pages/admin/Settings'));
 
+import { Toaster } from 'react-hot-toast';
+
 const App: React.FC = () => {
   return (
     <DataProvider>
       <AccessibilityProvider>
+        <Toaster position="top-right" toastOptions={{ duration: 4000, style: { background: '#1e293b', color: '#fff', fontSize: '14px', borderRadius: '8px' } }} />
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Suspense fallback={<PageLoader />}>
             <Routes>

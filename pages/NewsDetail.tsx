@@ -27,7 +27,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
   const [showVideo, setShowVideo] = React.useState(false);
 
   const getImageUrl = (url?: string) => {
-    if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+    if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
     if (url.startsWith('http') || url.startsWith('data:')) return url;
     return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
   };
@@ -160,7 +160,7 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
             title: found.title,
             date: found.date,
             category: found.category,
-            imageUrl: found.imageUrl || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`,
+            imageUrl: found.imageUrl || `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`,
             summary: found.summary,
             content: `<p>${found.summary.replace(/\n/g, '<br/>')}</p>`,
             link: found.link,

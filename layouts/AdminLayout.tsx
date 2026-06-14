@@ -33,7 +33,7 @@ const AdminLayout: React.FC = () => {
         </button>
         <div className="p-6 flex items-center justify-center gap-3 border-b border-slate-800 min-h-[88px]">
           <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center p-1 shadow-inner overflow-hidden shrink-0">
-            <img src="/images/logo/logo_pgatkk.png" alt="ПГАТК" className="w-full h-full object-contain drop-shadow-md" />
+            <img src="/images/logo/logo_pgatkk.webp" alt="ПГАТК" className="w-full h-full object-contain drop-shadow-md" />
           </div>
           {!isCollapsed && (
             <div className="whitespace-nowrap transition-opacity duration-300">

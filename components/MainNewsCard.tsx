@@ -15,7 +15,7 @@ const MainNewsCard: React.FC<Props> = ({ news, getImageUrl }) => (
   >
     {!news.imageUrl ? (
       <div className="absolute inset-0 w-full h-full bg-slate-800 flex flex-col items-center justify-center text-slate-500 transition-transform duration-700 group-hover:scale-105">
-        <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`} alt="Логотип" className="w-16 h-16 mb-2 opacity-30 object-contain grayscale" />
+        <img src={`${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`} alt="Логотип" className="w-16 h-16 mb-2 opacity-30 object-contain grayscale" />
         <span className="text-sm font-semibold uppercase tracking-wider opacity-50">Нет фото</span>
       </div>
     ) : (

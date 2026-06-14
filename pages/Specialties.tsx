@@ -51,13 +51,13 @@ const SPECIALTIES: Specialty[] = [
     duration: 'На основе общего базового образования — 3 года 6 месяцев',
     budget: '25-30',
     paid: 0,
-    image: 'images/specialties/hydro_spec.png',
+    image: 'images/specialties/hydro_spec.webp',
     gallery: [
-      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy.gif',
-      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy.png',
-      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy2.gif',
-      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy4.gif',
-      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy_staty.gif'
+      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy.webp',
+      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy.webp',
+      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy2.webp',
+      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy4.webp',
+      'images/Abiturientu/2022/Specialnosti/Melioraciy/Melioraciy_staty.webp'
     ],
     icon: Droplet,
     description: 'Организация и проведение мелиоративных работ, эксплуатация мелиоративных систем.',
@@ -73,19 +73,19 @@ const SPECIALTIES: Specialty[] = [
     duration: 'На основе общего базового — 3 года 6 месяцев; на основе общего среднего (заочная форма) — 3 года 6 месяцев',
     budget: '25-30',
     paid: 0,
-    image: 'images/specialties/heavy_machine.png',
+    image: 'images/specialties/heavy_machine.webp',
     gallery: [
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb2.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb3.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb4.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb5.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb6.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb7.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb8.gif',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb8-gif.png',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb8-gif_1.png',
-      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb9-gif.png'
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb2.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb3.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb4.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb5.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb6.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb7.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb8.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb8-gif.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb8-gif_1.webp',
+      'images/Abiturientu/2022/Specialnosti/TechichOb/TechOb9-gif.webp'
     ],
     icon: Wrench,
     youtubeId: '4gYupMwxmDM',
@@ -101,12 +101,12 @@ const SPECIALTIES: Specialty[] = [
     duration: 'На основе общего базового — 3 года 6 мес.; на основе общего среднего — 2 года 6 мес.; заочная форма — 3 года 6 мес.',
     budget: '25-30',
     paid: 0,
-    image: 'images/specialties/agri_repair.png',
+    image: 'images/specialties/agri_repair.webp',
     gallery: [
-      'images/Abiturientu/2022/Specialnosti/Remontniki/remont.gif',
-      'images/Abiturientu/2022/Specialnosti/Remontniki/remont2.gif',
-      'images/Abiturientu/2022/Specialnosti/Remontniki/remont3.gif',
-      'images/Abiturientu/2022/Specialnosti/Remontniki/remont4.gif'
+      'images/Abiturientu/2022/Specialnosti/Remontniki/remont.webp',
+      'images/Abiturientu/2022/Specialnosti/Remontniki/remont2.webp',
+      'images/Abiturientu/2022/Specialnosti/Remontniki/remont3.webp',
+      'images/Abiturientu/2022/Specialnosti/Remontniki/remont4.webp'
     ],
     icon: Tractor,
     description: 'Организация эксплуатации, техобслуживания и ремонта сельскохозяйственных машин и оборудования.',
@@ -121,12 +121,12 @@ const SPECIALTIES: Specialty[] = [
     duration: 'На основе общего базового — 3 года 6 мес.; на основе общего среднего — 2 года 6 мес.',
     budget: '25-30',
     paid: 0,
-    image: 'images/specialties/build_spec.png',
+    image: 'images/specialties/build_spec.webp',
     gallery: [
-      'images/Abiturientu/2022/Specialnosti/PCS/pgs.gif',
-      'images/Abiturientu/2022/Specialnosti/PCS/pgs2.gif',
-      'images/Abiturientu/2022/Specialnosti/PCS/pgs4.gif',
-      'images/Abiturientu/2022/Specialnosti/PCS/pgs5.gif'
+      'images/Abiturientu/2022/Specialnosti/PCS/pgs.webp',
+      'images/Abiturientu/2022/Specialnosti/PCS/pgs2.webp',
+      'images/Abiturientu/2022/Specialnosti/PCS/pgs4.webp',
+      'images/Abiturientu/2022/Specialnosti/PCS/pgs5.webp'
     ],
     icon: HardHat,
     youtubeId: 'zuzbR3h96CA',
@@ -143,11 +143,11 @@ const SPECIALTIES: Specialty[] = [
     duration: 'На основе общего базового образования — 3 года 7 месяцев',
     budget: '25-30',
     paid: 0,
-    image: 'images/specialties/road_spec.png',
+    image: 'images/specialties/road_spec.webp',
     gallery: [
-      'images/Abiturientu/2022/Specialnosti/StrDorog/StrDorog.gif',
-      'images/Abiturientu/2022/Specialnosti/StrDorog/StrDorog2.gif',
-      'images/Abiturientu/2022/Specialnosti/StrDorog/StrDorog3.gif'
+      'images/Abiturientu/2022/Specialnosti/StrDorog/StrDorog.webp',
+      'images/Abiturientu/2022/Specialnosti/StrDorog/StrDorog2.webp',
+      'images/Abiturientu/2022/Specialnosti/StrDorog/StrDorog3.webp'
     ],
     icon: Hammer,
     youtubeId: 'zuzbR3h96CA',
@@ -228,22 +228,23 @@ const Specialties: React.FC = () => {
             {SPECIALTIES.map((spec) => (
               <div key={spec.id} className="bg-white rounded-2xl shadow-md overflow-hidden border border-slate-100 flex flex-col xl:flex-row hover:shadow-xl transition-shadow duration-300">
                 {/* Image Section */}
-                <div className="relative xl:w-5/12 min-h-[300px] shrink-0 bg-slate-100 flex items-center justify-center overflow-hidden">
+                <div className="relative w-full xl:w-5/12 min-h-[200px] sm:min-h-[250px] xl:min-h-[300px] shrink-0 bg-slate-100 overflow-hidden">
+                  <div className="absolute inset-0 w-full h-full">
+                    {spec.gallery && spec.gallery.length > 0 ? (
+                      <ImageSlider 
+                        images={spec.gallery.map(img => `${import.meta.env.BASE_URL}${img}`)} 
+                        fallbackImage={`${import.meta.env.BASE_URL}${spec.image}`}
+                        altPrefix={spec.title}
+                      />
+                    ) : (
+                      <img 
+                        src={`${import.meta.env.BASE_URL}${spec.image}`}
+                        alt={spec.title} 
+                        className="w-full h-full object-cover"
+                      />
+                    )}
+                  </div>
                   <div className="absolute inset-0 bg-primary-900/10 hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-                  
-                  {spec.gallery && spec.gallery.length > 0 ? (
-                    <ImageSlider 
-                      images={spec.gallery.map(img => `${import.meta.env.BASE_URL}${img}`)} 
-                      fallbackImage={`${import.meta.env.BASE_URL}${spec.image}`}
-                      altPrefix={spec.title}
-                    />
-                  ) : (
-                    <img 
-                      src={`${import.meta.env.BASE_URL}${spec.image}`}
-                      alt={spec.title} 
-                      className="w-full h-full object-cover"
-                    />
-                  )}
 
                   <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-lg text-primary-900 pointer-events-none">
                     <spec.icon className="w-6 h-6" />
@@ -254,17 +255,17 @@ const Specialties: React.FC = () => {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 flex flex-col grow">
-                  <h3 className="text-2xl font-bold text-primary-900 mb-3 leading-tight">
+                <div className="p-5 sm:p-6 lg:p-8 flex flex-col grow">
+                  <h3 className="text-xl sm:text-2xl font-bold text-primary-900 mb-2 sm:mb-3 leading-tight">
                     {spec.title}
                   </h3>
-                  <div className="mb-8">
-                    <span className="inline-flex items-center bg-primary-50 text-primary-800 text-sm font-semibold px-4 py-1.5 rounded-md">
+                  <div className="mb-5 sm:mb-8">
+                    <span className="inline-flex items-center bg-primary-50 text-primary-800 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 rounded-md">
                       Квалификация: {spec.qualification}
                     </span>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 sm:gap-y-6 mb-6 sm:mb-8">
                     <div>
                       <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
                         <Clock className="w-4 h-4 text-accent-500" /> Срок обучения

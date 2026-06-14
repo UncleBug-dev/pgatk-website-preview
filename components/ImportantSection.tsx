@@ -17,7 +17,7 @@ const ImportantSection: React.FC = () => {
 
   // Хелпер для путей к картинкам
   const resolvePath = (path: string) => {
-    if (!path) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+    if (!path) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
     if (path.startsWith('http') || path.startsWith('data:')) return path;
     return `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
   };
@@ -101,7 +101,7 @@ const ImportantSection: React.FC = () => {
                   alt={item.title} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   onError={(e) => {
-                    e.currentTarget.src = `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+                    e.currentTarget.src = `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
                   }}
                 />
                 

@@ -21,7 +21,7 @@ const ProfkomStudents: React.FC = () => {
         
         <div className="w-48 md:w-56 aspect-[3/4] shrink-0 relative z-10 rounded-2xl overflow-hidden shadow-lg border-4 border-white bg-slate-100">
           <img 
-            src="/images/Ideologiy/_viber_2024-02-29_19-51-31-657.jpg" 
+            src="/images/Ideologiy/_viber_2024-02-29_19-51-31-657.webp" 
             alt="Малыщик Татьяна Александровна" 
             className="w-full h-full object-cover object-top"
             onError={(e) => {

@@ -5,11 +5,11 @@ import { MAIN_MENU } from '../constants';
 import { Lightbox } from '../components/Lightbox';
 
 const HONOR_IMAGES = [
-  '4L0A3275.jpg', '4L0A3286.jpg', '4L0A32911.jpg', '4L0A3300.jpg',
-  '4L0A3306.jpg', '4L0A3324.jpg', '4L0A3339.jpg', '4L0A3349.jpg',
-  '4L0A3359.jpg', '4L0A3365.jpg', '4L0A3372.jpg', '4L0A3373.jpg',
-  '4L0A3379.jpg', '4L0A3384.jpg', '4L0A3391.jpg', '4L0A3401.jpg',
-  '4L0A3411.jpg', '4L0A3415.jpg', '4L0A3422.jpg', '4L0A3430.jpg'
+  '4L0A3275.webp', '4L0A3286.webp', '4L0A32911.webp', '4L0A3300.webp',
+  '4L0A3306.webp', '4L0A3324.webp', '4L0A3339.webp', '4L0A3349.webp',
+  '4L0A3359.webp', '4L0A3365.webp', '4L0A3372.webp', '4L0A3373.webp',
+  '4L0A3379.webp', '4L0A3384.webp', '4L0A3391.webp', '4L0A3401.webp',
+  '4L0A3411.webp', '4L0A3415.webp', '4L0A3422.webp', '4L0A3430.webp'
 ];
 
 const VirtualHonorBoard: React.FC = () => {

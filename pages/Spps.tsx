@@ -189,7 +189,7 @@ export default function Spps() {
           
           <div className="z-10 w-full max-w-2xl mb-6">
             <img 
-              src="/images/1Novosti/2024/Iyn/tmkompas.jpg" 
+              src="/images/1Novosti/2024/Iyn/tmkompas.webp" 
               alt="Телеграм Компас" 
               className="w-full h-auto rounded-2xl shadow-lg border-4 border-white/20" 
             />
@@ -376,42 +376,42 @@ export default function Spps() {
           <ImageGallery 
             title="Телефоны доверия" 
             images={[
-              "/images/Ideologiy/SPPS/133.png",
-              "/images/Ideologiy/SPPS/doverie.jpg",
-              "/images/Ideologiy/SPPS/telefondoveriy2_500x750-equal.jpg",
-              "/images/Ideologiy/SPPS/telefondoveriy_500x653-equal.jpg"
+              "/images/Ideologiy/SPPS/133.webp",
+              "/images/Ideologiy/SPPS/doverie.webp",
+              "/images/Ideologiy/SPPS/telefondoveriy2_500x750-equal.webp",
+              "/images/Ideologiy/SPPS/telefondoveriy_500x653-equal.webp"
             ]} 
           />
 
           <ImageGallery 
             title="Научите детей правилу трех шагов" 
             images={[
-              "/images/Ideologiy/SPPS/PraviloTrechShagov/1.jpg",
-              "/images/Ideologiy/SPPS/PraviloTrechShagov/2.jpg"
+              "/images/Ideologiy/SPPS/PraviloTrechShagov/1.webp",
+              "/images/Ideologiy/SPPS/PraviloTrechShagov/2.webp"
             ]} 
           />
 
           <ImageGallery 
             title="Соблюдай правила безопасности" 
             images={[
-              "/images/Ideologiy/SPPS/PravilaBezopasnosti/3.jpg",
-              "/images/Ideologiy/SPPS/PravilaBezopasnosti/4.jpg"
+              "/images/Ideologiy/SPPS/PravilaBezopasnosti/3.webp",
+              "/images/Ideologiy/SPPS/PravilaBezopasnosti/4.webp"
             ]} 
           />
 
           <ImageGallery 
             title="Неприкосновенность" 
             images={[
-              "/images/Ideologiy/SPPS/Neprikosnovennost/5.jpg",
-              "/images/Ideologiy/SPPS/Neprikosnovennost/6.jpg",
-              "/images/Ideologiy/SPPS/Neprikosnovennost/7.jpg"
+              "/images/Ideologiy/SPPS/Neprikosnovennost/5.webp",
+              "/images/Ideologiy/SPPS/Neprikosnovennost/6.webp",
+              "/images/Ideologiy/SPPS/Neprikosnovennost/7.webp"
             ]} 
           />
           
           <ImageGallery 
             title="Оказание помощи несовершеннолетним потерпевшим от сексуального насилия" 
             images={[
-              "/images/1Novosti/2023/Dekabr/ChatBotPomosh/IMG_20231221_124124_213.jpg"
+              "/images/1Novosti/2023/Dekabr/ChatBotPomosh/IMG_20231221_124124_213.webp"
             ]} 
           />
 
@@ -430,8 +430,8 @@ export default function Spps() {
           <ImageGallery 
             title="Региональная карта помощи (Брестская область)" 
             images={[
-              "/images/1Novosti/2025/8August/RegKarta/1.png",
-              "/images/1Novosti/2025/8August/RegKarta/2.png"
+              "/images/1Novosti/2025/8August/RegKarta/1.webp",
+              "/images/1Novosti/2025/8August/RegKarta/2.webp"
             ]} 
           />
         </div>

@@ -5,7 +5,7 @@ import { MAIN_MENU } from '../constants';
 import { Lightbox } from '../components/Lightbox';
 
 const STRUCTURE_IMAGES = [
-  'Struktura.jpg'
+  'Struktura.webp'
 ];
 
 const OrganizationalStructure: React.FC = () => {

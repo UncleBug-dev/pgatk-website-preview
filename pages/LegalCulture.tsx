@@ -85,20 +85,20 @@ const LegalCulture: React.FC = () => {
   ];
 
   const galleryImages = [
-    "/images/Ideologiy/PravovauKultura/pamytka_narkomaniy_500x353-equal.jpg",
-    "/images/Ideologiy/PravovauKultura/upotreblenie_500x379-equal.jpg",
-    "/images/1Novosti/2022/iyl/StopNarkotik/SrtopNarkotik.jpg",
-    "/images/1Novosti/2022/iyl/StopNarkotik/photo_2022-02-07_18-33-49.jpg",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/1.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/2.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/4.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/5.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/6.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/7.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/8.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/9.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/10.png",
-    "/images/Ideologiy/STOPNARKOTIK/Moladz/11.png"
+    "/images/Ideologiy/PravovauKultura/pamytka_narkomaniy_500x353-equal.webp",
+    "/images/Ideologiy/PravovauKultura/upotreblenie_500x379-equal.webp",
+    "/images/1Novosti/2022/iyl/StopNarkotik/SrtopNarkotik.webp",
+    "/images/1Novosti/2022/iyl/StopNarkotik/photo_2022-02-07_18-33-49.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/1.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/2.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/4.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/5.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/6.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/7.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/8.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/9.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/10.webp",
+    "/images/Ideologiy/STOPNARKOTIK/Moladz/11.webp"
   ];
 
   const extraLinks = [
@@ -138,7 +138,7 @@ const LegalCulture: React.FC = () => {
           <div className="w-48 md:w-64 shrink-0 perspective-1000">
             <div className="transform transition-transform duration-500 group-hover:scale-105 group-hover:rotate-y-[-10deg] group-hover:rotate-x-[5deg] shadow-2xl rounded-lg overflow-hidden border-2 border-white/10">
               <img 
-                src="/images/Ideologiy/77pluxkh8a8pic3j19tam54xkoxiern6.jpg" 
+                src="/images/Ideologiy/77pluxkh8a8pic3j19tam54xkoxiern6.webp" 
                 alt="Конституция Республики Беларусь" 
                 className="w-full h-auto object-cover"
                 onError={(e) => {
@@ -338,7 +338,7 @@ const LegalCulture: React.FC = () => {
         </div>
         <div className="w-full md:w-1/3 shrink-0 z-10 relative">
           <img 
-            src="/images/1Novosti/2024/Janvar/SdachaOrushiy/ODobrovSdOr.jpg" 
+            src="/images/1Novosti/2024/Janvar/SdachaOrushiy/ODobrovSdOr.webp" 
             alt="Сдача оружия" 
             className="w-full h-full object-cover rounded-2xl shadow-lg border border-red-700/50"
             onError={(e) => {
@@ -377,7 +377,7 @@ const LegalCulture: React.FC = () => {
         <div className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm flex flex-col">
           <div className="h-48 overflow-hidden bg-slate-100 relative">
             <img 
-              src="/images/1Novosti/2026/Fevral/Ukaz.png" 
+              src="/images/1Novosti/2026/Fevral/Ukaz.webp" 
               alt="Указ" 
               className="w-full h-full object-cover object-top"
               onError={(e) => {

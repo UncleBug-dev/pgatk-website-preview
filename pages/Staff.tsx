@@ -10,14 +10,14 @@ const ADMINISTRATION_DATA: PersonProps[] = [
   {
     name: "Колб Игорь Михайлович",
     position: "Директор колледжа",
-    photoUrl: "/images/administration/Kolb_IM.jpeg",
+    photoUrl: "/images/administration/Kolb_IM.webp",
     phone: "8 (0165) 63-94-99",
     description: "Время приёма по личным вопросам: 2-й вторник месяца с 08.00 до 14.00. 2 этаж, кабинет 205 К1."
   },
   {
     name: "Бегер Олег Александрович",
     position: "Заместитель директора по учебной работе",
-    photoUrl: "/images/administration/Beger_OA.jpeg",
+    photoUrl: "/images/administration/Beger_OA.webp",
     phone: "8 (0165) 61-27-91",
     description: "Время приёма по личным вопросам: 1-й понедельник месяца с 08.00 до 14.00. 2 этаж, кабинет 208 К1."
   },
@@ -30,28 +30,28 @@ const ADMINISTRATION_DATA: PersonProps[] = [
   {
     name: "Кулеш Игорь Леонидович",
     position: "Заместитель директора по производственному обучению",
-    photoUrl: "/images/administration/Kulesh_IL.jpeg",
+    photoUrl: "/images/administration/Kulesh_IL.webp",
     phone: "8 (0165) 63-93-33",
     description: "Время приёма по личным вопросам: 3-й вторник месяца с 08.00 до 14.00. 2 этаж, кабинет 207 К1."
   },
   {
     name: "Пашкевич Семен Васильевич",
     position: "Заместитель директора по воспитательной работе",
-    photoUrl: "/images/administration/Pashkevich.png",
+    photoUrl: "/images/administration/Pashkevich.webp",
     phone: "8 (0165) 63-93-24",
     description: "Время приёма по личным вопросам: 2-й понедельник месяца с 08.00 до 14.00. 2 этаж, кабинет 203 К1."
   },
   {
     name: "Харитонович Дмитрий Степанович",
     position: "Заместитель директора по хозяйственной работе",
-    photoUrl: "/images/administration/Haritonovich.png",
+    photoUrl: "/images/administration/Haritonovich.webp",
     phone: "8 (0165) 63-93-49",
     description: "Время приёма по личным вопросам: 2-я пятница месяца с 08.00 до 14.00. 2 этаж, кабинет 202 К1."
   },
   {
     name: "Куницкая Наталия Михайловна",
     position: "Главный бухгалтер",
-    photoUrl: "/images/administration/Kunickay.png",
+    photoUrl: "/images/administration/Kunickay.webp",
     phone: "8 (0165) 63-93-61",
     description: "Время приёма по личным вопросам: 1-й четверг месяца с 08.00 до 14.00. 2 этаж, кабинет 215 К1."
   }

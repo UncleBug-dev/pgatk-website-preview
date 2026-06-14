@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 // Simple Lightbox component for the gallery
 const Gallery: React.FC = () => {
   const images = [
-    '/images/ObrProcess/Biblioteka/photo/komnati/30052023_12_45_09.jpg',
-    '/images/ObrProcess/Biblioteka/photo/komnati/30052023_12_45_17.jpg',
-    '/images/ObrProcess/Biblioteka/photo/komnati/30052023_12_45_52.jpg'
+    '/images/ObrProcess/Biblioteka/photo/komnati/30052023_12_45_09.webp',
+    '/images/ObrProcess/Biblioteka/photo/komnati/30052023_12_45_17.webp',
+    '/images/ObrProcess/Biblioteka/photo/komnati/30052023_12_45_52.webp'
   ];
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

@@ -8,9 +8,9 @@ import { MAIN_MENU } from '../constants';
 import { Lightbox } from '../components/Lightbox';
 
 const IMAGES = [
-  '1.jpg', '2.jpg', '3.jpg', '3.1.jpg', '4.jpg', '5.jpg', 
-  '6.jpg', '7.jpg', '7.1.jpg', '8.jpg', '9.jpg', '10.jpg', 
-  '11.jpg', '12.jpg', '13.jpg', '14.jpg', '18.jpg', '19.jpg'
+  '1.webp', '2.webp', '3.webp', '3.1.webp', '4.webp', '5.webp', 
+  '6.webp', '7.webp', '7.1.webp', '8.webp', '9.webp', '10.webp', 
+  '11.webp', '12.webp', '13.webp', '14.webp', '18.webp', '19.webp'
 ];
 
 const Facilities: React.FC = () => {
@@ -133,7 +133,7 @@ const Facilities: React.FC = () => {
                   className="block group relative rounded-2xl overflow-hidden shadow-lg border-4 border-slate-100 hover:border-accent-400 transition-colors duration-300"
                 >
                   <img 
-                    src="/images/facilities/VEkskursiy.gif" 
+                    src="/images/facilities/VEkskursiy.webp" 
                     alt="Виртуальная экскурсия по колледжу" 
                     className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700" 
                   />

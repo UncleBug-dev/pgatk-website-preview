@@ -152,7 +152,7 @@ const MEDIA_DATA = [
     title: 'Чтобы помнить цену мира и свободы',
     source: '04.04.2025',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/1Novosti/2025/4Aprel/UrokMushestva.jpg',
+    link: '/images/1Novosti/2025/4Aprel/UrokMushestva.webp',
     type: 'image'
   },
   {
@@ -173,7 +173,7 @@ const MEDIA_DATA = [
     title: 'Почетный мелиоратор',
     source: '21.03.2025',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/1Novosti/2025/3.Mart/2603PochetniyMeliorator.png',
+    link: '/images/1Novosti/2025/3.Mart/2603PochetniyMeliorator.webp',
     type: 'image'
   },
   {
@@ -194,28 +194,28 @@ const MEDIA_DATA = [
     title: 'Главное - чувствовать настроение людей, знать их проблемы...',
     source: '15.03.2025',
     date: 'Газета \'Живая вода\'',
-    link: '/images/1Novosti/2025/5May/__11__15032025__2.jpg',
+    link: '/images/1Novosti/2025/5May/__11__15032025__2.webp',
     type: 'image'
   },
   {
     title: 'Здесь принято трудиться эффективно и прибыльно',
     source: '15.03.2025',
     date: 'Газета \'Живая вода\'',
-    link: '/images/1Novosti/2025/5May/__11__15032025__1.jpg',
+    link: '/images/1Novosti/2025/5May/__11__15032025__1.webp',
     type: 'image'
   },
   {
     title: 'Путевка в профессию',
     source: '08.03.2025',
     date: 'Газета \'Живая вода\'',
-    link: '/images/1Novosti/2025/5May/_10__08032025.jpg',
+    link: '/images/1Novosti/2025/5May/_10__08032025.webp',
     type: 'image'
   },
   {
     title: 'За труд, за честь, за преданность профессии',
     source: '08.02.2025',
     date: 'Газета \'Живая вода\'',
-    link: '/images/1Novosti/2025/5May/_8__2025.jpg',
+    link: '/images/1Novosti/2025/5May/_8__2025.webp',
     type: 'image'
   },
   {
@@ -362,7 +362,7 @@ const MEDIA_DATA = [
     title: 'Чем больше мы в жизни  чего-то делаем -тем для нас она становится интересней',
     source: '26.04.2024, №21',
     date: 'Газета \'Живая вода\'',
-    link: '/images/1Novosti/2024/May/21__27052024.jpg',
+    link: '/images/1Novosti/2024/May/21__27052024.webp',
     type: 'image'
   },
   {
@@ -376,7 +376,7 @@ const MEDIA_DATA = [
     title: 'Пинчане -на масштабном марафоне',
     source: 'от 17.05.2024',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/1Novosti/2024/May/img098.jpg',
+    link: '/images/1Novosti/2024/May/img098.webp',
     type: 'image'
   },
   {
@@ -390,14 +390,14 @@ const MEDIA_DATA = [
     title: 'С историей сверяя шаг',
     source: '№19, от 11.05.2024',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/1Novosti/2024/May/2.png',
+    link: '/images/1Novosti/2024/May/2.webp',
     type: 'image'
   },
   {
     title: 'Трудом красив человек',
     source: '№14',
     date: '11 мая 2024',
-    link: '/images/1Novosti/2024/May/img096.jpg',
+    link: '/images/1Novosti/2024/May/img096.webp',
     type: 'image'
   },
   {
@@ -418,21 +418,21 @@ const MEDIA_DATA = [
     title: 'Храбрые сердца',
     source: 'выпуск 14',
     date: 'Золотой колос',
-    link: '/images/1Novosti/2024/Oktybr/HrabrieSerca.jpg',
+    link: '/images/1Novosti/2024/Oktybr/HrabrieSerca.webp',
     type: 'image'
   },
   {
     title: 'Пограничникам',
     source: 'выпуск 14',
     date: 'Золотой колос',
-    link: '/images/1Novosti/2024/Oktybr/Pogranichnikam.jpg',
+    link: '/images/1Novosti/2024/Oktybr/Pogranichnikam.webp',
     type: 'image'
   },
   {
     title: 'Быть пограничником',
     source: 'выпуск 14',
     date: 'Золотой колос',
-    link: '/images/1Novosti/2024/Oktybr/BitPogranichnikom.jpg',
+    link: '/images/1Novosti/2024/Oktybr/BitPogranichnikom.webp',
     type: 'image'
   },
   {
@@ -446,7 +446,7 @@ const MEDIA_DATA = [
     title: 'Чтобы заняться делом и заработать',
     source: '26.04.2024, №7',
     date: 'Газета \'Пінскі Веснік\'',
-    link: '/images/1Novosti/2024/May/img084.jpg',
+    link: '/images/1Novosti/2024/May/img084.webp',
     type: 'image'
   },
   {
@@ -467,21 +467,21 @@ const MEDIA_DATA = [
     title: 'Удачный для руководителя год. Директор ОАО \'Полесьегипроводхоз\' Петр Колесникович - \'Человек года\'.',
     source: 'СМИ',
     date: '',
-    link: '/images/1Novosti/2024/Aprel/235435654675_1_1.png',
+    link: '/images/1Novosti/2024/Aprel/235435654675_1_1.webp',
     type: 'image'
   },
   {
     title: 'Назначение. Директор УП \'Лунинецкое ПМС\'',
     source: 'СМИ',
     date: '',
-    link: '/images/1Novosti/2024/Aprel/1234324213_1.png',
+    link: '/images/1Novosti/2024/Aprel/1234324213_1.webp',
     type: 'image'
   },
   {
     title: 'Нам вместе быть доверено веками (газета \'Пінскі Веснік\', 05.04.2024)',
     source: '05.04.2024',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/1Novosti/2024/Aprel/img024.jpg',
+    link: '/images/1Novosti/2024/Aprel/img024.webp',
     type: 'image'
   },
   {
@@ -509,7 +509,7 @@ const MEDIA_DATA = [
     title: '\'Мехдвор с атрибутами сказки\'',
     source: '2024',
     date: 'газета \'Знамя юности №13',
-    link: '/images/Kolledg/ONasPishut/ZnamyYnosti132024.jpg',
+    link: '/images/Kolledg/ONasPishut/ZnamyYnosti132024.webp',
     type: 'image'
   },
   {
@@ -523,21 +523,21 @@ const MEDIA_DATA = [
     title: 'Это \'Другой ритм\'. Это только начало',
     source: '29.03.2024 №13',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/img018.jpg',
+    link: '/images/Kolledg/ONasPishut/img018.webp',
     type: 'image'
   },
   {
     title: 'Преданность профессии он пронес через всю жизнь',
     source: '16.03.2024 №11',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/ProfessiyPrones.png',
+    link: '/images/Kolledg/ONasPishut/ProfessiyPrones.webp',
     type: 'image'
   },
   {
     title: '\'Я продолжаю открывать себя\'',
     source: '15.03.2024',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/VibirySeby.jpg',
+    link: '/images/Kolledg/ONasPishut/VibirySeby.webp',
     type: 'image'
   },
   {
@@ -558,7 +558,7 @@ const MEDIA_DATA = [
     title: 'Счастливы вместе',
     source: '23.02.2024 №8',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/Kozubovskie.png',
+    link: '/images/Kolledg/ONasPishut/Kozubovskie.webp',
     type: 'image'
   },
   {
@@ -635,14 +635,14 @@ const MEDIA_DATA = [
     title: 'Кто ведет?',
     source: '19.01.2024, №3',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/1Novosti/2024/Janvar/3__19012024.jpg',
+    link: '/images/1Novosti/2024/Janvar/3__19012024.webp',
     type: 'image'
   },
   {
     title: 'В БГСХА на конкурс',
     source: '13.01.2024, №2',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/VBGXHA.jpg',
+    link: '/images/Kolledg/ONasPishut/VBGXHA.webp',
     type: 'image'
   },
   {
@@ -712,7 +712,7 @@ const MEDIA_DATA = [
     title: 'Оправдать доверие',
     source: '10.11.2023 №45',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/OpravdatDoverie.jpg',
+    link: '/images/Kolledg/ONasPishut/OpravdatDoverie.webp',
     type: 'image'
   },
   {
@@ -726,7 +726,7 @@ const MEDIA_DATA = [
     title: 'На главной сцене областных \'Дожинок\' наградили победителей уборочной кампании-2023.В их числе - представители Пинщины.',
     source: '15.09.2023\' №37',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/Sentybr2023.jpg',
+    link: '/images/Kolledg/ONasPishut/Sentybr2023.webp',
     type: 'image'
   },
   {
@@ -740,14 +740,14 @@ const MEDIA_DATA = [
     title: 'Креативный старт приемной кампании',
     source: '21.07.2023\'',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/StartPK.jpg',
+    link: '/images/Kolledg/ONasPishut/StartPK.webp',
     type: 'image'
   },
   {
     title: 'Людзі зямлі палескай. Прага жыцця',
     source: '21.07.2023\'',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/img606.jpg',
+    link: '/images/Kolledg/ONasPishut/img606.webp',
     type: 'image'
   },
   {
@@ -859,14 +859,14 @@ const MEDIA_DATA = [
     title: 'Трактористами стали ... студенты (Газета \'Живая вода\', №29, 22.07.2023)',
     source: '№29, 22.07.2023',
     date: 'Газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/img443.jpg',
+    link: '/images/Kolledg/ONasPishut/img443.webp',
     type: 'image'
   },
   {
     title: 'К сведению абитуриентов (газета \'Живая вода\', №28, 2023)',
     source: '№28, 2023',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/img442.jpg',
+    link: '/images/Kolledg/ONasPishut/img442.webp',
     type: 'image'
   },
   {
@@ -894,14 +894,14 @@ const MEDIA_DATA = [
     title: 'Как работает обновлённый Кодекс об образовании Республики Беларусь, проверили на месте',
     source: 'культуре и науке Палаты представителей Национального собрания Республики Беларусь',
     date: 'Выездное заседание Постоянной комиссии по образованию',
-    link: '/images/Kolledg/ONasPishut/img393.jpg',
+    link: '/images/Kolledg/ONasPishut/img393.webp',
     type: 'image'
   },
   {
     title: 'На падыходзе да моста - дарожнікі (газета \'Навіны Стаўбцоўшчыны\', № 39, 03.06.2023)',
     source: '№ 39, 03.06.2023',
     date: 'газета \'Навіны Стаўбцоўшчыны\'',
-    link: '/images/Kolledg/ONasPishut/Doroshniki.jpeg',
+    link: '/images/Kolledg/ONasPishut/Doroshniki.webp',
     type: 'image'
   },
   {
@@ -936,14 +936,14 @@ const MEDIA_DATA = [
     title: 'По зову Зарницы (газета \'Живая вода\', 20.05.2023, №20)',
     source: '20.05.2023, №20',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/img328.jpg',
+    link: '/images/Kolledg/ONasPishut/img328.webp',
     type: 'image'
   },
   {
     title: 'Дружбу скрепили договором (газета \'Живая вода\', 20.05.2023, №20)',
     source: '20.05.2023, №20',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/img327.jpg',
+    link: '/images/Kolledg/ONasPishut/img327.webp',
     type: 'image'
   },
   {
@@ -957,14 +957,14 @@ const MEDIA_DATA = [
     title: 'Работа на земле - призвание',
     source: 'СМИ',
     date: 'газета \'Живая вода\' от 13.05.2023',
-    link: '/images/Kolledg/ONasPishut/RabotaNaZemlePrizvanie.jpg',
+    link: '/images/Kolledg/ONasPishut/RabotaNaZemlePrizvanie.webp',
     type: 'image'
   },
   {
     title: 'Слышали? В Почапово - на \'Зарницу\'',
     source: '04.05.2023\'',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/Zarnica.jpg',
+    link: '/images/Kolledg/ONasPishut/Zarnica.webp',
     type: 'image'
   },
   {
@@ -978,7 +978,7 @@ const MEDIA_DATA = [
     title: 'Молодое пополнение',
     source: 'от 06.05.2023',
     date: 'газета \'Живая вода\' №18',
-    link: '/images/Kolledg/ONasPishut/MolodoePopolnenie.jpg',
+    link: '/images/Kolledg/ONasPishut/MolodoePopolnenie.webp',
     type: 'image'
   },
   {
@@ -992,7 +992,7 @@ const MEDIA_DATA = [
     title: 'Назначение. Генеральный директором ОУП \'Гродномеливодхоз\' назначен В.В. Полуянов',
     source: '29.04.2023\'',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/Naznachenie.jpg',
+    link: '/images/Kolledg/ONasPishut/Naznachenie.webp',
     type: 'image'
   },
   {
@@ -1006,7 +1006,7 @@ const MEDIA_DATA = [
     title: 'Надежное плечо милиции',
     source: '21.04.2023\'',
     date: 'газета \'Пінскі Веснік',
-    link: '/images/Kolledg/ONasPishut/NadeshnoePlechoMilicii.jpg',
+    link: '/images/Kolledg/ONasPishut/NadeshnoePlechoMilicii.webp',
     type: 'image'
   },
   {
@@ -1020,21 +1020,21 @@ const MEDIA_DATA = [
     title: 'Беларуская мова і літаратура (3/2023) - Займальны матэріал',
     source: '3/2023',
     date: '',
-    link: '/images/Kolledg/ONasPishut/img299.jpg',
+    link: '/images/Kolledg/ONasPishut/img299.webp',
     type: 'image'
   },
   {
     title: 'Чтобы принять правильное решение',
     source: '03.03.2023, №9',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/PravilnoeReshenie.jpg',
+    link: '/images/Kolledg/ONasPishut/PravilnoeReshenie.webp',
     type: 'image'
   },
   {
     title: 'Малады талент Палесся',
     source: '10.03.2023, №10',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/MaladiTAlentPalessy.jpg',
+    link: '/images/Kolledg/ONasPishut/MaladiTAlentPalessy.webp',
     type: 'image'
   },
   {
@@ -1048,14 +1048,14 @@ const MEDIA_DATA = [
     title: 'Футбол мини - польза макси',
     source: '10.02.2023, №6',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/FutbolMini.jpg',
+    link: '/images/Kolledg/ONasPishut/FutbolMini.webp',
     type: 'image'
   },
   {
     title: 'Семинар \'И права, и обязанности\'',
     source: '10.02.2023, №6',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/PravaObyzannosti.jpg',
+    link: '/images/Kolledg/ONasPishut/PravaObyzannosti.webp',
     type: 'image'
   },
   {
@@ -1090,14 +1090,14 @@ const MEDIA_DATA = [
     title: 'Конкурс назвал лучших',
     source: '24.12.2022 №52',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/img143.jpg',
+    link: '/images/Kolledg/ONasPishut/img143.webp',
     type: 'image'
   },
   {
     title: 'Жыццё і творчасць Якуба Коласа',
     source: '11/2022',
     date: 'Часопiс \'Беларуская мова і літаратура\'',
-    link: '/images/Kolledg/ONasPishut/img118.jpg',
+    link: '/images/Kolledg/ONasPishut/img118.webp',
     type: 'image'
   },
   {
@@ -1125,7 +1125,7 @@ const MEDIA_DATA = [
     title: 'Труд крут',
     source: '25.11.2022 №47',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/trudkrut.jpg',
+    link: '/images/Kolledg/ONasPishut/trudkrut.webp',
     type: 'image'
   },
   {
@@ -1146,14 +1146,14 @@ const MEDIA_DATA = [
     title: 'Напярэдадні свята!',
     source: '01.11.2022, №106',
     date: 'Газета \'Настаўніцкая газета\'',
-    link: '/images/Kolledg/ONasPishut/NapyredanniSvyta.jpg',
+    link: '/images/Kolledg/ONasPishut/NapyredanniSvyta.webp',
     type: 'image'
   },
   {
     title: 'Андрей Колесникович: \'Работать мне здесь по душе\'',
     source: '01.10.2022, №78',
     date: 'Газета \'Полесская правда\'',
-    link: '/images/Kolledg/ONasPishut/RabotatZdesMnePoDushe.jpg',
+    link: '/images/Kolledg/ONasPishut/RabotatZdesMnePoDushe.webp',
     type: 'image'
   },
   {
@@ -1167,14 +1167,14 @@ const MEDIA_DATA = [
     title: 'От болот - к богатым нивам',
     source: 'от 10.09.2022 №37',
     date: 'газета \'Живая вода\'',
-    link: '/images/Kolledg/ONasPishut/OtBolotKBogatimNivam.jpg',
+    link: '/images/Kolledg/ONasPishut/OtBolotKBogatimNivam.webp',
     type: 'image'
   },
   {
     title: 'Студенческие отряды',
     source: '05.08.2022 № 31',
     date: 'газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/StudencheskieOtrydi.jpg',
+    link: '/images/Kolledg/ONasPishut/StudencheskieOtrydi.webp',
     type: 'image'
   },
   {
@@ -1202,7 +1202,7 @@ const MEDIA_DATA = [
     title: 'Мнение. Интервью директора.',
     source: '10.06.2022 №23',
     date: 'Газета \'Белорусский час\'',
-    link: '/images/Kolledg/ONasPishut/Mnenie.jpg',
+    link: '/images/Kolledg/ONasPishut/Mnenie.webp',
     type: 'image'
   },
   {
@@ -1223,7 +1223,7 @@ const MEDIA_DATA = [
     title: 'Интврью В.Г. Пашкевича. Автопробег.',
     source: '20.05.2022 №20',
     date: 'Газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/IntPashkevich.jpg',
+    link: '/images/Kolledg/ONasPishut/IntPashkevich.webp',
     type: 'image'
   },
   {
@@ -1251,7 +1251,7 @@ const MEDIA_DATA = [
     title: '1',
     source: '1',
     date: '',
-    link: '/images/Kolledg/ONasPishut/MiVmesteZaBel.jpg',
+    link: '/images/Kolledg/ONasPishut/MiVmesteZaBel.webp',
     type: 'image'
   },
   {
@@ -1265,7 +1265,7 @@ const MEDIA_DATA = [
     title: '1',
     source: '1',
     date: '',
-    link: '/images/Kolledg/ONasPishut/KDeluSGorSerdcem.jpg',
+    link: '/images/Kolledg/ONasPishut/KDeluSGorSerdcem.webp',
     type: 'image'
   },
   {
@@ -1279,7 +1279,7 @@ const MEDIA_DATA = [
     title: 'Поклон Вам - хлеборобы!',
     source: '08.09.2021',
     date: 'Газета \'Пінскі Веснік\'',
-    link: '/images/Kolledg/ONasPishut/PoklonVamHleborobi.jpg',
+    link: '/images/Kolledg/ONasPishut/PoklonVamHleborobi.webp',
     type: 'image'
   },
   {
@@ -1293,7 +1293,7 @@ const MEDIA_DATA = [
     title: 'Регистрационное свидетельство',
     source: 'СМИ',
     date: '',
-    link: '/images/img601.jpg',
+    link: '/images/img601.webp',
     type: 'image'
   },
   {

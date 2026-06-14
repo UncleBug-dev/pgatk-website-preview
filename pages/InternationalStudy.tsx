@@ -6,27 +6,27 @@ const InternationalStudy: React.FC = () => {
   const countries = [
     {
       name: 'Республика Казахстан',
-      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Kazahstan.png',
+      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Kazahstan.webp',
       pdf: '/images/ObrProcess/ObuchenieZaRubeshom/Respublika_Kazachstan.pdf'
     },
     {
       name: 'Кыргызская Республика',
-      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Kirgizskay.png',
+      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Kirgizskay.webp',
       pdf: '/images/ObrProcess/ObuchenieZaRubeshom/Kirgizskay_Respublika.pdf'
     },
     {
       name: 'Республика Таджикистан',
-      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Tadshikistan.png',
+      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Tadshikistan.webp',
       pdf: '/images/ObrProcess/ObuchenieZaRubeshom/Respublika_Tadshikistan.pdf'
     },
     {
       name: 'Туркменистан',
-      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Turkmenistan.png',
+      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Turkmenistan.webp',
       pdf: '/images/ObrProcess/ObuchenieZaRubeshom/Turkmenistan.pdf'
     },
     {
       name: 'Республика Молдова',
-      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Moldova.png',
+      flag: '/images/ObrProcess/ObuchenieZaRubeshom/Moldova.webp',
       pdf: '/images/ObrProcess/ObuchenieZaRubeshom/Moldova.pdf'
     }
   ];

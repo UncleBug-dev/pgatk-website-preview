@@ -18,7 +18,7 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const fullTitle = title ? `${title} | ${name}` : '#ПГАТККЛЕЩЕВА - Пинский государственный аграрный технологический колледж';
   const metaDescription = description || 'Официальный веб-сайт УО «Пинский государственный аграрный технологический колледж»';
-  const defaultImage = `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.png`;
+  const defaultImage = `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
   const metaImage = image || defaultImage;
 
   return (

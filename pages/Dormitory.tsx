@@ -14,19 +14,19 @@ const Dormitory: React.FC = () => {
     { title: "Положение об общежитии", link: "/images/Ideologiy/Obchechitie/Doc/PoloshenieObObsehetii.pdf" },
     { title: "Положение о совете общежития", link: "/images/Ideologiy/Obchechitie/Doc/PoloshenieOSoveteObshechitiy.pdf" },
     { title: "Положение о внутреннем распорядке", link: "/images/Ideologiy/Obchechitie/Doc/PolosheneieOVnRasporadke.pdf" },
-    { title: "Внутренний распорядок в общежитии колледжа", link: "/images/Ideologiy/Obchechitie/Doc/VnRasporObsh.jpg" },
+    { title: "Внутренний распорядок в общежитии колледжа", link: "/images/Ideologiy/Obchechitie/Doc/VnRasporObsh.webp" },
   ];
 
   const galleryImages = [
-    "/images/Ideologiy/Obchechitie/Foto/10.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/11.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/12.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/13.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/14.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/18.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/19.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/6.jpg",
-    "/images/Ideologiy/Obchechitie/Foto/7.jpg"
+    "/images/Ideologiy/Obchechitie/Foto/10.webp",
+    "/images/Ideologiy/Obchechitie/Foto/11.webp",
+    "/images/Ideologiy/Obchechitie/Foto/12.webp",
+    "/images/Ideologiy/Obchechitie/Foto/13.webp",
+    "/images/Ideologiy/Obchechitie/Foto/14.webp",
+    "/images/Ideologiy/Obchechitie/Foto/18.webp",
+    "/images/Ideologiy/Obchechitie/Foto/19.webp",
+    "/images/Ideologiy/Obchechitie/Foto/6.webp",
+    "/images/Ideologiy/Obchechitie/Foto/7.webp"
   ];
 
   const councilDorm1 = [
@@ -90,10 +90,10 @@ const Dormitory: React.FC = () => {
       {/* Banners */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
         <div className="rounded-3xl overflow-hidden shadow-sm border border-slate-200">
-          <img src="/images/Ideologiy/Obchechitie/Vospitateli/1.png" alt="Воспитатели" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
+          <img src="/images/Ideologiy/Obchechitie/Vospitateli/1.webp" alt="Воспитатели" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
         </div>
         <div className="rounded-3xl overflow-hidden shadow-sm border border-slate-200">
-          <img src="/images/Ideologiy/Obchechitie/VRObsh/VRvObsheshitii.png" alt="ВР в общежитии" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
+          <img src="/images/Ideologiy/Obchechitie/VRObsh/VRvObsheshitii.webp" alt="ВР в общежитии" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
         </div>
         <Link to="/abiturientam/obshechitie-abitur/galereya" className="rounded-3xl overflow-hidden shadow-sm border border-slate-200 md:col-span-2 block group relative cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-500/50">
           <div className="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/10 transition-colors z-10 flex items-center justify-center">
@@ -101,10 +101,10 @@ const Dormitory: React.FC = () => {
                Смотреть галерею
              </div>
           </div>
-          <img src="/images/Ideologiy/Obchechitie/2_1.png" alt="Общежитие" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 relative z-0" />
+          <img src="/images/Ideologiy/Obchechitie/2_1.webp" alt="Общежитие" className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 relative z-0" />
         </Link>
         <div className="rounded-3xl overflow-hidden shadow-sm border border-slate-200 md:col-span-2">
-          <img src="/images/Ideologiy/Obchechitie/Doc/doc.png" alt="Документы" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
+          <img src="/images/Ideologiy/Obchechitie/Doc/doc.webp" alt="Документы" className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" />
         </div>
       </div>
 
