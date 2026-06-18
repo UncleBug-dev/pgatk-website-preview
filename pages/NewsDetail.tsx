@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { 
   Calendar, 
   ChevronRight, 
@@ -20,6 +20,7 @@ interface NewsDetailProps {
 const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { news } = useData();
 
   const [newsItem, setNewsItem] = React.useState<any>(null);
@@ -329,7 +330,9 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
           {/* Footer Actions */}
           <div className="bg-slate-50 p-6 md:p-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
             <Link 
-              to={isVocational ? "/abiturientam/proforientatsionnye-novosti-o-nas-v-smi" : "/news"}
+              to={isVocational 
+                ? `/abiturientam/proforientatsionnye-novosti-o-nas-v-smi${location.state?.from || ''}` 
+                : `/news${location.state?.from || ''}`}
               className="flex items-center gap-2 text-slate-600 font-bold hover:text-accent-600 transition-colors group"
             >
               <div className="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center group-hover:border-accent-500 transition-colors shadow-sm">

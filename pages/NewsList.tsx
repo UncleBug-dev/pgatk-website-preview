@@ -128,6 +128,7 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
               <Link 
                 key={news.id} 
                 to={`/news/${news.id}`}
+                state={{ from: `?${searchParams.toString()}` }}
                 className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1"
               >
                 <div className="relative h-56 bg-slate-100 overflow-hidden">
