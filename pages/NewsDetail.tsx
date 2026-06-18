@@ -297,8 +297,8 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
               В реальном проекте контент должен быть очищен (sanitized).
             */}
             <div 
-              className="prose prose-slate prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-h2:text-primary-900 prose-a:text-accent-600 prose-img:rounded-xl"
-              dangerouslySetInnerHTML={{ __html: newsItem.content || `<p>${newsItem.summary}</p>` }}
+              className="prose prose-slate prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-h2:text-primary-900 prose-a:text-accent-600 prose-img:rounded-xl whitespace-pre-wrap"
+              dangerouslySetInnerHTML={{ __html: newsItem.content_html || newsItem.content || `<p>${newsItem.summary.replace(/\\n/g, '<br/>')}</p>` }}
             />
 
             {newsItem.hasVideo && (
