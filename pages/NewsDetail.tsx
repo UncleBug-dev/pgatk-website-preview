@@ -27,13 +27,16 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
   const [loading, setLoading] = React.useState(true);
   const [showVideo, setShowVideo] = React.useState(false);
 
+  const [viewerOpen, setViewerOpen] = React.useState(false);
+  const [viewerIndex, setViewerIndex] = React.useState(0);
+
   const getImageUrl = (url?: string) => {
     if (!url) return `${import.meta.env.BASE_URL}images/logo/logo_pgatkk.webp`;
     if (url.startsWith('http') || url.startsWith('data:')) return url;
     return `${import.meta.env.BASE_URL}${url.replace(/^\//, '')}`;
   };
 
-  const NewsSlider = ({ images }: { images: string[] }) => {
+  const NewsSlider = ({ images, onImageClick }: { images: string[], onImageClick: (idx: number) => void }) => {
     const [currentSlide, setCurrentSlide] = React.useState(0);
     
     React.useEffect(() => {
@@ -51,9 +54,10 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
         {images.map((img, idx) => (
           <div 
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out cursor-pointer ${
               idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
             }`}
+            onClick={() => onImageClick(idx)}
           >
             <div 
               className={`absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear ${
@@ -239,15 +243,25 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
           
           {/* Hero Image / Slider */}
-          <div className="relative h-64 md:h-96 w-full bg-slate-200">
+          <div className="relative h-64 md:h-96 w-full bg-slate-200 group">
             {newsItem.images && newsItem.images.length > 1 ? (
-              <NewsSlider images={newsItem.images} />
+              <NewsSlider images={newsItem.images} onImageClick={(idx) => { setViewerIndex(idx); setViewerOpen(true); }} />
             ) : (
-              <img 
-                src={getImageUrl(newsItem.imageUrl)} 
-                alt={newsItem.title} 
-                className="w-full h-full object-cover"
-              />
+              <div 
+                className="w-full h-full cursor-pointer relative"
+                onClick={() => { setViewerIndex(0); setViewerOpen(true); }}
+              >
+                <img 
+                  src={getImageUrl(newsItem.imageUrl)} 
+                  alt={newsItem.title} 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <div className="bg-black/50 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>
+                  </div>
+                </div>
+              </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent z-10 pointer-events-none"></div>
             <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full z-20 pointer-events-none">
@@ -384,6 +398,43 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
             ))}
          </div>
       </div>
+
+      {/* Lightbox Viewer */}
+      {viewerOpen && (
+        <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity" onClick={() => setViewerOpen(false)}>
+          <button className="absolute top-4 right-4 text-white/70 hover:text-white z-50 p-2 bg-black/50 hover:bg-black/80 rounded-full transition-all" onClick={() => setViewerOpen(false)}>
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+          
+          <div className="relative max-w-7xl max-h-screen w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+            <img 
+              src={getImageUrl((newsItem.images && newsItem.images.length > 0) ? newsItem.images[viewerIndex] : newsItem.imageUrl)} 
+              alt="Увеличенное изображение" 
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            />
+            
+            {(newsItem.images && newsItem.images.length > 1) && (
+              <>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setViewerIndex((prev) => (prev === 0 ? newsItem.images.length - 1 : prev - 1)); }}
+                  className="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-all shadow-lg"
+                >
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); setViewerIndex((prev) => (prev === newsItem.images.length - 1 ? 0 : prev + 1)); }}
+                  className="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 hover:bg-black/80 text-white transition-all shadow-lg"
+                >
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                </button>
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 px-4 py-1.5 rounded-full text-white text-sm font-medium shadow-md">
+                  {viewerIndex + 1} / {newsItem.images.length}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );
