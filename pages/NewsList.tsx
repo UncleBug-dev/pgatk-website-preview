@@ -27,6 +27,8 @@ interface NewsListProps {
 
 const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [goToPageValue, setGoToPageValue] = useState('');
+  const [activeEllipsis, setActiveEllipsis] = useState<number | null>(null);
   
   const selectedCategory = searchParams.get('category') || initialCategory;
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
@@ -221,10 +223,47 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
 
               return getVisiblePages(currentPage, totalPages).map((page, index) => {
                 if (page === '...') {
+                  if (activeEllipsis === index) {
+                    return (
+                      <form 
+                        key={`ellipsis-${index}`} 
+                        onSubmit={(e) => {
+                          e.preventDefault();
+                          const val = parseInt(goToPageValue, 10);
+                          if (!isNaN(val) && val >= 1 && val <= totalPages) {
+                            handleSetPage(val);
+                          }
+                          setActiveEllipsis(null);
+                        }}
+                        className="flex items-center"
+                      >
+                        <input
+                          type="number"
+                          min={1}
+                          max={totalPages}
+                          value={goToPageValue}
+                          onChange={e => setGoToPageValue(e.target.value)}
+                          onBlur={() => setActiveEllipsis(null)}
+                          autoFocus
+                          className="w-16 h-10 px-1 rounded-lg border border-accent-400 text-center font-bold text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 bg-white"
+                          placeholder="..."
+                        />
+                      </form>
+                    );
+                  }
+
                   return (
-                    <span key={`ellipsis-${index}`} className="px-2 text-slate-400">
+                    <button 
+                      key={`ellipsis-${index}`} 
+                      onClick={() => {
+                        setActiveEllipsis(index);
+                        setGoToPageValue('');
+                      }}
+                      className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-accent-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                      title="Перейти к странице..."
+                    >
                       ...
-                    </span>
+                    </button>
                   );
                 }
                 return (
