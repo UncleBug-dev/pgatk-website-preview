@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Calendar, ChevronRight, Home as HomeIcon, ChevronLeft, Loader2, ExternalLink, Image as ImageIcon, Play } from 'lucide-react';
 import { MOCK_NEWS } from '../constants';
 import { fetchTelegramPosts, TelegramPost } from '../utils/telegram';
@@ -26,11 +26,28 @@ interface NewsListProps {
 }
 
 const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
-  const location = useLocation();
-  const queryCategory = new URLSearchParams(location.search).get('category');
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const selectedCategory = searchParams.get('category') || initialCategory;
+  const currentPage = parseInt(searchParams.get('page') || '1', 10);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState(queryCategory || initialCategory);
+  const handleSetCategory = (cat: string) => {
+    setSearchParams(prev => {
+      if (cat === 'Все' && initialCategory === 'Все') prev.delete('category');
+      else prev.set('category', cat);
+      prev.delete('page'); // сбрасываем страницу на 1
+      return prev;
+    });
+  };
+
+  const handleSetPage = (pageUpdater: number | ((p: number) => number)) => {
+    setSearchParams(prev => {
+      const next = typeof pageUpdater === 'function' ? pageUpdater(currentPage) : pageUpdater;
+      if (next === 1) prev.delete('page');
+      else prev.set('page', next.toString());
+      return prev;
+    });
+  };
 
   const { news: localNews } = useData();
   const displayNews = localNews.map(n => ({ ...n, link: `/news/${n.id}` }));
@@ -80,8 +97,7 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
               <button
                 key={category}
                 onClick={() => {
-                  setSelectedCategory(category);
-                  setCurrentPage(1);
+                  handleSetCategory(category);
                 }}
                 title={category === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
                 className={`whitespace-nowrap px-4 py-2 md:px-5 md:py-2.5 rounded-full font-bold text-xs md:text-sm transition-all border shadow-sm ${
@@ -128,15 +144,29 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
                     />
                   )}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                    {(Array.isArray(news.category) ? news.category : [news.category || 'Telegram']).map((cat: string, idx: number) => (
-                      <span 
-                        key={idx} 
-                        className="bg-accent-500 text-primary-900 text-xs font-bold px-3 py-1 rounded shadow-sm"
-                        title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
-                      >
-                        {cat === 'ВПВ' ? '#ВПВ' : cat}
-                      </span>
-                    ))}
+                    {(() => {
+                      const cats = Array.isArray(news.category) ? news.category : [news.category || 'Telegram'];
+                      const displayCats = cats.slice(0, 2);
+                      const remaining = cats.length - 2;
+                      return (
+                        <>
+                          {displayCats.map((cat: string, idx: number) => (
+                            <span 
+                              key={idx} 
+                              className="bg-accent-500 text-primary-900 text-xs font-bold px-3 py-1 rounded shadow-sm"
+                              title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
+                            >
+                              {cat === 'ВПВ' ? '#ВПВ' : cat}
+                            </span>
+                          ))}
+                          {remaining > 0 && (
+                            <span className="bg-slate-800/80 text-white text-xs font-bold px-3 py-1 rounded shadow-sm">
+                              +{remaining}
+                            </span>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
                   {(news as any).hasVideo && (
                     <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-md text-white p-2 rounded-full shadow-lg border border-white/10 group-hover:bg-accent-500 transition-colors duration-300">
@@ -171,9 +201,9 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center space-x-2">
+          <div className="flex justify-center items-center space-x-2 mt-12">
             <button
-              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              onClick={() => handleSetPage(p => Math.max(1, p - 1))}
               disabled={currentPage === 1}
               className="p-2 rounded-lg border border-slate-200 hover:bg-white hover:text-accent-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
@@ -199,7 +229,7 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
                 return (
                   <button
                     key={`page-${page}`}
-                    onClick={() => setCurrentPage(page as number)}
+                    onClick={() => handleSetPage(page as number)}
                     className={`w-10 h-10 rounded-lg font-bold text-sm transition-all ${
                       currentPage === page
                         ? 'bg-accent-500 text-primary-900 shadow-lg shadow-accent-500/30 scale-110'
@@ -213,7 +243,7 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
             })()}
 
             <button
-              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              onClick={() => handleSetPage(p => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
               className="p-2 rounded-lg border border-slate-200 hover:bg-white hover:text-accent-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
