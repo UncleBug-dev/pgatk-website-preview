@@ -253,13 +253,14 @@ const NewsDetail: React.FC<NewsDetailProps> = ({ isVocational = false }) => {
             <div className="absolute bottom-0 left-0 p-6 md:p-10 w-full z-20 pointer-events-none">
               <div className="flex flex-wrap gap-2 mb-4 pointer-events-auto">
                 {(Array.isArray(newsItem.category) ? newsItem.category : [newsItem.category || 'Telegram']).map((cat, idx) => (
-                    <span 
+                    <Link 
                       key={idx} 
-                      className="bg-accent-500 text-primary-900 text-xs font-bold px-3 py-1 rounded inline-block shadow-sm"
+                      to={isVocational ? `/abiturientam/proforientatsionnye-novosti-o-nas-v-smi?category=${encodeURIComponent(cat)}` : `/news?category=${encodeURIComponent(cat)}`}
+                      className="bg-accent-500 hover:bg-accent-400 text-primary-900 hover:text-primary-800 text-xs font-bold px-3 py-1 rounded inline-block shadow-sm transition-colors cursor-pointer"
                       title={cat === 'ВПВ' ? 'Военно-патриотическое воспитание' : undefined}
                     >
                       {cat === 'ВПВ' ? '#ВПВ' : cat}
-                    </span>
+                    </Link>
                   ))}
               </div>
               <h1 className="text-2xl md:text-4xl font-display font-bold text-white leading-tight shadow-black drop-shadow-lg">
