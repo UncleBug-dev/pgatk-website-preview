@@ -235,7 +235,13 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
                           }
                           setActiveEllipsis(null);
                         }}
-                        className="flex items-center"
+                        onBlur={(e) => {
+                          // Close only if focus leaves the form entirely
+                          if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                            setActiveEllipsis(null);
+                          }
+                        }}
+                        className="flex items-center gap-1"
                       >
                         <input
                           type="number"
@@ -243,11 +249,17 @@ const NewsList: React.FC<NewsListProps> = ({ initialCategory = 'Все' }) => {
                           max={totalPages}
                           value={goToPageValue}
                           onChange={e => setGoToPageValue(e.target.value)}
-                          onBlur={() => setActiveEllipsis(null)}
                           autoFocus
-                          className="w-16 h-10 px-1 rounded-lg border border-accent-400 text-center font-bold text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 bg-white"
+                          className="w-14 h-10 px-1 rounded-lg border border-accent-400 text-center font-bold text-sm focus:outline-none focus:ring-2 focus:ring-accent-500 bg-white"
                           placeholder="..."
                         />
+                        <button
+                          type="submit"
+                          className="w-10 h-10 flex items-center justify-center bg-accent-500 hover:bg-accent-600 text-primary-900 rounded-lg font-bold transition-colors shadow-sm"
+                          title="Перейти"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
                       </form>
                     );
                   }
