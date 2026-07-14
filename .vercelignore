@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.vercel
+build
+tmp
+temp_docx
+doc.zip
+pgatkk.by old
+temp_docx/
+pgatkk.by old/
+*.bat
+*.log
+*.zip
+*.bat
